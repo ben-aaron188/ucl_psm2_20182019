@@ -6,7 +6,7 @@ This is the companion website for the 2018-2019 module for 2nd year undergraduat
 ### Resources
 
 
-The [module handbook]() provides you with all information around assessment, learning outcomes, timetables, and a general overview of the module. Use the module handbook as your go-to guide throughout the module.
+The [module handbook](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/psm2_SECU0013_module_outline.html) provides you with all information around assessment, learning outcomes, timetables, and a general overview of the module. Use the module handbook as your go-to guide throughout the module.
 
 **Slides**
 
