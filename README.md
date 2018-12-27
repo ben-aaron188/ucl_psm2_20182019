@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
+## PROBABILITY, STATISTICS AND MODELLING II 2018/2019
 
-You can use the [editor on GitHub](https://github.com/ben-aaron188/ucl_psm2_20182019/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This is the companion website for the 2018-2019 module for 2nd year undergraduate students of the BSc in Crime Science at UCL.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### Resources
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+The [module handbook]() provides you with all information around assessment, learning outcomes, timetables, and a general overview of the module. Use the module handbook as your go-to guide throughout the module.
 
-# Header 1
-## Header 2
-### Header 3
+**Slides**
 
-- Bulleted
-- List
+You can find the slides to all lectures here (we will post the slides after each lecture).
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+**Tutorials**
 
-[Link](url) and ![Image](src)
-```
+The R notebooks, slides, data, and code for the tutorials will be available in this place.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+---
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ben-aaron188/ucl_psm2_20182019/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Module convenor and author: Bennett Kleinberg (bennett.kleinberg@ucl.ac.uk)
 
-### Support or Contact
+Department of Security and Crime Science, UCL
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+---
+
