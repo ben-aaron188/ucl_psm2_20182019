@@ -1,0 +1,379 @@
+---
+title: "Intro to Data Science for Crime Scientists"
+subtitle: "PSM2 UCL"
+author: Bennett Kleinberg
+date: 8 Jan 2019
+#slide_level: 2
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: zenburn
+    center: true
+    css: custom.css
+---
+
+## Welcome {data-background="./img/ucl_artwork/ucl-banner-land-darkblue-rgb.png" data-background-size="70%" data-background-position="top" data-background-opacity="1"}
+
+Probability, Statistics & Modeling II
+
+### Lecture 1
+
+
+## Quick recap 1
+
+Predicting crimes
+
+<img width="60%" height="10%" data-src="./img/psm2_l1_1.jpg">
+
+
+## Predicting crimes
+
+**Behind the problem:**
+
+What is the claim?
+
+## Formalising the problem
+
+```{r}
+chance_day_1 = 0.5
+chance_day_2 = 0.5
+chance_day_3 = 0.5
+#...
+```
+
+
+## Solving the problem {.left_aligned}
+
+Probability for correct prediction?
+
+`P(prediction == 1) = p_correct = 0.5`
+
+... on 10 consecutive days?
+
+`p_correct * p_correct * p_correct ...`
+
+```{r}
+p_correct = 0.5
+
+# for d = 10 days
+
+d = 10
+
+#Formal:
+p_correct ^ d
+```
+
+Equivalent to: 1/2^10 = 1/1024
+
+
+## MARGINAL Probability:
+
+`P(EVENT)`
+
+Even very, very, rare events **happen**...
+
+<img data-src="./img/psm2_l1_4.gif">
+
+## ... but most of the time they don't.
+
+<img width="30%" height="30%" data-src="./img/psm2_l1_2.gif">
+<img width="30%" height="30%" data-src="./img/psm2_l1_3.gif">
+
+You need probability theory to tell the lucky from the likely.
+
+(and proper [statistics notations](https://stattrek.com/statistics/notation.aspx))
+
+## Quick recap 2
+
+_About Maria_
+
+  > Maria is 26 years old, single, outspoken, and very bright. She majored in law. As a student, she was deeply concerned with issues of discrimination and miscarriage of justice, and also participated in animal-rights demonstrations.
+
+<small>Adapted from Tversky & Kahneman (1983)</small>
+
+## Which is more probable? 
+
+- A: Maria works in a law firm
+- B: Maria works in a law firm and does pro bono work for disadvantaged defendants
+
+## Formalising the problem  {.left_aligned}
+
+Two events:
+
+- P(A) #prob of answer A
+- P(B) #prob of answer B
+
+... BUT:
+
+There's something special with P(B)
+
+`P(B) = P(A) + "something else"`
+
+P(B) contains two 'events': P(A) and 'pro bono work'
+
+`Let 'pro bono work' be P(C)`
+
+`P(B) = P(A) and P(C)`
+
+## Solving the problem  {.left_aligned}
+
+Joint probability
+
+`P(B) = P(A and C)`
+
+Let's try:
+
+```{r}
+Prob_A = 0.4
+Prob_C = 0.3
+```
+
+Formula: `P(A and B) = P(A)*P(C)`
+
+```{r}
+(Prob_A_and_C = Prob_A * Prob_C)
+```
+
+By definition: `P(X) > P(X and Y)`
+
+Therefore:
+        
+**P('M is a lawyer') > P('M is a lawyer' and 'pro-bono work')**
+
+## JOINT Probability:
+
+`P(EVENT_A AND EVENT_B) = P(EVENT_A)*P(EVENT_B)`
+
+Probability of two independent events is always smaller than the probability of each single events.
+
+<img data-src="./img/psm2_l1_5.gif">
+
+## Quick recap 3
+
+Screening terrorists
+
+<img data-src="./img/psm2_l1_baserate.png">
+
+## Your turn
+
+What are the chances that this man is a terrorist?
+
+<img data-src="./img/psm2_l1_baserate.png">
+
+## Formalising the problem
+
+CONDITIONAL Probability:
+
+Probability of TERRORIST **given** that there is an ALARM
+
+Looking for: `P(terrorist GIVEN alarm)`
+
+Formal: `P(terrorist|alarm)`
+
+## Solving the problem (method 1)
+
+|   |  Terrorist | Passenger |
+--- | --- | --- | --- | --- |
+Terrorist | <span class="fragment" data-fragment-index="5">950</span> | <span class="fragment" data-fragment-index="5">50</span> | <span class="fragment" data-fragment-index="2">1,000</span>
+Passenger | <span class="fragment" data-fragment-index="4">4,950</span> | <span class="fragment" data-fragment-index="4">94,050</span> | <span class="fragment" data-fragment-index="3">99,000</span>
+|   | <span class="fragment">5,900</span> | <span class="fragment">94,100</span> | <span class="fragment" data-fragment-index="1">100,000</span>
+
+<span class="fragment">`P(terrorist|alarm) = 950/5900 = 16.10%`</span>
+
+## Solving the problem (method 2)  {.left_aligned}
+
+Bayes' rule
+
+Setting the stage:
+
+- P(T) -> probability of terrorist
+- P(A) -> probability of alarm
+
+We want:
+
+- P(T|A)
+
+We know:
+
+- accuracy = P(A|T) = 0.95
+- baserate = P(T) = 0.01
+
+## Bayes' rule (cont'd)  {.left_aligned}
+
+```{r}
+accuracy = 0.95 #P(A|T)
+baserate = 0.01 #P(T)
+```
+
+Bayes' rule: `P(T|A) = ( P(A|T) * P(T) ) / P(A)`
+
+P(A) --> probability of any alarm???
+
+`P(A) = P(A|T) * P(T) + P(A|notT) * P(notT)`
+
+```{r}
+(Prob_notT = 1 - baserate) #P(notT) = 1 - P(T)
+(Prob_A_given_notT = 1 - accuracy) #P(A|notT) = 1 = P(A|T)
+```
+
+## Bayes' rule (cont'd)  {.left_aligned}
+
+Putting it together:
+
+```{r}
+#Bayes' rule:
+Prob_A = accuracy * baserate + Prob_A_given_notT * Prob_notT #P(A) = P(A|T) * P(T) + P(A|notT) * P(notT)
+Prob_A
+```
+
+```{r}
+Prob_T_given_A = (accuracy * baserate) / Prob_A #P(T|A) = ( P(A|T) * P(T) ) / P(A)
+Prob_A_given_notT
+```
+
+
+## 
+
+<img width="70%" height="70%" data-src="./img/bayes_rule.jpeg">
+
+! Revise this rule [here](https://towardsdatascience.com/what-is-bayes-rule-bb6598d8a2fd)
+
+## 
+
+CONDITIONAL Probability:
+
+`P(EVENT_A GIVEN EVENT_B) = P(EVENT_A|EVENT_B)`
+
+Probability of one event given that another event is true.
+
+**BEWARE OF THE BASERATE FALLACY**
+
+## Quick recap 4
+
+Solving gang crime
+
+<img data-src="./img/psm2_l1_6.jpg">
+
+## The context
+
+**Problem: gang crime in London**
+
+Mayor proposes two programmes:
+
+- A: zero-tolerance
+- B: work-and-integration
+
+Outcome measure: number of gang members who disengaged
+
+## Results
+
+|   | Programme A | Programme B |
+ --- | --- | ---|
+Camden | 63/90 | 8/10 |
+Lambeth | 4/10 | 45/90 |
+
+</br>
+
+Mayor has GBP 5m to invest in one programme.
+
+Your decision?
+
+## Solving the problem
+
+|   | Programme A | Programme B |
+--- | --- | ---|
+Camden | 63/90 <span class="fragment">= 70%</span> | 8/10 <span class="fragment">= 80%</span> |
+Lambeth | 4/10 <span class="fragment">= 40%</span> | 45/90<span class="fragment">= 50%</span> |
+|   | <span class="fragment">67/100 = 67%</span> | <span class="fragment">53/100 = 53%</span> |
+
+##
+
+CONTEXT matters
+
+[Simpson's paradox on YouTube](https://www.youtube.com/watch?v=wgLUDw8eLB4)
+
+**BEWARE OF THE CONTEXT OF YOUR DATA**
+
+##
+
+10 min. break
+
+## This module
+
+## Aim
+
+- go beyond PSM I
+- understand more complex data
+- model data and make inferences
+- make sense of crime data
+
+More on learning outcomes in the [module handbook](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/psm2_SECU0013_module_outline.html)
+
+## Tools we'll use
+
+<img width="20%" data-src="./img/psm2_l1_rstudio.png">
+
+<img width="20%" data-src="./img/psm2_l1_7.gif">
+
+- open-source + free
+- wide support community (e.g., on [Stackoverflow](https://stackoverflow.com/questions/tagged/r))
+- made for statistics
+- state-of-the-art libraries
+
+## But still...
+
+<img width="30%" data-src="./img/psm2_l1_r_salaries.png">
+
+- R [grows fast](https://stackoverflow.blog/2017/10/10/impressive-growth-r/)
+- Highly desirable/required in industry (Google, Facebook, Microsoft, Amazon, ...)
+
+
+## Structure of the module
+
+- 9 Lectures (Tuesdays, 14-16h)
+- 5 Tutorials (alternating Tuesdays, 10-12h)
+
+Teaching assistant: Isabelle van der Vegt
+
+## Assessment
+
+- Class test
+- Applied Crime Analysis Project
+
+## Class test
+
+- 50% of final grade
+- 1-hour closed-book exam
+- 8 open questions & MC questions
+- Date: 19 Mar 2019, 14-16h, [(details)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/psm2_SECU0013_module_outline.html#class_test)
+
+## Applied Crime Analysis Project
+
+- 50% of final grade
+- apply skills on dataset
+- address a research question
+- demonstrate open science practices
+- Due: 29 Mar 2019 [(details)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/psm2_SECU0013_module_outline.html#applied_crime_analysis_project)
+
+## Outlook
+
+- The Generalised Linear Model
+- Non-parametric data + discrete data
+- Open Science lab
+- Statistical evidence
+- Bayesian statistics
+
+
+## What's next?
+
+Homework for today:
+
+1. [Getting ready for R (on Moodle)](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/getting_ready_for_r.html)
+2. [R for Crime Scientists in 12 Steps](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/r_in_12_steps.html)
+
+
+Next week: 
+
+Tutorial + lecture
+
+Tutorial: Refresher of PSM I with R + GLM tutorial
