@@ -11,9 +11,9 @@ The [module handbook](https://rawcdn.githack.com/ben-aaron188/ucl_psm2_20182019/
 
 #### Week 1
 
-<!--- Lecture 1: Recap PSM 1 [(slides)](https://rawcdn.githack.com/ben-aaron188/ucl_psm2_20182019/00e4e85bfc312f722b70ec0129402dd257a560d7/slides/psm2_20182019_lecture1_intro.html)-->
-- Homework 1: [Getting ready for R](https://rawcdn.githack.com/ben-aaron188/ucl_aca_20182019/ce089fb8ee6e453c0c33683d70b1c88e18ca7c02/homework/getting_ready_for_r.html)
-- Homework 2: [R in 12 Steps](https://rawcdn.githack.com/ben-aaron188/ucl_aca_20182019/ce089fb8ee6e453c0c33683d70b1c88e18ca7c02/homework/r_in_12_steps.html)
+<!--- Lecture 1: Recap PSM 1 [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture1_intro.html)-->
+- Homework 1: [Getting ready for R](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/getting_ready_for_r.html)
+- Homework 2: [R in 12 Steps](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/r_in_12_steps.html)
 
 Suggested reading:
 

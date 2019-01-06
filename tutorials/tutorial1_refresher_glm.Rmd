@@ -1,0 +1,67 @@
+---
+title: "Refresher of PSM I with R + GLM tutorial"
+author: "B Kleinberg"
+date: 15 January 2019
+subtitle: Dept of Security and Crime Science, UCL
+output:
+  html_document:
+    df_print: paged
+---
+
+---
+
+Tutorial 1, Probability, Statistics and Modelling 2, BSc Security and Crime Science, UCL
+
+---
+
+## Outcomes of this tutorial
+
+This tutorial has two goals:
+
+1. Doing a quick refresher of PSM1 concepts with R.
+2. Getting started with the Generalized Linear Model approach in R.
+
+## Structure of this tutorial
+
+You are expected to work through this R Notebook in the tutorial and we will assist you and outline concepts for the whole class if needed.
+
+
+## Recap PSM 1 in R
+
+
+
+probability
+
+distributions
+
+descriptives
+
+
+
+hypothesis testing
+
+chisquare
+
+correlation
+
+
+## The generalized linear model
+
+idea
+
+models in R
+
+simple regression
+
+multiple regression
+
+adding/removing predictors
+
+inside the models
+
+working with the models
+
+## END
+
+---
+
