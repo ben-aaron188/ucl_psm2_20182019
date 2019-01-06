@@ -19,6 +19,8 @@ Suggested reading:
 
 - Dalgaard, P. (2008). Probability and distributions. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 55–65). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_3](https://doi.org/10.1007/978-0-387-79054-1_3)
 
+No tutorial.
+
 ---
 
 <!--#### Week 2
