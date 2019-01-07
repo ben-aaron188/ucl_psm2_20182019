@@ -25,41 +25,442 @@ This tutorial has two goals:
 
 You are expected to work through this R Notebook in the tutorial and we will assist you and outline concepts for the whole class if needed.
 
+## How to get help for programming problems?
+
+If you are encountering problems with programming problems you may find this guide on [How to solve data science problems in R](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/tutorials/how_to_solve_data_science_problems.html) useful. This is targeted at the 3rd Data Science module (Advanced Crime Analysis) but the guide for getting help applies to other R problems too.
+
+---
+
+## PART 1
 
 ## Recap PSM 1 in R
 
+### Descriptive statistics
+
+First, let's use a dataset that is close to those that you might encounter in the SCS programme. The dataset was retieved from [Data World](https://data.world/awram/us-mass-shootings) and contains details on all mass shootings in the US between 1982 - 2018.
+
+```{r}
+#Read the data
+
+us_mass_shootings = read.csv(file = './data/tutorial1/USMassShootings.csv'
+                             , header = T)
+
+#Look at the data
+head(us_mass_shootings)
+```
 
 
-probability
+You have now created a data.frame called `us_mass_shootings` that you can query nicely with R. You can use the concepts from the [R in 12 Steps](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/r_in_12_steps.html) and [Getting ready for R](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/getting_ready_for_r.html) on that data.frame.
 
-distributions
+In addition, if you feel you need a bit more guidance on how to deal with data.frames, have a look at the [17 Steps to investigate R dataframes tutorial](https://www.rstatisticsblog.com/r-tutorial/dataframe-manipulations/).
 
-descriptives
-
-
-
-hypothesis testing
-
-chisquare
-
-correlation
+```{r}
+#If you want to run the data.frames tutorial, you can type your code here.
 
 
-## The generalized linear model
+```
 
-idea
+Now let's get some basic descriptive statastics: the first step when analysing a dataset is to describe how the data were generated/retrieved (here: using an existing dataset) and describing the dataset through descriptive statistics.
 
-models in R
+```{r}
+#the mean number of casualties per shooting
+mean(us_mass_shootings$FATALITIES)
 
-simple regression
+#standard deviation of casualties
+sd(us_mass_shootings$FATALITIES)
 
-multiple regression
+#variance
+var(us_mass_shootings$FATALITIES)
 
-adding/removing predictors
+#range
+range(us_mass_shootings$FATALITIES)
 
-inside the models
+#frequency counts of the shooters' gender
+table(us_mass_shootings$GENDER)
 
-working with the models
+#frequency counts of gender by race
+table(us_mass_shootings$GENDER, us_mass_shootings$RACE)
+```
+
+**TASK**
+
+1. To get a glimpse at your whole dataset at once, you can use use the `summary()` and `str()` function. Use these on the `us_mass_shootings` dataset:
+
+```{r}
+#type+run your code here
+```
+
+
+2. Calculate the frequency counts of the shooter's "race":
+
+```{r}
+#type+run your code here
+```
+
+3. Retrieve the frequnecy table of the number of weapons used by the shooter's gender.
+
+```{r}
+#type+run your code here
+
+```
+
+4. Suppose you're interested in going a little deeper and are not only interested in the gender and race but - in addition - also in the year of the shooting: retrieve the frequnecy table of gender by race and year.
+
+Tip: you can arrange the variables in desired order to change the display (not the data).
+
+In which year did females commit mass shootings and of what race where they?
+
+```{r}
+#type+run your code here
+
+```
+
+
+**Advanced task**
+
+Just as you can 'subset' frequency counts by additional variables, you can also calculate descriptive statistics "by" another one. Suppose you wanted to calculate the mean number of wounded victims by the gender of the shooter:
+
+```{r}
+#we'd use the tapply function
+
+?tapply
+
+tapply(X = us_mass_shootings$WOUNDED
+       , INDEX = us_mass_shootings$GENDER
+       , FUN = mean
+       )
+```
+
+What is the mean (and standard deviation) number of fatalities for those who had prior mental health issues vs those who didn't have prior mental health issues?
+
+```{r}
+#type+run your code here
+
+```
+
+### Hypothesis testing
+
+Another aspect covered in the PSM1 module was hypothesis testing with t-tests. R has most statistical functions available by default and you can run a t-test by using the `t.test(...)` function:
+
+```{r}
+#t-test for differences in fatalities between shooters with and without prior mental health problems
+
+t.test(us_mass_shootings$FATALITIES ~ us_mass_shootings$PRIORSIGNSOFMENTALILLNESS)
+```
+
+Note that there are additional arguments in the `t.test(...)` function (e.g. for running a paired-samples t-test):
+
+```{r}
+#have a look at the help file to see all arguments
+?t.test
+```
+
+
+**TASK**
+
+Run a t-test to assess if there's a significant difference between the number of wounded depending on whether the weapon was obtained legally or illegally.
+
+```{r}
+#type+run your code here
+
+```
+
+No run that code with a 99% confidence interval and equal variance assumed. Check `?t.test` for the specification of these parameters.
+
+```{r}
+#type+run your code here
+
+```
+
+
+### Chi-square association
+
+When you have two categorical variables (e.g. scored as yes/no, ill/healthy, offended/not offended, ...) you might be interested in the association of these variables. In PSM1 you have covered the Chi-Square test of independence of two variables. In R, you'd run the test as follows:
+
+```{r}
+#let's look at the association between whether the weapon was obtained legally and whether ther were signs of prior mental illness
+table(us_mass_shootings$WEAPONSOBTAINEDLEGALLY, us_mass_shootings$PRIORSIGNSOFMENTALILLNESS
+      , dnn = c('WEAPONSOBTAINEDLEGALLY', 'PRIORSIGNSOFMENTALILLNESS'))
+```
+
+You notice that there are two cases where there is no label for the WEAPONSOBTAINEDLEGALLY variable. We can assess this further:
+
+```{r}
+levels(us_mass_shootings$WEAPONSOBTAINEDLEGALLY)
+```
+
+We see that there are three categorical levels in the data here. Since we do not want to impose any speculative values on the data, we exclude these cases:
+
+```{r}
+us_mass_shootings_clean = us_mass_shootings[us_mass_shootings$WEAPONSOBTAINEDLEGALLY == 'Yes' | us_mass_shootings$WEAPONSOBTAINEDLEGALLY == 'No', ]
+
+us_mass_shootings_clean = droplevels(us_mass_shootings_clean)
+
+#check again:
+levels(us_mass_shootings_clean$WEAPONSOBTAINEDLEGALLY)
+
+#and:
+table(us_mass_shootings_clean$WEAPONSOBTAINEDLEGALLY, us_mass_shootings_clean$PRIORSIGNSOFMENTALILLNESS
+      , dnn = c('WEAPONSOBTAINEDLEGALLY', 'PRIORSIGNSOFMENTALILLNESS'))
+```
+
+Now, to test for an association, we run the `chisq.test(...)` function **on the table** of frequency counts:
+
+```{r}
+freq_table = table(us_mass_shootings_clean$WEAPONSOBTAINEDLEGALLY, us_mass_shootings_clean$PRIORSIGNSOFMENTALILLNESS
+      , dnn = c('WEAPONSOBTAINEDLEGALLY', 'PRIORSIGNSOFMENTALILLNESS'))
+
+chisq.test(freq_table)
+```
+
+_Note that this is an illustration only here and that you need to check the assumptions (e.g. a minimum count per cell) first._
+
+**TASK**
+
+Assess with a 99% confidence interval whether there's an association between how the shooter obtained the weapon and gender.
+
+```{r}
+#type+run your code here
+
+```
+
+From you Chisquare-Test, retrieve the expected counts under the null hypothesis.
+
+Hint: `?chisq.test`.
+
+```{r}
+#type+run your code here
+
+```
+
+### Correlation
+
+Finally, sometimes you are interested in looking at the correlation between two continuous variables. In R, there are three ways to do this:
+
+```{r}
+#just the correlation
+cor(us_mass_shootings$FATALITIES, us_mass_shootings$WOUNDED)
+
+#the significance testing of the correlation
+cor.test(us_mass_shootings$FATALITIES, us_mass_shootings$WOUNDED)
+
+#plotting the data in a screeplot
+plot(us_mass_shootings$FATALITIES, us_mass_shootings$WOUNDED)
+```
+
+As with all R functions, there are several parameters that allow you to adjust the function (e.g. for special cases of correlation):
+
+```{r}
+?cor.test
+```
+
+
+**TASK**
+
+What is the 99% confidence interval of the correlation between the number of weapons used and the total number of victims.
+
+```{r}
+#type+run your code here
+
+```
+
+---
+
+## PART 2
+
+## The Generalized Linear Model (GLM)
+
+The generalized linear model will form the basis of the first five weeks of this module. 
+
+### What is the GLM?
+
+The GLM is a family of models that extend (= generalize) the linear regression model to allow for more flexibility in the response variables (= dependent variable). 
+
+### What is a linear regression model anyway?
+
+In the simplest sense, a linear regression model aims to predict a continuous outcome (e.g. income) through a predictor variable (e.g. age or gender). While the dependent variable (also called: outcome variable, response variable, target variable) is strictly continuous, the predictors can take both contionuous (age) and categorical (e.g. female vs male) form.
+
+The ingredients of a regression model:
+
+- The dependent variable `Y`
+- The predictor variable `X`
+- The intercept `a` (= the value of `Y` if `X` is `0`)
+- The slope `b` (= the change in `Y` for every unit change in `X`)
+- The error term `E` (= the difference between the predicted value and the observed value)
+
+_We will cover each of the above in detail in the lecture_
+
+The model can be written down as: `Y = a + b*X + E`
+
+Read this model as: `Y` explained the intercept `a` plus the predictor `X` multiplied with the slope `b` plus the error term `E`.
+
+Suppose you are predicting the income of a person through their age:
+
+`income = a + b*age + E`
+
+Once fitted to the data, the regression model could look like this:
+
+`income = 10000 + 2500*age` Note that the error term `E` is not explicitly mentioned here but can be inferred (see below).
+
+This model allows you to replace `age` with the actual age of someone from your sample to estimate their income:
+
+`income = 10000 + 2500*50 = 10000 + 12500 = 135000`
+
+You can use R to calculate the model parameters (intercept `a` and slope `b`) by specifying only the model formula:
+
+`income ~ age`
+
+Read this as: income explained through age. Note that the `=` sign is replaced by a tilde `~`. R uses this notation to build models.
+
+**Example with mass shootings**
+
+Suppose you wanted to run a regression model on the shooting data. Specifically, suppose you wanted to predict the no. of victims through the number of weapons used.
+
+Conceptually, you'd want this model:
+
+`victims ~ number_of_weapons`
+
+We can easily take this intuitive notion to R:
+
+```{r}
+my_model = lm(formula = TOTALVICTIMS ~ NUMWEAPONS
+              , data = us_mass_shootings)
+```
+
+Now R has fitted the model you specified on the data. You can inspect that model:
+
+```{r}
+#the full model and its parameters
+my_model
+```
+
+Based on these values, you can construct the model equation:
+
+`victims = 10.683 + 2.087*number_of_weapons`
+
+Thus, if the shooter used 3 weapons, your model would predict almost 17 victims:
+
+```{r}
+10.683 + 2.087*3
+```
+
+The model has other information available too. The most important ones are:
+
+- the residuals: these are the estimation errors for each case (i.e. the error term `E`, defined as: `outcome variable - fitted value`).
+- the fitted values: these are the values predicted by the model
+- model statistics: here you can assess whether a predictor was statistically significant or not and how well the model fits the data.
+
+```{r}
+#residuals
+my_model$residuals
+```
+
+The residuals show you that, for example, for the first observation, the model overestimated the number of victims by 9.94. 
+
+```{r}
+#fitted values
+my_model$fitted.values
+
+```
+
+Here you see that the fitted value for the first observation was 16.94, so we can infer that the observed (actual) value for the first observation must be: `fitted value + residual`
+
+```{r}
+my_model$fitted.values[1] + my_model$residuals[1]
+
+#checked against the actual data
+my_model$model[1, ]
+```
+
+If we want to get information on the significance of predictors and the fit of the model, we'll look at the `summary()` of `my_model`:
+
+```{r}
+#model statistics
+summary(my_model)
+```
+
+You can see:
+
+- that both the intercept and the predictor number_of_weapons are significant at the `_p_ < .05` level
+- the parameter estimates (for the intercept and the slope)
+- the R-Squared statistic: this expresses the proportion of the variance in the outcome variable `Y` that is explained by the model.
+
+In our case, we see that the model only explained 6.158% of the variance in the number of victims.
+
+**Multiple predictors**
+
+Of course, a single predictor rarely explains a lot of variation in an outcome variable. So we might want to include a new variable (e.g. the categorical variable whether there were signs of prior mental health issues or not). The conceptual model would the be:
+
+`victims ~ number_of_weapons + mental_health`
+
+In R:
+
+```{r}
+my_model_2 = lm(formula = TOTALVICTIMS ~ NUMWEAPONS + PRIORSIGNSOFMENTALILLNESS
+              , data = us_mass_shootings)
+
+summary(my_model_2)
+```
+
+You can see that the model fit improved considerably (from 6.158% to 12.54%) and that the new model equation is:
+
+`victims ~ 5.7765 + 2.1583*number_of_weapons + 6.881*mental_health`
+
+Note that we now have two predictors which implies that we also have two slopes (one for each predictor).
+
+You can see that the model summary has appended the word "Yes" to the `PRIORSIGNSOFMENTALILLNESS` predictor. This is to reflect that the slope applies to the case that the variable `PRIORSIGNSOFMENTALILLNESS` is equal to `Yes`.  This means that the predicted number of victims is 6.8810 more if there were signs of mental health issues tha if there were no previous mental health issues.
+
+When there are mutliple predictors, the simple regression model becomes a _multiple regression model_.
+
+**Task:**
+
+Build your own model that predicts the number if wounded victims based on the shooter's gender and whether the weapons were obtained legally.
+
+```{r}
+#type+run your code here
+
+```
+
+
+### Back to the GLM....
+
+Now that we covered some basics of linear regression (more in the lecture and homework), we can see why the generalized linear model is so useful. Essentially, it is a means to unify similar models in one.
+
+Suppose you'd want to predict a categorical variable (e.g. "predict" whether the weapon was obtained legally based on the shooter's gender): the problem is that this conflicts with the base linear regression model which assumes continuous data.
+
+The GLM can handle different outcome variables through so-called "link" functions. A link function links the outcome variable to the linear predictor. An overview of link functions in R can be found [here](https://www.statmethods.net/advstats/glm.html). This model unification allows you to build the model in the same way but changing the link function if the outcome variable is of a different type. It also shows that linear relationships are capable of expressing the data regardless of the nature of the response variable.
+
+The modelling process of the GLM in R is very similar to the linear regression example with the addition of the link function:
+
+```{r}
+my_glm = glm(formula = TOTALVICTIMS ~ NUMWEAPONS
+             , data = us_mass_shootings
+             , family = gaussian)
+```
+
+This fits the same model as above stored in `my_model` but this time with the "Gaussian" link function. You can see that the model is identical to the one obtained with `lm(...)` above. This is because the gaussian link function of the GLM is identical to the linear model retrieved with `lm(...)`. More in-depth relationships are out of the scope of this module but [this](https://tsmatz.wordpress.com/2017/08/30/glm-regression-logistic-poisson-gaussian-gamma-tutorial-with-r/) tutorial gives a nice starting point.
+
+```{r}
+my_glm
+```
+
+Similar to models built with the `lm()` function, the `glm()` offers additional model information:
+
+```{r}
+#residuals
+my_glm$residuals
+
+#fitted values
+my_glm$fitted.values
+
+#model statistics
+summary(my_glm)
+```
+
+**Using the GLM for different predictors**
+
+We can extend the GLM to cases where the outcome variable is binary (e.g. coded to 0 or 1) or represents counts (e.g. counts of victims). For the latter, for example, a Poisson regression might be more apt than a gaussian linear regression. We will cover these extensions in the next lecture and tutorial.
+
 
 ## END
 
