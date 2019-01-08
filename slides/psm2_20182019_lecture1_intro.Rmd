@@ -1,5 +1,5 @@
 ---
-title: "Intro to Data Science for Crime Scientists"
+title: "PSM1 recap and outlook"
 subtitle: "PSM2 UCL"
 author: Bennett Kleinberg
 date: 8 Jan 2019
