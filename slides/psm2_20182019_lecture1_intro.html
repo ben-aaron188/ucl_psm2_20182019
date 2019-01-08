@@ -584,6 +584,9 @@ Prob_C =<span class="st"> </span><span class="fl">0.3</span></code></pre></div>
 <p>Formula: <code>P(A and B) = P(A)*P(C)</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dt">Prob_A_and_C =</span> Prob_A <span class="op">*</span><span class="st"> </span>Prob_C)</code></pre></div>
 <pre><code>## [1] 0.12</code></pre>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
 <p>By definition: <code>P(X) &gt; P(X and Y)</code></p>
 <p>Therefore:</p>
 <p><strong>P(‘M is a lawyer’) &gt; P(‘M is a lawyer’ and ‘pro-bono work’)</strong></p>
@@ -600,14 +603,16 @@ Prob_C =<span class="st"> </span><span class="fl">0.3</span></code></pre></div>
 <p><img data-src="./img/psm2_l1_baserate.png"></p>
 </section>
 <section id="your-turn" class="slide level2">
-<h2>Your turn</h2>
+<h2><strong>Your turn</strong></h2>
 <p>What are the chances that this man is a terrorist?</p>
 <p><img data-src="./img/psm2_l1_baserate.png"></p>
 </section>
 <section id="formalising-the-problem-2" class="slide level2">
 <h2>Formalising the problem</h2>
 <p>CONDITIONAL Probability:</p>
+<p></br></p>
 <p>Probability of TERRORIST <strong>given</strong> that there is an ALARM</p>
+<p></br></p>
 <p>Looking for: <code>P(terrorist GIVEN alarm)</code></p>
 <p>Formal: <code>P(terrorist|alarm)</code></p>
 </section>
@@ -669,6 +674,9 @@ Prob_C =<span class="st"> </span><span class="fl">0.3</span></code></pre></div>
 baserate =<span class="st"> </span><span class="fl">0.01</span> <span class="co">#P(T)</span></code></pre></div>
 <p>Bayes’ rule: <code>P(T|A) = ( P(A|T) * P(T) ) / P(A)</code></p>
 <p>P(A) –&gt; probability of any alarm???</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
 <p><code>P(A) = P(A|T) * P(T) + P(A|notT) * P(notT)</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dt">Prob_notT =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>baserate) <span class="co">#P(notT) = 1 - P(T)</span></code></pre></div>
 <pre><code>## [1] 0.99</code></pre>
@@ -683,15 +691,15 @@ Prob_A =<span class="st"> </span>accuracy <span class="op">*</span><span class="
 Prob_A</code></pre></div>
 <pre><code>## [1] 0.059</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Prob_T_given_A =<span class="st"> </span>(accuracy <span class="op">*</span><span class="st"> </span>baserate) <span class="op">/</span><span class="st"> </span>Prob_A <span class="co">#P(T|A) = ( P(A|T) * P(T) ) / P(A)</span>
-Prob_A_given_notT</code></pre></div>
-<pre><code>## [1] 0.05</code></pre>
+Prob_T_given_A</code></pre></div>
+<pre><code>## [1] 0.1610169</code></pre>
 </section>
-<section id="section" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <p><img width="70%" height="70%" data-src="./img/bayes_rule.jpeg"></p>
 <p>! Revise this rule <a href="https://towardsdatascience.com/what-is-bayes-rule-bb6598d8a2fd">here</a></p>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p>CONDITIONAL Probability:</p>
 <p><code>P(EVENT_A GIVEN EVENT_B) = P(EVENT_A|EVENT_B)</code></p>
@@ -703,7 +711,7 @@ Prob_A_given_notT</code></pre></div>
 <p>Solving gang crime</p>
 <p><img data-src="./img/psm2_l1_6.jpg"></p>
 </section>
-<section id="the-context" class="slide level2">
+<section id="the-context" class="slide level2 left_aligned">
 <h2>The context</h2>
 <p><strong>Problem: gang crime in London</strong></p>
 <p>Mayor proposes two programmes:</p>
@@ -711,6 +719,7 @@ Prob_A_given_notT</code></pre></div>
 <li>A: zero-tolerance</li>
 <li>B: work-and-integration</li>
 </ul>
+<p>100 gang-members in two areas.</p>
 <p>Outcome measure: number of gang members who disengaged</p>
 </section>
 <section id="results" class="slide level2">
@@ -769,13 +778,20 @@ Prob_A_given_notT</code></pre></div>
 </tbody>
 </table>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
-<p>CONTEXT matters</p>
+<blockquote>
+<p>[a] phenomenon wherein an association or a trend observed in the data at the level of the entire population disappears or even reverses when data is disaggregated by its underlying subgroups <a href="https://arxiv.org/abs/1805.03094">Alipourfard et al., 2018</a></p>
+</blockquote>
+<p><img data-src="./img/simpsons_paradox.png"></p>
+<p><a href="https://towardsdatascience.com/simpsons-paradox-and-interpreting-data-6a0443516765">Simpson’s Paradox and Interpreting Data</a></p>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
 <p><a href="https://www.youtube.com/watch?v=wgLUDw8eLB4">Simpson’s paradox on YouTube</a></p>
 <p><strong>BEWARE OF THE CONTEXT OF YOUR DATA</strong></p>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p>10 min. break</p>
 </section>

@@ -134,6 +134,8 @@ Formula: `P(A and B) = P(A)*P(C)`
 (Prob_A_and_C = Prob_A * Prob_C)
 ```
 
+##
+
 By definition: `P(X) > P(X and Y)`
 
 Therefore:
@@ -154,7 +156,7 @@ Screening terrorists
 
 <img data-src="./img/psm2_l1_baserate.png">
 
-## Your turn
+## **Your turn**
 
 What are the chances that this man is a terrorist?
 
@@ -164,7 +166,11 @@ What are the chances that this man is a terrorist?
 
 CONDITIONAL Probability:
 
+</br>
+
 Probability of TERRORIST **given** that there is an ALARM
+
+</br>
 
 Looking for: `P(terrorist GIVEN alarm)`
 
@@ -209,12 +215,15 @@ Bayes' rule: `P(T|A) = ( P(A|T) * P(T) ) / P(A)`
 
 P(A) --> probability of any alarm???
 
+##
+
 `P(A) = P(A|T) * P(T) + P(A|notT) * P(notT)`
 
 ```{r}
 (Prob_notT = 1 - baserate) #P(notT) = 1 - P(T)
 (Prob_A_given_notT = 1 - accuracy) #P(A|notT) = 1 = P(A|T)
 ```
+
 
 ## Bayes' rule (cont'd)  {.left_aligned}
 
@@ -228,7 +237,7 @@ Prob_A
 
 ```{r}
 Prob_T_given_A = (accuracy * baserate) / Prob_A #P(T|A) = ( P(A|T) * P(T) ) / P(A)
-Prob_A_given_notT
+Prob_T_given_A
 ```
 
 
@@ -254,7 +263,7 @@ Solving gang crime
 
 <img data-src="./img/psm2_l1_6.jpg">
 
-## The context
+## The context {.left_aligned}
 
 **Problem: gang crime in London**
 
@@ -262,6 +271,8 @@ Mayor proposes two programmes:
 
 - A: zero-tolerance
 - B: work-and-integration
+
+100 gang-members in two areas.
 
 Outcome measure: number of gang members who disengaged
 
@@ -288,7 +299,15 @@ Lambeth | 4/10 <span class="fragment">= 40%</span> | 45/90<span class="fragment"
 
 ##
 
-CONTEXT matters
+  > [a] phenomenon wherein an association or a trend observed in the data at
+the level of the entire population disappears or even reverses
+when data is disaggregated by its underlying subgroups [Alipourfard et al., 2018](https://arxiv.org/abs/1805.03094)
+
+<img data-src="./img/simpsons_paradox.png"> 
+
+[Simpson’s Paradox and Interpreting Data](https://towardsdatascience.com/simpsons-paradox-and-interpreting-data-6a0443516765)
+
+##
 
 [Simpson's paradox on YouTube](https://www.youtube.com/watch?v=wgLUDw8eLB4)
 
