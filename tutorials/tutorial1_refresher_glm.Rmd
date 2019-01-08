@@ -138,41 +138,6 @@ What is the mean (and standard deviation) number of fatalities for those who had
 
 ```
 
-### Hypothesis testing
-
-Another aspect covered in the PSM1 module was hypothesis testing with t-tests. R has most statistical functions available by default and you can run a t-test by using the `t.test(...)` function:
-
-```{r}
-#t-test for differences in fatalities between shooters with and without prior mental health problems
-
-t.test(us_mass_shootings$FATALITIES ~ us_mass_shootings$PRIORSIGNSOFMENTALILLNESS)
-```
-
-Note that there are additional arguments in the `t.test(...)` function (e.g. for running a paired-samples t-test):
-
-```{r}
-#have a look at the help file to see all arguments
-?t.test
-```
-
-
-**TASK**
-
-Run a t-test to assess if there's a significant difference between the number of wounded depending on whether the weapon was obtained legally or illegally.
-
-```{r}
-#type+run your code here
-
-```
-
-No run that code with a 99% confidence interval and equal variance assumed. Check `?t.test` for the specification of these parameters.
-
-```{r}
-#type+run your code here
-
-```
-
-
 ### Chi-square association
 
 When you have two categorical variables (e.g. scored as yes/no, ill/healthy, offended/not offended, ...) you might be interested in the association of these variables. In PSM1 you have covered the Chi-Square test of independence of two variables. In R, you'd run the test as follows:
@@ -232,6 +197,42 @@ Hint: `?chisq.test`.
 #type+run your code here
 
 ```
+
+
+### Hypothesis testing
+
+Another aspect covered in the PSM1 module was hypothesis testing with t-tests. R has most statistical functions available by default and you can run a t-test by using the `t.test(...)` function:
+
+```{r}
+#t-test for differences in fatalities between shooters with and without prior mental health problems
+
+t.test(us_mass_shootings$FATALITIES ~ us_mass_shootings$PRIORSIGNSOFMENTALILLNESS)
+```
+
+Note that there are additional arguments in the `t.test(...)` function (e.g. for running a paired-samples t-test):
+
+```{r}
+#have a look at the help file to see all arguments
+?t.test
+```
+
+
+**TASK**
+
+Run a t-test to assess if there's a significant difference between the number of wounded depending on whether the weapon was obtained legally or illegally.
+
+```{r}
+#type+run your code here
+
+```
+
+No run that code with a 99% confidence interval and equal variance assumed. Check `?t.test` for the specification of these parameters.
+
+```{r}
+#type+run your code here
+
+```
+
 
 ### Correlation
 
