@@ -296,32 +296,6 @@ tapply(X = us_mass_shootings$WOUNDED
 <p>What is the mean (and standard deviation) number of fatalities for those who had prior mental health issues vs those who didn’t have prior mental health issues?</p>
 <pre class="r"><code>#type+run your code here</code></pre>
 </div>
-<div id="hypothesis-testing" class="section level3">
-<h3>Hypothesis testing</h3>
-<p>Another aspect covered in the PSM1 module was hypothesis testing with t-tests. R has most statistical functions available by default and you can run a t-test by using the <code>t.test(...)</code> function:</p>
-<pre class="r"><code>#t-test for differences in fatalities between shooters with and without prior mental health problems
-
-t.test(us_mass_shootings$FATALITIES ~ us_mass_shootings$PRIORSIGNSOFMENTALILLNESS)</code></pre>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  us_mass_shootings$FATALITIES by us_mass_shootings$PRIORSIGNSOFMENTALILLNESS
-## t = -1.5593, df = 53.281, p-value = 0.1248
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -4.3560172  0.5452565
-## sample estimates:
-##  mean in group No mean in group Yes 
-##          6.727273          8.632653</code></pre>
-<p>Note that there are additional arguments in the <code>t.test(...)</code> function (e.g. for running a paired-samples t-test):</p>
-<pre class="r"><code>#have a look at the help file to see all arguments
-?t.test</code></pre>
-<p><strong>TASK</strong></p>
-<p>Run a t-test to assess if there’s a significant difference between the number of wounded depending on whether the weapon was obtained legally or illegally.</p>
-<pre class="r"><code>#type+run your code here</code></pre>
-<p>No run that code with a 99% confidence interval and equal variance assumed. Check <code>?t.test</code> for the specification of these parameters.</p>
-<pre class="r"><code>#type+run your code here</code></pre>
-</div>
 <div id="chi-square-association" class="section level3">
 <h3>Chi-square association</h3>
 <p>When you have two categorical variables (e.g. scored as yes/no, ill/healthy, offended/not offended, …) you might be interested in the association of these variables. In PSM1 you have covered the Chi-Square test of independence of two variables. In R, you’d run the test as follows:</p>
@@ -369,6 +343,32 @@ chisq.test(freq_table)</code></pre>
 <pre class="r"><code>#type+run your code here</code></pre>
 <p>From you Chisquare-Test, retrieve the expected counts under the null hypothesis.</p>
 <p>Hint: <code>?chisq.test</code>.</p>
+<pre class="r"><code>#type+run your code here</code></pre>
+</div>
+<div id="hypothesis-testing" class="section level3">
+<h3>Hypothesis testing</h3>
+<p>Another aspect covered in the PSM1 module was hypothesis testing with t-tests. R has most statistical functions available by default and you can run a t-test by using the <code>t.test(...)</code> function:</p>
+<pre class="r"><code>#t-test for differences in fatalities between shooters with and without prior mental health problems
+
+t.test(us_mass_shootings$FATALITIES ~ us_mass_shootings$PRIORSIGNSOFMENTALILLNESS)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  us_mass_shootings$FATALITIES by us_mass_shootings$PRIORSIGNSOFMENTALILLNESS
+## t = -1.5593, df = 53.281, p-value = 0.1248
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -4.3560172  0.5452565
+## sample estimates:
+##  mean in group No mean in group Yes 
+##          6.727273          8.632653</code></pre>
+<p>Note that there are additional arguments in the <code>t.test(...)</code> function (e.g. for running a paired-samples t-test):</p>
+<pre class="r"><code>#have a look at the help file to see all arguments
+?t.test</code></pre>
+<p><strong>TASK</strong></p>
+<p>Run a t-test to assess if there’s a significant difference between the number of wounded depending on whether the weapon was obtained legally or illegally.</p>
+<pre class="r"><code>#type+run your code here</code></pre>
+<p>No run that code with a 99% confidence interval and equal variance assumed. Check <code>?t.test</code> for the specification of these parameters.</p>
 <pre class="r"><code>#type+run your code here</code></pre>
 </div>
 <div id="correlation" class="section level3">
