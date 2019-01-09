@@ -95,23 +95,7 @@ We can re-formulate the hypothesis to the data distribution context: we want to 
 In other words, we want to test whether the mean improvement score of the treatment group is **statistically significantly different** from the placebo group.
 
 
-If you look at the data next to one another, you see that both histograms overlap, thus it is not clear whether the means stem from two different groups or are due to random variation.
-
-```{r}
-library(ggplot2)
-ggplot(rct_data, aes(improvement, fill = group)) + 
-   geom_histogram(alpha = 0.8,  position = 'identity', binwidth = 10) +
-  scale_fill_manual(values=c("red", "darkblue")) +
-  labs(y = "Frequency") +
-  geom_segment(aes(x = mean(rct_data$improvement[rct_data$group == 'placebo']), y = 0, xend = mean(rct_data$improvement[rct_data$group == 'placebo']), yend = 40)) +
-  geom_segment(aes(x = mean(rct_data$improvement[rct_data$group == 'treatment']), y = 0, xend = mean(rct_data$improvement[rct_data$group == 'treatment']), yend = 40))
-```
-
-Ideally, both histograms would not overlap at all, but this is hardly ever the case.
-
-To test whether the mean of the treatment group is significantly different from that of the placebo group, we need to define the degree to which we allow the mean of the treatment group to overlap with the distribution of the placebo group.
-
-This allowed degree of overlap is statistically defined as the **p-value**. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to `0.05` (5.00%) and `0.01` (1.00%).
+If you look at the data next to one another, you see that both density lines overlap, thus it is not immediately clear whether the means stem from two different groups or are due to random variation.
 
 ```{r}
 {plot(density(rct_data$improvement[rct_data$group == 'treatment']), col = 'blue', main = '', xlab='Observed values', xlim=c(20,100))
@@ -119,6 +103,26 @@ lines(density(rct_data$improvement[rct_data$group == 'placebo']), col = 'red')
 abline(v = mean(rct_data$improvement[rct_data$group == 'treatment']), col='blue')
 abline(v = mean(rct_data$improvement[rct_data$group == 'placebo']), col='red')}
 ```
+
+
+If two groups are markedly different, we'd see that their overlap is minimal to non:
+
+```{r}
+a1 = rnorm(1000, 50, 5)
+b1 = rnorm(1000, 20, 5)
+{plot(density(a1), col = 'green', main = '', xlab='Observed values', xlim=c(0,70))
+lines(density(b1), col = 'orange')
+abline(v = mean(a1), col='green')
+abline(v = mean(b1), col='orange')}
+```
+
+You can see that the green mean (vertical line) does not cross the curve of the orange distribution. Here' we'd clearly see that the two means stem from two genuinely different groups.
+
+Ideally, both histograms would not overlap at all, but this is hardly ever the case.
+
+To test whether the mean of the treatment group is significantly different from that of the placebo group, we need to define the degree to which we allow the mean of the treatment group to overlap with the distribution of the placebo group.
+
+This allowed degree of overlap is statistically defined as the **p-value**. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to `0.05` (5.00%) and `0.01` (1.00%).
 
 
 The **p-value** is used to make inferences from a sample to the wider population. We can never sample the entire population, but we still want to be able to conclude whether a treatment is effective. 
@@ -135,9 +139,13 @@ t.test(rct_data$improvement ~ rct_data$group)
 
 ... very small (approaching zero).
 
-Therefore, since p-value < 0.05, we state that the treatment group had a significantly higher improvement score than the placebo group.
+Therefore, since p-value < 0.05, we state that **the treatment group had a significantly higher improvement score than the placebo group**. We then say that we reject the null hypothesis that both groups are equal.
 
-**Note:** The p-value implies that we accept that in 5% of the cases where we conclude a significant difference, we are wrong. Thus in 5% of the cases we incorrectly conclude that there is an effect. Therefore, the p-value would ideally be set to a very small level (e.g. from 5% to 0.1%, the so-called alpha-level).
+**Note:** The p-value implies that we accept that in 5% of the cases where we conclude a significant difference, we are wrong. Thus in 5% of the cases we incorrectly conclude that there is an effect. Therefore, the p-value would ideally be set to a very small level (e.g. from 5% to 0.1%, the so-called alpha-level). The significance level can therefore be thought of as the false-positive rate, and the p-value be interpreted as the chance to which the observation is due to random variation rather than a genuine effect.
+
+An intuitive reading of the p-value is as follows: A p-value of 0.02 (2%) means that the chance that the observed difference is just random noise is 2%.
+
+---
 
 ## Confidence intervals
 
@@ -229,18 +237,29 @@ The range of the confidence interval contains a lower boundary and an upper boun
 
 `upper_boundary = mean + 1.96*standard_error`
 
+The notation of a confidence interval is: `95% CI = [lower_boundary; upper_boundary]`
 
 Using this formula, the confidence intervals for the above examples are:
 
-```{r table2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "  # Mean, standard error and confidence intervals
 | Sample size | Mean | Standard error | Confidence interval |
-|-------------|:------:|---------:| ------------:|
-| 25      | 5.62 | 0.59 | |
-| 100      | 5.13 | 0.23 | |
-| 100000 | 5.01 | 0.01 | |
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
+| ----------- |:-----------:| ------------:| ------------:|
+| 25     | 5.62 | 0.59 | [4.46; 6.78]
+| 100    | 5.13 | 0.23 | [4.68; 5.58]
+| 100000 | 5.01 | 0.01 | [4.99; 5.03]
 
+
+You can see that the confidence interval becomes smaller with an increasing sample size.
+
+## Relationship between sample size, significance level and confidence intervals
+
+- the smaller the p-value threshold, the lower the false positive rate (i.e. making a wrong conclusion that there is an effect)
+- the larger the p-value threshold, the more likely it is to conclude that there is a significant difference
+- the larger the p-value threshold, the more likely it is to make an incorrect decision (i.e. conclude that there is an effect while in fact there is none)
+- the larger the sample size, the more likely it is that small differences become statistically significant
+    - this often leads to spurious effects (e.g. see the website [Spurious Correlations](http://tylervigen.com/spurious-correlations)) that are significant merely due to a large sample size (an example is the statistically significant correlation between shoe size and intelligence)
+    - to remedy the influence of the sample size, it is now common practice to use **effect sizes** that represent group differences in a standardized (i.e. sample size-independent) manner
+- the larger the sample size, the narrower the confidence interval of a sample statistic (e.g. the mean)
+    - this is due to the smaller standard error (remember: the standard error is obtained by dividing through the sample size)
+
+---
 
