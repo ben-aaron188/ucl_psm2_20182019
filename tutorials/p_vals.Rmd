@@ -113,8 +113,31 @@ To test whether the mean of the treatment group is significantly different from 
 
 This allowed degree of overlap is statistically defined as the **p-value**. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to `0.05` (5.00%) and `0.01` (1.00%).
 
+```{r}
+{plot(density(rct_data$improvement[rct_data$group == 'treatment']), col = 'blue', main = '', xlab='Observed values', xlim=c(20,100))
+lines(density(rct_data$improvement[rct_data$group == 'placebo']), col = 'red')
+abline(v = mean(rct_data$improvement[rct_data$group == 'treatment']), col='blue')
+abline(v = mean(rct_data$improvement[rct_data$group == 'placebo']), col='red')}
+```
 
-p-value
+
+The **p-value** is used to make inferences from a sample to the wider population. We can never sample the entire population, but we still want to be able to conclude whether a treatment is effective. 
+
+Because sampling large distributions is often costly or not possible, a commonly used threshold is chosen at 5%. That is, we accept a 5% change that the mean of the treatment group might not be significantly different from the placebo group.
+
+Using a statistical test called the `t-test`, we can calculate the p-value (i.e. the chance that an observed difference might be due to random variation) for a comparison of two-groups. If the p-value is below the 5% threshold, we deem the difference between the two groups **statistically significant** and conclude that there is an effect of the "MagicPill".
+
+In the current example, the p-value is:
+
+```{r}
+t.test(rct_data$improvement ~ rct_data$group)
+```
+
+... very small (approaching zero).
+
+Therefore, since p-value < 0.05, we state that the treatment group had a significantly higher improvement score than the placebo group.
+
+**Note:** The p-value implies that we accept that in 5% of the cases where we conclude a significant difference, we are wrong. Thus in 5% of the cases we incorrectly conclude that there is an effect. Therefore, the p-value would ideally be set to a very small level (e.g. from 5% to 0.1%, the so-called alpha-level).
 
 ## Confidence intervals
 
