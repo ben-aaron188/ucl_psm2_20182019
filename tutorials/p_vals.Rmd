@@ -1,0 +1,223 @@
+---
+title: "p-values, confidence intervals, effect sizes"
+author: "B Kleinberg"
+date: 09 January 2019
+subtitle: Dept of Security and Crime Science, UCL
+output:
+  html_document:
+    df_print: paged
+---
+
+## A gentle introduction
+
+- p-values
+- confidence intervals
+- effect sizes
+
+---
+
+## Comparing two groups
+
+Suppose you are interested in testing the effect of the drug "MagicPill" on treating a particular condition. 
+
+A common approach to do this is a randomized controlled trial (RCT) in which you randomly allocate subjects with the condition to either the **treatment group** (i.e. those who take the "MagicPill") or the **placebo group** (i.e. those who think they take the actual drug but in fact take an ineffective placebo - e.g. a pill of dextrose).
+
+Let's assume you measure the effectiveness of the 'treatment' in both groups as the improvement of self-reported well-being (scored on a scale from 1-100). Higher scores indicate a higher improvement of well-being.
+
+You want to know whether the "MagicPill" is better than a placebo in improving the subjects' well-being.
+
+You can formulate this as an hypothesis:
+
+**Your hypothesis:** The improvement in self-reported well-being is higher in the treatment group than in the placebo group.
+
+From this hypothesis you can derive the so-called **null hypothesis**. The null hypothesis states that there is no difference between the groups.
+
+**Null hypothesis:** There is no difference in self-reported well-being between the treatment and the placebo group.
+
+The challenge now lies in testing these hypotheses.
+
+### The data
+
+Let's assume 200 subjects, evenly-balanced (100 per group) were tested in an RCT.
+
+```{r}
+set.seed(123)
+rct_data = data.frame('group' = rep(c('treatment', 'placebo'), each = 100))
+a = round(rnorm(100, 75, 10))
+b = round(rnorm(100, 55, 10))
+rct_data$improvement = c(a, b)
+```
+
+A rough idea of the improvement of each group can be obtained through the mean (average) and the standard deviation (spread) of the data.
+
+Mean: 
+```{r}
+tapply(rct_data$improvement, rct_data$group, mean)
+```
+
+
+Standard deviation: 
+```{r}
+tapply(rct_data$improvement, rct_data$group, sd)
+```
+
+These figures suggest that the improvement is higher in the treatement group (mean - 75.93) than in the control group (mean = 53.90).
+
+However, the big challenge in cases like these is to quantify the evidence so that you can ascertain whether or not the difference in improvement scores might simply be due to chance (random variation in the data).
+
+To solve this problem, the statistical framework of **Null hypothesis significance testing** has become a major tool in clinical and behavioral research.
+
+In essence, the significance testing framework aims to give an estimate of the confidence that you can have that the findings are due to a genuine effect of the "MagicPill" rather than a product of random variation.
+
+### Distributions of the data
+
+To understand the idea of significance testing, it's good to start with the sample distributions.
+
+We can represent the data in a histogram:
+
+```{r}
+hist(rct_data$improvement[rct_data$group == 'placebo']
+     , col = 'red'
+     , main = 'Placebo group'
+     , xlab = 'Improvement score')
+```
+
+
+```{r}
+hist(rct_data$improvement[rct_data$group == 'treatment']
+     , col = 'blue'
+     , main = 'Treatment group'
+     , xlab = 'Improvement score')
+```
+
+We can re-formulate the hypothesis to the data distribution context: we want to test whether the mean of the improvement score of the treatment group stems from the population that is represented by the placebo group or not.
+
+In other words, we want to test whether the mean improvement score of the treatment group is **statistically significantly different** from the placebo group.
+
+
+If you look at the data next to one another, you see that both histograms overlap, thus it is not clear whether the means stem from two different groups or are due to random variation.
+
+```{r}
+library(ggplot2)
+ggplot(rct_data, aes(improvement, fill = group)) + 
+   geom_histogram(alpha = 0.8,  position = 'identity', binwidth = 10) +
+  scale_fill_manual(values=c("red", "darkblue")) +
+  labs(y = "Frequency") +
+  geom_segment(aes(x = mean(rct_data$improvement[rct_data$group == 'placebo']), y = 0, xend = mean(rct_data$improvement[rct_data$group == 'placebo']), yend = 40)) +
+  geom_segment(aes(x = mean(rct_data$improvement[rct_data$group == 'treatment']), y = 0, xend = mean(rct_data$improvement[rct_data$group == 'treatment']), yend = 40))
+```
+
+Ideally, both histograms would not overlap at all, but this is hardly ever the case.
+
+To test whether the mean of the treatment group is significantly different from that of the placebo group, we need to define the degree to which we allow the mean of the treatment group to overlap with the distribution of the placebo group.
+
+This allowed degree of overlap is statistically defined as the **p-value**. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to `0.05` (5.00%) and `0.01` (1.00%).
+
+
+p-value
+
+## Confidence intervals
+
+A related problem with just looking at the means of two sample distributions is that two means have different degrees of confidence depending on the sample size.
+
+For example, one mean (e.g. ~5.00) can stem from very different groups. Compare these density plots of three different samples of size 25, 100, and 100,000, each with a similar mean of ca. 5.00
+
+```{r}
+set.seed(456)
+small_group = rnorm(25, 5, 2.5)
+medium_group = rnorm(100, 5, 2.5)
+large_group = rnorm(100000, 5, 2.5)
+```
+
+```{r}
+{plot(density(small_group), main = 'Small sample, n = 25', xlab='Observed values')
+abline(v = mean(small_group))}
+```
+
+```{r}
+{plot(density(medium_group), main = 'Medium-sized sample, n = 100', xlab='Observed values')
+abline(v = mean(medium_group))}
+```
+
+```{r}
+{plot(density(large_group), main = 'Large sample, n = 100000', xlab='Observed values')
+abline(v = mean(large_group))}
+```
+
+You can see that with an increasing sample size, the distribution becomes narrower. The narrower the distribution, the more confident you are in the mean. If you were to measure the size in cm of men and women, you'd be more confident after measuring 1000 men and women rather than just 5 mean and women.
+
+To express this notion statistically, we can calculate the **confidence intervals**. A **confidence interval** represents the range of values of which you can be 95%/99% certain that it contains the true mean of the population (e.g. of the true size of all women).
+
+The confidence interval is always expressed with a percentage to identify the degree of confidence that you have in the range.
+
+For example: a 95% confidence interval means that in 95% of the cases (if you were to repeat the sampling an infinite number of times from the same population), that range would contain the true population mean.
+
+We can calculate the confidence interval as follows:
+
+1. We calculate the mean
+
+```{r}
+mean(small_group)
+```
+
+```{r}
+mean(medium_group)
+```
+
+```{r}
+mean(large_group)
+```
+
+2. We calculate the standard error of the mean (i.e. how much the mean deviates from the actual data in the sample):
+
+The standard error is equal to the **standard deviation of the sample divided by the square root of the sample size**.
+
+```{r}
+#small sample size
+sd(small_group)/sqrt(25)
+```
+
+```{r}
+#small sample size
+sd(medium_group)/sqrt(100)
+```
+
+```{r}
+#small sample size
+sd(large_group)/sqrt(100000)
+```
+
+You can see that with an increasing sample size, the standard error of the mean decreases.
+
+3. Determine the "confidence"
+
+Each "confidence" corresponds to a z-value that is used to that expresses how wide the confidence value is on a standardized scale.
+
+Common values are:
+
+- 95% Confidence interval: z-value = 1.96
+- 99% Confidence interval: z-value = 2.58
+
+4. Use the formula for the confidence interval
+
+The range of the confidence interval contains a lower boundary and an upper boundary. 
+
+`lower_boundary = mean - 1.96*standard_error`
+
+`upper_boundary = mean + 1.96*standard_error`
+
+
+Using this formula, the confidence intervals for the above examples are:
+
+```{r table2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "  # Mean, standard error and confidence intervals
+| Sample size | Mean | Standard error | Confidence interval |
+|-------------|:------:|---------:| ------------:|
+| 25      | 5.62 | 0.59 | |
+| 100      | 5.13 | 0.23 | |
+| 100000 | 5.01 | 0.01 | |
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+
