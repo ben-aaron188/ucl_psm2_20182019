@@ -1,0 +1,681 @@
+---
+title: "The Generalised Linear Model (1)"
+subtitle: "PSM 2"
+author: Bennett Kleinberg
+date: 15 Jan 2019
+#slide_level: 2
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: zenburn
+    center: true
+    css: custom.css
+---
+
+## Welcome {data-background="./img/ucl_artwork/ucl-banner-land-darkblue-rgb.png" data-background-size="70%" data-background-position="top" data-background-opacity="1"}
+
+Probability, Statistics & Modeling II
+
+### Lecture 2
+
+##
+
+### What question do you have?
+
+## 
+
+## Today
+
+- Modelling data
+- Regression in general
+- Linear regression
+    - simple
+    - multiple
+- Effects in regression analysis
+- Why the GLM?
+
+## Modelling data
+
+Overall aim: make inference from sample to population.
+
+- make assumptions about data generation process
+- model specifies the data by variables
+
+
+## Modelling data
+
+- Predictions
+- Relationships (extraction information)
+
+## Modelling data
+
+## Case for today
+
+Dataset 1: Terror data [("Trial and Terror dataset")](https://www.kaggle.com/jboysen/trial-and-terror/version/1)
+
+```{r}
+load('./data/terror_data.RData')
+
+names(terror_data)
+```
+
+
+## 
+
+```{r}
+head(terror_data)
+```
+
+```{r}
+dim(terror_data)
+```
+
+## Case for today
+
+Dataset 2: Mass Shootings in detail [(Stanford Mass Shootings in America dataset)](https://www.kaggle.com/carlosparadis/stanford-msa#mass_shooting_events_stanford_msa_release_06142016.csv)
+
+```{r}
+load('./data/mass_shootings_detailed.RData')
+
+names(smsd)
+```
+
+##
+
+```{r}
+head(smsd)
+```
+
+```{r}
+dim(smsd)
+```
+
+
+## Core idea of regression
+
+- Model a relationship between an outcome variable and predictor variable(s)
+- Find relationships in data
+- Make predictions for new data
+
+## Core idea of regression
+
+Aim: find a line that simplifies the data
+
+Why linear?
+
+- Simplest-model principle
+- Many relationships approximate linearity
+- Non-linear relationships are often linear after transformation
+
+## Core idea of regression
+
+## Regression formalised
+
+`Y = a + b*X + E`
+
+## Regression formalised
+
+- The dependent variable `Y`
+- The predictor variable `X`
+- The intercept `a` (= the value of `Y` if `X` is `0`)
+- The slope `b` (= the change in `Y` for every unit change in `X`)
+- The error term `E` (= the difference between the predicted value and the observed value)
+
+## Regression formalised
+
+`Y = a + b*X + E`
+
+Note: __linear relationship__
+
+## The linear relationship
+
+```{r}
+a = rnorm(1000, 30, 10)
+b = a + rnorm(1000, 2, 8)
+plot(a, b, main = round(cor(a, b), 2))
+```
+
+```{r}
+lm(a ~ b - 1)
+
+a_scaled = scale(a)
+b_scaled = scale(b)
+{plot(a_scaled, b_scaled)
+abline(lm(a_scaled ~ b_scaled))}
+lm(a_scaled ~ b_scaled - 1)
+
+```
+
+- correlation idea
+
+## Your shooter model
+
+**Modelling the no. of fatalities**
+
+`victims = intercept + slope*number_of_guns`
+
+- more guns --> more victims?
+- baseline victims --> 3
+
+```{r}
+pred.victims = 3 + 1.5*smsd$n_guns
+```
+
+## Your shooter model
+
+```{r}
+head(smsd, 1)
+```
+
+```{r}
+case_1 = 3+1.5*8
+case_1
+```
+
+
+## Your shooter model
+
+```{r}
+plot(smsd$n_fatal, pred.victims, ylim=c(0,30))
+```
+
+## Maybe adjust the model?
+
+```{r}
+pred.victims_adj = 5 + 3*smsd$n_guns
+plot(smsd$n_fatal, pred.victims_adj, ylim=c(0,30))
+```
+
+## Shooter model
+
+An empirical approach:
+
+- let the model parameters be estimated from the data
+- you ~~specify~~ build the model
+- linearity in parameters
+
+**Linearity in parameters**
+
+`Y = a + b*X + E`
+
+Linear because: `Y = a + b`
+
+
+## Modelling syntax in R
+
+OK, let's model the data then...
+
+R syntax for modelling:
+
+- Model formula approach
+- Use the `~` to say "explained through..."
+- Left side: outcome variable (dependent variable)
+- Right side: the model that explains the outcome variable
+
+## The shooter model
+
+```{r}
+shooter_model_1 = lm(formula = smsd$n_fatal ~ smsd$n_guns)
+shooter_model_1
+```
+
+
+## Understanding the model
+
+```{r}
+shooter_model_1
+```
+
+The model equation therefore is:
+
+`n_fatal = 2.087 + 1.105*n_guns`
+
+## More model info
+
+```{r}
+summary(shooter_model_1)
+```
+
+- Statistically significant intercept
+- Statistically signiifcant predictor `n_guns`
+
+## Using the model
+
+`n_fatal = 2.087 + 1.105*n_guns`
+
+So we can make predictions, right?
+
+## Predictions with the model
+
+Have a look at he model object:
+
+```{r}
+shooter_model_1$fitted.values
+```
+
+##
+
+```{r}
+{plot(smsd$n_fatal, main="Fitted and observed values", ylab="", ylim=c(-5, 30))
+points(shooter_model_1$fitted.values, col='red')}
+```
+
+
+## What about the error term?
+
+```{r}
+head(shooter_model_1$residuals, 10)
+```
+
+Relationships between observed values, fitted values and errors?
+
+##
+
+Observed values:
+
+```{r}
+{plot(smsd$n_fatal, main="Fitted and observed values, and errors", ylab="", ylim=c(-5,30))}
+```
+
+##
+
+Observed + fitted values
+
+```{r}
+{plot(smsd$n_fatal, main="Fitted and observed values, and errors", ylab="", ylim=c(-5, 30))
+points(shooter_model_1$fitted.values, col='red')}
+```
+
+##
+
+```{r}
+{plot(smsd$n_fatal, main="Fitted and observed values, and errors", ylab="", ylim=c(-5,30))
+points(shooter_model_1$fitted.values, col='red')
+points(shooter_model_1$residuals, col='blue')}
+```
+
+##
+
+```{r}
+{plot(smsd$n_fatal[1:5], main="Fitted and observed values, and errors", ylab="", ylim=c(-5,30), xlim=c(1,5))
+points(shooter_model_1$fitted.values[1:5], col='red')
+points(shooter_model_1$residuals[1:5], col='blue')}
+```
+
+## Understanding residuals
+
+If:
+
+`residual = observed - predicted`
+
+... then: What is the sum of residuals?
+
+## Thinking of the model graphically
+
+Aim: find best fitting line
+
+```{r}
+{plot(smsd$n_guns,smsd$n_fatal)
+abline(shooter_model_1)}
+```
+
+
+## Check
+
+```{r}
+smsd$fitted_values = shooter_model_1$fitted.values
+smsd$residuals = shooter_model_1$residuals
+
+smsd[smsd$n_guns == 6, ]
+```
+
+##
+
+**What is the sum of residuals?**
+
+```{r}
+sum(smsd$residuals)
+```
+
+So how to tell how good the model is?
+
+## Sum of squares
+
+```{r}
+sum(shooter_model_1$residuals^2)
+```
+
+Hence the name: OLS regression --> Ordinary Least Squares!
+
+## 
+
+## But:
+
+... this is a shitty model!
+
+`victims = intercept + slope*number_of_guns`
+
+<img data-src="https://media.giphy.com/media/pPhyAv5t9V8djyRFJH/giphy.gif">
+
+## Adding predictors to the model
+
+- Simple regression
+    - one outcome variable
+    - one predictor variable
+    - one slope for the predictor variable
+    - intercept
+- Multiple regression
+    - one outcome variable
+    - **multiple** predictor variables
+    - one slope for **each** predictor
+    - intercept
+    
+
+General formula: 
+
+`Y = b_0 + b_1*X1 + b_2*X2 + b_3*X3 ... b_i*Xi`
+
+## Let's add terms to out model:
+
+Conceptual:
+
+`victims = b_0 + b_1*number_of_guns + b_2*mental_illness`
+
+### What will this mean for the model's fit?
+
+## Adding terms to the model in R
+
+
+```{r}
+shooter_model_2 = lm(formula = smsd$n_fatal ~ smsd$n_guns + smsd$mental_illness)
+shooter_model_2
+```
+
+--> `n_fatal = 1.48 + 1.034*n_guns + 1.471*mentall_illness`
+
+## Look at the predictions
+
+```{r}
+{plot(smsd$n_fatal, main="Model 1 and model 2", ylab="", ylim=c(0, 30))
+points(shooter_model_1$fitted.values, col='red')
+points(shooter_model_2$fitted.values, col='green')}
+```
+
+## Model 1 vs model 2
+
+Shooter model 1:
+
+```{r}
+summary(shooter_model_1)
+```
+
+## Model 1 vs model 2
+
+Shooter model 2:
+
+```{r}
+summary(shooter_model_2)
+```
+
+## Comparing the models?
+
+If all residuals sum to zero?
+
+```{r}
+sum(shooter_model_1$residuals^2)
+```
+
+```{r}
+sum(shooter_model_2$residuals^2)
+```
+
+### Remember: what does the 2nd model do?
+
+## Yet another model:
+
+```{r}
+smsd = smsd[smsd$school_related != 'Killed', ]
+smsd = droplevels(smsd)
+shooter_model_3 = lm(smsd$n_fatal ~ smsd$mental_illness + smsd$school_related)
+```
+
+## Model 3
+```{r}
+summary(shooter_model_3)
+```
+
+## What does it do?
+
+```{r}
+interaction.plot(smsd$mental_illness, smsd$school_related, smsd$n_fatal)
+```
+
+
+**Main effects:** effeect of one predictor variable on the outcome variable.
+
+
+## 
+
+### A new case: Trial and Terror Data
+
+```{r}
+names(terror_data)
+```
+
+
+## Let's start modelling
+
+```{r}
+baseline_model = lm(terror_data$sentence ~ terror_data$gender)
+```
+
+## Baseline model
+
+```{r}
+summary(baseline_model)
+```
+
+No effect!
+
+## Add another variable
+
+Extended model 1:
+
+```{r}
+extended_model_1 = lm(terror_data$sentence ~ terror_data$gender + terror_data$case_informant)
+summary(extended_model_1)
+```
+
+## 
+
+```{r}
+interaction.plot(terror_data$gender, terror_data$case_informant, terror_data$sentence)
+```
+
+What's going on??????
+
+## Interaction effects
+
+**Statistical interaction:** effect of one predictor variable on the outcome variable **depends on another predictor variable**.
+
+## Adding interaction terms
+
+```{r}
+extended_model_2 = lm(terror_data$sentence ~ terror_data$gender + terror_data$case_informant + terror_data$gender:terror_data$case_informant)
+summary(extended_model_2)
+```
+
+## Looking at the numbers
+
+Main effect of `case_informant`:
+
+```{r}
+tapply(terror_data$sentence, list(terror_data$case_informant), mean)
+```
+
+Interpretation?
+
+## Looking at the numbers
+
+Main effect of `gender`:
+
+```{r}
+tapply(terror_data$sentence, list(terror_data$gender), mean)
+```
+
+## Looking at the numbers
+
+Interaction between `case_informant` and `gender`:
+
+```{r}
+tapply(terror_data$sentence, list(terror_data$gender, terror_data$case_informant), mean)
+```
+
+
+## What if just want all terms in there?
+
+- main effects
+- interaction effects
+- (higher order interactions)
+
+Specify the full model with `*`
+
+```{r}
+lm(terror_data$sentence ~ terror_data$gender + terror_data$case_informant + terror_data$gender:terror_data$case_informant)
+
+#identical to:
+
+lm(terror_data$sentence ~ terror_data$gender*terror_data$case_informant)
+```
+
+
+## Maybe we can optimise this?
+
+What if you don't know what the 'ideal' model is?
+
+_Especially neat for predictive modelling_
+
+**Back to the shooting data:**
+
+```{r}
+names(smsd)
+```
+
+## Automated variable selection
+
+1. Specify the complete model
+
+```{r}
+complete_model = lm(n_fatal ~ gender*n_guns*mental_illness*school_related, data = smsd)
+```
+
+4 predictor variables: how many terms in the model?
+
+## Automated variable selection
+
+1. Specify the complete model
+
+```{r}
+complete_model = lm(n_fatal ~ n_guns*mental_illness*school_related, data = smsd)
+```
+
+2. Specify the null model
+```{r}
+null_model = lm(n_fatal ~ 1, data = smsd)
+```
+
+3. Run model selection ...
+
+
+3 predictor variables: how many terms in the model?
+
+- 1 intercept
+- 3 main effects
+- 3 2-way interactions
+- 1 3-way interaction
+
+## Model selection
+
+```{r}
+summary(complete_model)
+```
+
+## Model selection
+
+```{r}
+summary(null_model)
+```
+
+## Model selection: backward
+
+```{r}
+step(complete_model, direction = 'backward')
+```
+
+## Model selection: forward
+
+
+```{r}
+step(null_model, direction = 'forward'
+     , scope=list(lower=null_model, upper=complete_model))
+```
+
+## Model selection: bi-directional
+
+```{r}
+step(null_model, direction = 'both'
+     , scope=list(upper=complete_model))
+```
+
+##
+
+## Big problem with linear regression?
+
+- Correlation != causation
+- **Continuous outcome variable**
+
+
+## Generalising the model
+
+### The Generalised Linear Model
+
+## GLM 
+
+## GLM
+
+## GLM
+
+## GLM
+
+##
+
+## Connections to machine learning
+
+- Regression the best starting point
+- Core difference: explanatory modelling vs predictive modelling
+- More care against overfitting in predictive modelling
+- Split the data
+
+How good is the model?
+
+How does a model compare to another?
+
+## RECAP
+
+-
+-
+-
+-
+-
+
+## Outlook
+
+**Next week**
+
+- GLM 2
+
+**Homework**
+
+- Regression modelling in R
+
+## END

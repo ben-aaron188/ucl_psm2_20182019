@@ -12,7 +12,6 @@ output:
 
 - p-values
 - confidence intervals
-- effect sizes
 
 ---
 
@@ -122,7 +121,7 @@ Ideally, both histograms would not overlap at all, but this is hardly ever the c
 
 To test whether the mean of the treatment group is significantly different from that of the placebo group, we need to define the degree to which we allow the mean of the treatment group to overlap with the distribution of the placebo group.
 
-This allowed degree of overlap is statistically defined as the **p-value**. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to `0.05` (5.00%) and `0.01` (1.00%).
+This allowed degree of overlap is statistically defined as the **p-value**. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to `0.05` (5.00%) or `0.01` (1.00%).
 
 
 The **p-value** is used to make inferences from a sample to the wider population. We can never sample the entire population, but we still want to be able to conclude whether a treatment is effective. 
@@ -141,7 +140,9 @@ t.test(rct_data$improvement ~ rct_data$group)
 
 Therefore, since p-value < 0.05, we state that **the treatment group had a significantly higher improvement score than the placebo group**. We then say that we reject the null hypothesis that both groups are equal.
 
-**Note:** The p-value implies that we accept that in 5% of the cases where we conclude a significant difference, we are wrong. Thus in 5% of the cases we incorrectly conclude that there is an effect. Therefore, the p-value would ideally be set to a very small level (e.g. from 5% to 0.1%, the so-called alpha-level). The significance level can therefore be thought of as the false-positive rate, and the p-value be interpreted as the chance to which the observation is due to random variation rather than a genuine effect.
+In a general meaning, the **p-value** expresses the frequentist probability that a finding (e.g. mean difference between two groups) is due to random variation (i.e. no real effect). If that probability is sufficiently small (< .05), we state that an effect is statistically significant.
+
+**Note:** The p-value implies that we accept that in 5% of the cases where we conclude a significant difference, we are wrong. Thus in 5% of the cases we incorrectly conclude that there is an effect. Therefore, the p-value would ideally be set to a very small level (e.g. from 5% to 0.1%). The significance level can therefore be thought of as the false-positive rate, and the p-value be interpreted as the chance to which the observation is due to random variation rather than a genuine effect.
 
 An intuitive reading of the p-value is as follows: A p-value of 0.02 (2%) means that the chance that the observed difference is just random noise is 2%.
 

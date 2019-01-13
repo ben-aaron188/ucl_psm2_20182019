@@ -134,7 +134,6 @@ $(document).ready(function () {
 <ul>
 <li>p-values</li>
 <li>confidence intervals</li>
-<li>effect sizes</li>
 </ul>
 <hr />
 </div>
@@ -204,7 +203,7 @@ abline(v = mean(b1), col='orange')}</code></pre>
 <p>You can see that the green mean (vertical line) does not cross the curve of the orange distribution. Here’ we’d clearly see that the two means stem from two genuinely different groups.</p>
 <p>Ideally, both histograms would not overlap at all, but this is hardly ever the case.</p>
 <p>To test whether the mean of the treatment group is significantly different from that of the placebo group, we need to define the degree to which we allow the mean of the treatment group to overlap with the distribution of the placebo group.</p>
-<p>This allowed degree of overlap is statistically defined as the <strong>p-value</strong>. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to <code>0.05</code> (5.00%) and <code>0.01</code> (1.00%).</p>
+<p>This allowed degree of overlap is statistically defined as the <strong>p-value</strong>. Put differently, the p-value expresses the degree of overlap that we deem sufficient to conclude that two groups are significantly different. This value is often set to <code>0.05</code> (5.00%) or <code>0.01</code> (1.00%).</p>
 <p>The <strong>p-value</strong> is used to make inferences from a sample to the wider population. We can never sample the entire population, but we still want to be able to conclude whether a treatment is effective.</p>
 <p>Because sampling large distributions is often costly or not possible, a commonly used threshold is chosen at 5%. That is, we accept a 5% change that the mean of the treatment group might not be significantly different from the placebo group.</p>
 <p>Using a statistical test called the <code>t-test</code>, we can calculate the p-value (i.e. the chance that an observed difference might be due to random variation) for a comparison of two-groups. If the p-value is below the 5% threshold, we deem the difference between the two groups <strong>statistically significant</strong> and conclude that there is an effect of the “MagicPill”.</p>
@@ -223,7 +222,8 @@ abline(v = mean(b1), col='orange')}</code></pre>
 ##                   53.90                   75.93</code></pre>
 <p>… very small (approaching zero).</p>
 <p>Therefore, since p-value &lt; 0.05, we state that <strong>the treatment group had a significantly higher improvement score than the placebo group</strong>. We then say that we reject the null hypothesis that both groups are equal.</p>
-<p><strong>Note:</strong> The p-value implies that we accept that in 5% of the cases where we conclude a significant difference, we are wrong. Thus in 5% of the cases we incorrectly conclude that there is an effect. Therefore, the p-value would ideally be set to a very small level (e.g. from 5% to 0.1%, the so-called alpha-level). The significance level can therefore be thought of as the false-positive rate, and the p-value be interpreted as the chance to which the observation is due to random variation rather than a genuine effect.</p>
+<p>In a general meaning, the <strong>p-value</strong> expresses the frequentist probability that a finding (e.g. mean difference between two groups) is due to random variation (i.e. no real effect). If that probability is sufficiently small (&lt; .05), we state that an effect is statistically significant.</p>
+<p><strong>Note:</strong> The p-value implies that we accept that in 5% of the cases where we conclude a significant difference, we are wrong. Thus in 5% of the cases we incorrectly conclude that there is an effect. Therefore, the p-value would ideally be set to a very small level (e.g. from 5% to 0.1%). The significance level can therefore be thought of as the false-positive rate, and the p-value be interpreted as the chance to which the observation is due to random variation rather than a genuine effect.</p>
 <p>An intuitive reading of the p-value is as follows: A p-value of 0.02 (2%) means that the chance that the observed difference is just random noise is 2%.</p>
 <hr />
 </div>
