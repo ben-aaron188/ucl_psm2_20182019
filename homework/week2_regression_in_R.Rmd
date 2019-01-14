@@ -1,8 +1,10 @@
 ---
-title: "Regression modelling in R"
+title: "Regression modelling in R, PSM2"
 author: "B Kleinberg"
 subtitle: Dept of Security and Crime Science, UCL
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Aims of this notebook
@@ -15,23 +17,25 @@ output: html_notebook
 
 We will use a dataset that includes variables of [180,000 terrorist attacks between 1970-2017](https://www.kaggle.com/START-UMD/gtd/version/3). Note that we excluded some variables for clarity and did some preprocessing on the data.
 
+Suppose you are given that dataset and you're asked to inform policy-makers about the relationship between terrorist attack details and the number of victims. This notebook asks you to perform initial descriptive statistics and then build and evaluate models of the data.
+
 You can load the dataset as follows:
 
 ```{r}
 load('./data/global_terrorism_database.RData')
 ```
 
-Variabel codebook:
+[Variable codebook](https://www.start.umd.edu/gtd/downloads/Codebook.pdf):
 
--
--
--
--
--
--
--
--
--
+- eventid: unique event identifier
+- iyear: year
+- imonth: month
+- iday: day
+- nperps: number of perpetrators
+- suicide: whether the attack was a suicide attach
+- ransom: whether ransom was demanded
+- nkill: number of killed victims
+- nwound: number of wounded victims
 
 
 This command loads a dataframe called `gtd` in your notebook. You can query that dataframe  as usual.
@@ -61,55 +65,133 @@ Let's start with understanding the data bit better. You'd want to do this to avo
 
 ### Task
 
-### Task
+Look at the frequencies of the number of perpetrators and subset these frequency counts by the suicide and ransom variable.
+
+```{r}
+#your code comes here
+```
 
 ### Task
 
-### Task
+In which year was the number of perpetrators (on average) the highest?
+
+```{r}
+#your code comes here
+```
 
 ### Task
 
+What is the most common value of the number of persons killed and wounded?
+
+Hint: `?hist` and `?table`
+
+```{r}
+#your code comes here
+```
+### Task
+
+Display the relationship between the number of killed victims and the number of wounded victims in a figure.
+
+What kind of a relationship do you expect?
+
+Hint: `?plot`
+
+```{r}
+#your code comes here
+```
+
+### Task
+
+What is the mean number of perpetrators when the attack was a suicide attack?
+
+Hint: `?tapply`
+
+```{r}
+#your code comes here
+```
 
 ## Simple regression
 
-model
+We'll start with simple regression (i.e. one predictor variable):
 
-fitted values
-
-residuals
 
 ### Task
 
-### Task
+Build a simple regression model that models the number of wounded victims through the number of perpetrators.
+
+```{r}
+#your code comes here
+```
 
 ### Task
 
-### Task
+How satisfied are you with your model? One way to assess the "model fit" is to calculate the root mean square error - RMSE - (residuals). Calculate that metric and think about the meaning of this fit index. What does it tell you and how satisfied are you with it?
+
+```{r}
+#your code comes here
+```
 
 ### Task
+
+Plot the fitted values (in green) and the observed values (in blue) to assess the model fit visually.
+
+```{r}
+#your code comes here
+```
 
 
 ## Multiple regression
 
-### Task
+Now you might want to use multiple variables in your model:
 
 ### Task
 
-### Task
+Build a multiple regression model that models the number of killed victims through the variables suicide and ransom. Include only the two main effects (and let the intercept in the model).
+
+```{r}
+#your code comes here
+```
+
 
 ### Task
 
+Have a look at a potential interaction between these two predictor variables. Use the `interaction.plot` function to look at the joint relationship of these two variables on the number of killed victims.
+
+```{r}
+#your code comes here
+```
+
+What does this graph tell you? Can you identify the main effects and (potential) interaction?
+
 ### Task
 
-2 pred
+Now look at the interaction in a numerical manner.
 
-3 pred
+Hint: `?tapply`
 
-main effects
 
-tapply
+```{r}
+#your code comes here
+```
 
-interactions
+
+### Task
+
+Suppose you want to expand the model by adding the interaction term to it. Build that model.
+
+
+```{r}
+#your code comes here
+```
+
+
+### Task
+
+Based on the RMSE of each of the two models above (2 main effects vs 2 main effects + 1 interaction), which one do you prefer?
+
+```{r}
+#your code comes here
+```
 
 ### Task
 
@@ -121,10 +203,9 @@ Hint: `?plot`
 #your code comes here
 ```
 
-
 ### Task
 
-Re-run the best fitting regression model again after exluding the potential outliers. The decision for the "best" model can be made based on the lowest sum-of-squared resiudals:
+Re-run the best fitting regression model again after exluding the potential outliers. The decision for the "best" model can be made based on the RMSE:
 
 ```{r}
 #your code comes here
@@ -133,23 +214,57 @@ Re-run the best fitting regression model again after exluding the potential outl
 
 ## Model selection
 
-### Task
+Now suppose you want to let the model building process be decided by a stepwise model selection procedure.
 
 ### Task
 
-### Task
+Build a "null model" that only contains an intercept.
+
+```{r}
+#your code comes here
+```
+
 
 ### Task
 
+Build a full model for the number of wounded victims modeled through the number of perpetrators, "suicide" and "ransom".
+
+```{r}
+#your code comes here
+```
+
+
 ### Task
 
-null model
+Determine the best fitting model in a backward model selection procedure.
 
-full model
+```{r}
+#your code comes here
+```
 
-forward
+### Task
 
-backward
+Run the model selection again but this time using the forward model selection procedure.
 
-both
+```{r}
+#your code comes here
+```
 
+
+### Task
+
+Compare the RMSE of the null model, the full model and the best fitting model (if different from the full model).
+
+Display the residuals in a graph using the colours green, black, and blue for the null model, observed values, and the full model, respectively.
+
+Hint: `?points`
+
+```{r}
+#your code comes here
+```
+
+Did you expect the observations for the null model? See whether you can discover the reason for that relationship in the model outcome (i.e. the coefficients).
+
+## END
+
+---

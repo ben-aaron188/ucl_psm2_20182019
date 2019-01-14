@@ -657,14 +657,6 @@ lm(a_scaled ~ b_scaled - 1)
 
 ### The Generalised Linear Model
 
-## GLM 
-
-## GLM
-
-## GLM
-
-## GLM
-
 ##
 
 ## Connections to machine learning
