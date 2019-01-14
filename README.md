@@ -27,7 +27,7 @@ No tutorial.
 
 - Tutorial: [Refresher of PSM I with R + GLM](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial1_refresher_glm.html)
 
-- Lecture 2: Regression + GLM [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture2_glm1.html), [(pdf)](---)
+- Lecture 2: Regression + GLM [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture2_glm1.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture1_intro.pdf)
 - Homework: [Regression in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/week2_regression_in_R.nb.html)
 
 
