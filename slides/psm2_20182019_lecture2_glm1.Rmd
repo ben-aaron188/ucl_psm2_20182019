@@ -6,6 +6,8 @@ date: 15 Jan 2019
 #slide_level: 2
 output:
   revealjs::revealjs_presentation:
+    fig_width: 7 
+    fig_height: 5 
     theme: simple
     highlight: zenburn
     center: true
@@ -107,8 +109,6 @@ Why linear?
 - Many relationships approximate linearity
 - Non-linear relationships are often linear after transformation
 
-## Core idea of regression
-
 ## Regression formalised
 
 `Y = a + b*X + E`
@@ -127,26 +127,13 @@ Why linear?
 
 Note: __linear relationship__
 
-## The linear relationship
 
-```{r}
-a = rnorm(1000, 30, 10)
-b = a + rnorm(1000, 2, 8)
-plot(a, b, main = round(cor(a, b), 2))
-```
+## Regression assumptions
 
-```{r}
-lm(a ~ b - 1)
-
-a_scaled = scale(a)
-b_scaled = scale(b)
-{plot(a_scaled, b_scaled)
-abline(lm(a_scaled ~ b_scaled))}
-lm(a_scaled ~ b_scaled - 1)
-
-```
-
-- correlation idea
+1. Linear relationship
+2. Little multicollinearity
+3. Residuals i.i.d. (independently, identically distributed)
+    - `E ~ i.i.d. N(0, sd)`
 
 ## Your shooter model
 
@@ -355,7 +342,7 @@ Hence the name: OLS regression --> Ordinary Least Squares!
 
 `victims = intercept + slope*number_of_guns`
 
-<img data-src="https://media.giphy.com/media/pPhyAv5t9V8djyRFJH/giphy.gif">
+<img width="50%", width="50%" data-src="https://media.giphy.com/media/pPhyAv5t9V8djyRFJH/giphy.gif">
 
 ## Adding predictors to the model
 
@@ -379,7 +366,9 @@ General formula:
 
 Conceptual:
 
-`victims = b_0 + b_1*number_of_guns + b_2*mental_illness`
+```{r eval=F}
+victims = b_0 + b_1*number_of_guns + b_2*mental_illness
+```
 
 ### What will this mean for the model's fit?
 
@@ -391,7 +380,12 @@ shooter_model_2 = lm(formula = smsd$n_fatal ~ smsd$n_guns + smsd$mental_illness)
 shooter_model_2
 ```
 
---> `n_fatal = 1.48 + 1.034*n_guns + 1.471*mentall_illness`
+--> 
+
+```{r eval=F}
+n_fatal = 1.48 + 1.034*n_guns + 1.471*mentall_illness
+```
+
 
 ## Look at the predictions
 
@@ -629,11 +623,35 @@ step(null_model, direction = 'both'
 
 ##
 
-## Big problem with linear regression?
+## Limitations of linear regression?
+
+```{r}
+set.seed(123)
+a = rnorm(1000, 30, 10)
+b = a + rnorm(1000, 2, 8)
+plot(a, b, main = round(cor(a, b), 4))
+```
+
+##
+
+```{r}
+a_scaled = scale(a)
+b_scaled = scale(b)
+{plot(a_scaled, b_scaled)
+abline(lm(a_scaled ~ b_scaled))}
+```
+
+##
+
+```{r}
+lm(a_scaled ~ b_scaled - 1)
+```
+
+
+## Limitations of linear regression?
 
 - Correlation != causation
 - **Continuous outcome variable**
-
 
 ## Generalising the model
 
@@ -656,23 +674,23 @@ step(null_model, direction = 'both'
 - More care against overfitting in predictive modelling
 - Split the data
 
-How good is the model?
-
-How does a model compare to another?
 
 ## RECAP
 
--
--
--
--
--
+- Simple regression with intercept, slope, error term
+- Extended to multiple regression
+- Main effects & interactions
+- Model selection
+- How to extend to other outcome variables?
 
 ## Outlook
 
 **Next week**
 
-- GLM 2
+- More on the GLM
+- Extended cases
+- How good is the model?
+- How does a model compare to another?
 
 **Homework**
 
