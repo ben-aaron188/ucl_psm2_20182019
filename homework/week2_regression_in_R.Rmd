@@ -1,0 +1,142 @@
+---
+title: "Regression modelling in R"
+author: "B Kleinberg"
+subtitle: Dept of Security and Crime Science, UCL
+output: html_notebook
+---
+
+## Aims of this notebook
+
+
+## 
+
+
+## The Global Terrorism Database
+
+We will use a dataset that includes variables of [180,000 terrorist attacks between 1970-2017](https://www.kaggle.com/START-UMD/gtd/version/3). Note that we excluded some variables for clarity and did some preprocessing on the data.
+
+You can load the dataset as follows:
+
+```{r}
+load('./data/global_terrorism_database.RData')
+```
+
+This command loads a dataframe called `gtd` in your notebook. You can query that dataframe  as usual.
+
+Have a look at the names (columns) in the data.frame:
+
+```{r}
+names(gtd)
+```
+
+... and show the first 10 rows:
+
+```{r}
+head(gtd, 10)
+```
+
+
+Note that we excluded variables (for clarity) and observations (to avoid missing values), so the actual dimensions of this dataframe are:
+
+```{r}
+dim(gtd)
+```
+
+## Understanding the data
+
+Let's start with understanding the data bit better. You'd want to do this to avoid modelling relationships that are not meaningful.
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+
+## Simple regression
+
+model
+
+fitted values
+
+residuals
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+
+## Multiple regression
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+2 pred
+
+3 pred
+
+main effects
+
+tapply
+
+interactions
+
+### Task
+
+Have a look at the distribution of the `nperps` and `nkill` column. Are there some potential outliers in there?
+
+Hint: `?plot`
+
+```{r}
+#your code comes here
+```
+
+
+### Task
+
+Re-run the best fitting regression model again after exluding the potential outliers. The decision for the "best" model can be made based on the lowest sum-of-squared resiudals:
+
+```{r}
+#your code comes here
+```
+
+
+## Model selection
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+### Task
+
+null model
+
+full model
+
+forward
+
+backward
+
+both
+
