@@ -2,9 +2,7 @@
 title: "Regression modelling in R, PSM2"
 author: "B Kleinberg"
 subtitle: Dept of Security and Crime Science, UCL
-output:
-  html_document:
-    df_print: paged
+output: html_notebook
 ---
 
 ## Aims of this notebook
