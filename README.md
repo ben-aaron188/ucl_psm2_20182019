@@ -11,23 +11,28 @@ The [module handbook](https://rawcdn.githack.com/ben-aaron188/ucl_psm2_20182019/
 
 #### Week 1
 
-Lecture 1: Recap PSM 1 [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture1_intro.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture1_intro.pdf) 
+- Lecture 1: Recap PSM 1 [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture1_intro.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture1_intro.pdf) 
 - Homework 1: [Getting ready for R](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/getting_ready_for_r.html)
 - Homework 2: [R in 12 Steps](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/homework/r_in_12_steps.html)
 
-Suggested reading:
-
-- Dalgaard, P. (2008). Probability and distributions. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 55–65). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_3](https://doi.org/10.1007/978-0-387-79054-1_3)
+- Suggested reading:
+    - Dalgaard, P. (2008). Probability and distributions. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 55–65). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_3](https://doi.org/10.1007/978-0-387-79054-1_3)
 
 No tutorial.
 
 ---
 
-<!--#### Week 2
+#### Week 2
+
+- Lecture 2: Regression + GLM [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture2_glm1.html
+), [(pdf)](---)
+- Homework: [yet to come]()
+
+- Tutorial: [Refresher of PSM I with R + GLM](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial1_refresher_glm.html)
 
 
 ---
--->
+
 Module convenor and author: Bennett Kleinberg (bennett.kleinberg@ucl.ac.uk)
 
 Department of Security and Crime Science, UCL
