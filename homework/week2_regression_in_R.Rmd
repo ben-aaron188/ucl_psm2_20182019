@@ -21,6 +21,19 @@ You can load the dataset as follows:
 load('./data/global_terrorism_database.RData')
 ```
 
+Variabel codebook:
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
 This command loads a dataframe called `gtd` in your notebook. You can query that dataframe  as usual.
 
 Have a look at the names (columns) in the data.frame:
