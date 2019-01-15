@@ -3,9 +3,7 @@ title: "Refresher of PSM I with R + GLM tutorial"
 author: "B Kleinberg"
 date: 15 January 2019
 subtitle: Dept of Security and Crime Science, UCL
-output:
-  html_document:
-    df_print: paged
+output: html_notebook
 ---
 
 ---
@@ -87,21 +85,21 @@ table(us_mass_shootings$GENDER, us_mass_shootings$RACE)
 1. To get a glimpse at your whole dataset at once, you can use use the `summary()` and `str()` function. Use these on the `us_mass_shootings` dataset:
 
 ```{r}
-#type+run your code here
+summary(us_mass_shootings)
+str(us_mass_shootings)
 ```
 
 
 2. Calculate the frequency counts of the shooter's "race":
 
 ```{r}
-#type+run your code here
+table(us_mass_shootings$RACE)
 ```
 
 3. Retrieve the frequnecy table of the number of weapons used by the shooter's gender.
 
 ```{r}
-#type+run your code here
-
+table(us_mass_shootings$NUMWEAPONS, us_mass_shootings$GENDER)
 ```
 
 4. Suppose you're interested in going a little deeper and are not only interested in the gender and race but - in addition - also in the year of the shooting: retrieve the frequnecy table of gender by race and year.
@@ -111,8 +109,8 @@ Tip: you can arrange the variables in desired order to change the display (not t
 In which year did females commit mass shootings and of what race where they?
 
 ```{r}
-#type+run your code here
-
+table(us_mass_shootings$YEAR, us_mass_shootings$GENDER, us_mass_shootings$RACE)
+# In 2006 and 2014, white and native american.
 ```
 
 
@@ -134,8 +132,17 @@ tapply(X = us_mass_shootings$WOUNDED
 What is the mean (and standard deviation) number of fatalities for those who had prior mental health issues vs those who didn't have prior mental health issues?
 
 ```{r}
-#type+run your code here
+#mean
+tapply(X = us_mass_shootings$FATALITIES
+       , INDEX = us_mass_shootings$PRIORSIGNSOFMENTALILLNESS
+       , FUN = mean
+       )
 
+#sd
+tapply(X = us_mass_shootings$FATALITIES
+       , INDEX = us_mass_shootings$PRIORSIGNSOFMENTALILLNESS
+       , FUN = sd
+       )
 ```
 
 ### Chi-square association
@@ -185,17 +192,19 @@ _Note that this is an illustration only here and that you need to check the assu
 Assess ~~with a 99% confidence interval~~ whether there's an association between how the shooter obtained the weapon and gender.
 
 ```{r}
-#type+run your code here
+freq_table = table(us_mass_shootings_clean$WEAPONSOBTAINEDLEGALLY, us_mass_shootings_clean$GENDER
+      , dnn = c('WEAPONSOBTAINEDLEGALLY', 'GENDER'))
 
+chisq.test(freq_table)
 ```
 
-From you Chisquare-Test, retrieve the expected counts under the null hypothesis.
+From your Chisquare-Test, retrieve the expected counts under the null hypothesis.
 
 Hint: `?chisq.test`.
 
 ```{r}
-#type+run your code here
-
+chisq = chisq.test(freq_table) # store the above in an object
+chisq$expected # index from the object
 ```
 
 
@@ -222,15 +231,15 @@ Note that there are additional arguments in the `t.test(...)` function (e.g. for
 Run a t-test to assess if there's a significant difference between the number of wounded depending on whether the weapon was obtained legally or illegally.
 
 ```{r}
-#type+run your code here
-
+t.test(us_mass_shootings_clean$WOUNDED ~ us_mass_shootings_clean$WEAPONSOBTAINEDLEGALLY)
 ```
 
 No run that code with a 99% confidence interval and equal variance assumed. Check `?t.test` for the specification of these parameters.
 
 ```{r}
-#type+run your code here
-
+t.test(us_mass_shootings_clean$WOUNDED ~ us_mass_shootings_clean$WEAPONSOBTAINEDLEGALLY
+       , var.equal = T
+       , conf.level = 0.99)
 ```
 
 
@@ -261,8 +270,7 @@ As with all R functions, there are several parameters that allow you to adjust t
 What is the 99% confidence interval of the correlation between the number of weapons used and the total number of victims.
 
 ```{r}
-#type+run your code here
-
+cor.test(us_mass_shootings$NUMWEAPONS, us_mass_shootings$TOTALVICTIMS, conf.level = 0.99)
 ```
 
 ---
@@ -418,8 +426,9 @@ When there are mutliple predictors, the simple regression model becomes a _multi
 Build your own model that predicts the number if wounded victims based on the shooter's gender and whether the weapons were obtained legally.
 
 ```{r}
-#type+run your code here
-
+my_model_3 = lm(formula = WOUNDED ~ GENDER + WEAPONSOBTAINEDLEGALLY
+              , data = us_mass_shootings_clean)
+summary(my_model_3)
 ```
 
 
