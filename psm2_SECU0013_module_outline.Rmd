@@ -1,0 +1,268 @@
+---
+title: "PROBABILITY, STATISTICS AND MODELLING II 2018/2019"
+subtitle: "Department of Security and Crime Science, UCL"
+author: "Bennett Kleinberg (bennett.kleinberg@ucl.ac.uk)"
+date: "14/12/2018"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    theme: simplex
+---
+
+## Introduction
+
+This UG (Year 2) module aims to equip students with the knowledge needed to understand and critically evaluate crime and security research, as well as the skills required to analyse and learn from data. The module consists of lectures and tutorial sessions. During the lectures, the statistical concepts needed for a comprehensive statistical toolbox are explained, discussed and demonstrated on real-world problems. The tutorials consolidate these concepts and teach the students how to use the acquired knowledge with statistical software.  
+ 
+The first four lectures build on the PSM I module and introduce the important concept of the generalised linear model, which forms the basis for a range of analytical approaches such as regression analyses and ANOVA.  
+ 
+Special sessions are dedicated to statistical reporting and questionable research practices so that the students learn how to critically evaluate the use of statistics, identify common pitfalls and misunderstandings, and learn which remedies are in place to address issues of reproducibility and the responsible reporting of statistics. 
+ 
+The module then covers non-parametric methods and discrete data analysis as special cases. 
+Finally, this module offers an introduction to the Bayesian framework of statistics which is gaining momentum in research practice and constitutes an essential pillar of contemporary and future statistical practice. Students will learn how this approach differs from the traditional null-hypothesis significance testing and we will discuss when and why the Bayesian framework is superior.
+
+## Dates & times
+
+The module is running iun Term 2, 2018/2019, from 8 January 2019 - 29 March 2019.
+
+- Lectures: Tuesdays, 2 - 4pm.
+- Tutorials: Tuesdays (in odd-numbered academic weeks), 10am - 12pm.
+
+UCL timetable page: [https://timetable.ucl.ac.uk/tt/createCustomTimet.do#](https://timetable.ucl.ac.uk/tt/createCustomTimet.do#)
+
+## Contact & resources
+
+- Bennett Kleinberg, Assistant Professor in Data Science, bennett.kleinberg@ucl.ac.uk
+- TA: Isabelle van der Vegt, Doctoral researcher, isabelle.vegt.17@ucl.ac.uk
+
+The **moodle page** will accompany this module [here](https://moodle-1819.ucl.ac.uk/course/view.php?id=7546).
+
+Q&A forum: if you have a questions/problem that affects not just you or that you feel others would be interested in too, then please use [the Q&A forum](https://moodle-1819.ucl.ac.uk/mod/forum/view.php?id=246342).
+
+## Learning outcomes
+
+Upon successful completion of this module, you will be able to:
+
+- understand the logic of modelling and its value in understanding real-world phenomena
+-	demonstrate knowledge of the assumptions which underlie the modelling process and appropriate interpretation of its outcomes
+-	apply and understand methods of statistical inference which can be applied when the assumptions of standard approaches are violated
+- understand the null-hypothesis significance testing framework and the Bayesian approach
+-	apply and understand methods for testing and modelling datasets with particular structure
+-	perform said analyses and demonstrate practical skills of data manipulation and cleaning, alongside the implementation of the statistical approaches introduced in the module
+
+## Structure
+
+This module consists of lectures and tutorials. The lectures cover statistical concepts and show what they mean and how to apply them on research questions. The tutorials help you put these concepts into practice using the R programming language.
+
+Note: this is not a programming module and we will provide you with gentle introduction to R and show why it is the programming language of choice for data science and statistical analysis. Throughout the module, the tutorials and homework will guide you through the steps needed to obtain a sufficiently good command of R. If you do the preparatory work and homework, you will be able to meet the learning outcome requirements of this module.
+
+## Timetable
+
+**Note:** It is expected that the reading and preparatory work is done in advance of a session (lecture or tutorial). The sessions themselves will assume that you have done the preparation. The homework is intended to consolidate the concepts covered in each session and is equally required (and here too, we assume that the homework is done so we can build on that work in subsequent sessions). In general, we advise you to work through each session as follows: do the preparatory work --> attend the session --> do the homework.
+
+| Week | Date | Type | Topic |
+| --- | ------- | --- | ------------------------------------------------- |
+| 20 | 8 Jan | Lecture | Recap of PSM I; problem-solving statistics |
+| 21 | 15 Jan | Tutorial | Refresher of PSM I with R; GLM tutorial |
+| 21 | 15 Jan | Lecture | Generalized Linear Model (GLM) 1 |
+| 22 | 22 Jan | Lecture | Generalized Linear Model (GLM) 2 | 
+| 23 | 29 Jan | Tutorial | R tutorial: GLM + ANOVA |
+| 23 | 29 Jan | Lecture | GLM: Analysis of Variance |
+| 24 | 5 Feb | Lecture | Non-parametric methods + discrete data analysis |
+| 26 | 19 Feb | Tutorial | Open Science Lab |
+| 26 | 19 Feb | Lecture | Reporting and assessing statistical evidence 1 | 
+| 27 | 26 Feb | Lecture | Reporting and assessing statistical evidence 2 | 
+| 28 | 5 Mar | Tutorial | Bayesian statistics in JASP and R | 
+| 28 | 5 Mar | Lecture | Bayesian statistics | 
+| 29 | 12 Mar | Lecture | Q&A and feedback session |
+| 30 | 19 Mar | Tutorial | R tutorial: open tutorial |
+| 30 | 19 Mar | EXAM | Class test | 
+
+
+## Materials
+
+### Software
+
+We will use the R programming language. All packages, required resources and tools needed are openly available and free to download to any computer. We encourage students to bring their own laptops to the tutorials so they can customise their work environment. However, we will have a computer cluster available where you can use the UCL computers.
+
+### Literature
+
+We will provide background reading and literature for each week in advance.
+
+
+## Content details
+
+### Week 1 (20): 8 Jan
+
+Lecture: Recap of PSM I + Problem-solving statistics
+
+Things we will cover:
+
+- Recap of probability theory
+- Simpson's paradox
+- Base rate fallacy
+- Joint, marginal, conditional probability
+
+No tutorial.
+
+### Week 2 (21): 15 Jan
+
+Tutorial: Refresher of PSM I with R + GLM tutorial
+
+You will learn how to (1) perform statistics in R (reading data, processing data, working with data), (2) formalise a GLM in R, (3) run a GLM analysis in R.
+
+Lecture: Generalized Linear Model (GLM) 1
+
+Things we will cover:
+
+- What the GLM is and why it is so powerful
+- Simple regression
+- Multiple regression
+- Effects in regression analysis
+
+### Week 3 (22): 22 Jan
+
+Lecture: Generalized Linear Model (GLM) 2
+
+Things we will cover:
+
+- Advanced GLM cases
+- Logistic regression
+- Goodness-of-fit indicators
+- Model comparisons
+
+No tutorial.
+
+### Week 4 (23): 29 Jan
+
+Tutorial: R tutorial: GLM + ANOVA
+
+In this tutorial you will learn how to (1) build, run and evaluate a simple regression model, (2) build, run and evaluate a multiple regression model, (3) build, run and evaluate a logistic regression model, (4) interpret main effects and interaction effects, and (5) perform model comparison tests.
+
+Lecture: GLM Analysis of Variance
+
+Things we will cover:
+
+- How the ANOVA is a form of the GLM
+- T-tests vs ANOVA
+- Assumptions
+- Case studies
+
+### Week 5 (24): 5 Feb
+
+Lecture: Non-parametric methods + discrete data analysis 
+
+Things we will cover:
+
+- What to do if the parametric assumptions violated
+- Non-parametric equivalents
+- Discrete data (chisquare, loglinear model)
+- Count data as special case
+
+No tutorial.
+
+<!-- Peer-feedback: the lecture includes the peer-feedback session for the Applied Data Science Project. -->
+
+### Week 6 (26): 19 Feb
+
+Tutorial: Open Science Lab
+
+This tutorial will be an intermezzo to open science practices. You will learn (1) what open science is and why it is essential to scientific progress, (2) how you can use open science already as a student, (3) how open science practies can remedy so-called questionable research practices.
+
+Lecture: Reporting and assessing statistical evidence 1
+
+Things we will cover:
+
+- Reporting the results of analyses (regression, ANOVA)
+- Quality checks for statistics
+- Questionable research practices
+
+
+### Week 7 (27): 26 Feb
+
+Lecture: Reporting and assessing statistical evidence 2
+
+Things we will cover:
+
+- What makes a good result?
+- p-values
+- Effect sizes
+- Confidence intervals
+- Alternative ways to report findings
+
+No tutorial.
+
+### Week 8 (28): 5 Mar
+
+Tutorial: Bayesian statistics in JASP and R
+
+In this tutorial, you will learn how to use Bayesian hypothesis testing in the R environment and in the open-source software JASP. You will apply these skills on various crime scenarios.
+
+Lecture: Bayesian statistics
+
+Things we will cover:
+
+- the difference between the 'classical' approach and the Bayesian framework
+- Bayesian hypothesis testing
+- Questions only the Bayesian framework can answer (and why)
+
+### Week 9 (29): 12 Mar
+
+Lecture: Q&A and feedback session
+
+Things we will cover:
+
+- Recap of PSM2
+- Q&A session (details to follow)
+
+No tutorial.
+
+
+### Week 10 (30): 19 Mar
+
+Tutorial: 1-on-1 feedback: we will hold the 1-on-1 feedback sessions, see below.
+
+**Class test**
+
+## Assessment
+
+### Class test
+
+- Weight for final grade: 50%
+- Learning outcomes tested: (1) understanding the logic of modelling and its value in understanding real-world phenomena, (2)	demonstrating knowledge of the assumptions which underlie the modelling process and appropriate interpretation of its outcomes, (3) understanding the null-hypothesis significance testing framework and the Bayesian approach
+- Deadline/date: 19 March 2019.
+
+**Details:** This 1-hour closed-book test covers theoretical and conceptual aspects of the lectures and tutorials. You will be given eight questions to which you are required to write a brief answer. The questions are multiple-choice and open questions.
+
+<!-- ### Critical evaluation of published statistical evidence -->
+
+<!-- - Weight for final grade: 10%  -->
+<!-- - Learning outcomes tested: (1) understanding the null-hypothesis significance testing framework and the Bayesian approach, (2) understand the logic of modelling and its value in understanding real-world phenomena -->
+<!-- - Deadline/date: 4 March 2019. -->
+<!-- - Word count limit: 500 words (do not exceed this word count limit!) -->
+
+<!-- **Details:** In this assessment, you will write a brief critique of the quality of statistical reporting in a published paper. The papers will be distributed to the students in a random order at the start of the module. In this assessment, you will have to demonstrate that you can critically evaluate the use of statistics and will critique the methods and results section of a paper. -->
+
+
+### Applied Crime Analysis Project
+
+- Weight for final grade: 50%
+- Learning outcomes tested: (1) understanding the logic of modelling and its value in understanding real-world phenomena, (2) applying and understanding methods of statistical inference which can be applied when the assumptions of standard approaches are violated, (3) understanding the null-hypothesis significance testing framework and the Bayesian approach, (4) applying and understanding methods for testing and modelling datasets with particular structure, (5) performing said analyses and demonstrate practical skills of data manipulation and cleaning, alongside the implementation of the statistical approaches introduced in the module
+- Deadline/date: 16 April 2019.
+- Word count limit: 1500 words (excl. code supplement; do not exceed this word count limit!)
+
+**Details:** The final project of this module is designed so that you can demonstrate that you have a good command of the statistical concepts covered in the lectures and tutorials and can put them to use in your own project. We will provide a dataset and your task is to address a research question stemming from crime and security science. You will also be able to demonstrate your understanding of open science practices through pre-registering your analyses, producing re-producible code, and documenting your data properly. You will have to write a report on your findings (a template will be provided) and have to submit the R code needed to reproduce your analysis.
+
+**Feedback:** Since a full project is a major step in your quantitative  skills career, we will hold a 1-on-1 feedback session to help you in the process.
+
+The 1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **19 March 2019 after the lecture** (slots to be arranged at the start of the module). 
+
+## Attendance requirement
+
+We are obliged to record the attendance at all sessions (lectures and tutorials) and each student will have to attend at least 70% of the sessions to be able to pass the module. If you cannot attend for a good reason, please let the TA know about this well in advance. *We strongly advise you to attend all sessions as this ease the assessment for you and will help you get the most out of this module.*
+
+------
+
+
