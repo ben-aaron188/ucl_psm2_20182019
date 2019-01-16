@@ -25,10 +25,27 @@ No tutorial.
 #### Week 2
 
 
-- Tutorial: [Refresher of PSM I with R + GLM](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial1_refresher_glm.html)
+- Tutorial: [Refresher of PSM I with R + GLM](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial1_refresher_glm.html), [Solutions](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/solutions_tutorial1_refresher_glm.nb.html)
 
 - Lecture 2: Regression + GLM [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture2_glm1.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture1_intro.pdf)
 - Homework: [Regression in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/week2_regression_in_R.nb.html)
+
+- Required reading
+	- Dalgaard, P. (2008). Regression and correlation. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 109–125). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_6](https://doi.org/10.1007/978-0-387-79054-1_6)
+
+
+#### Week 3
+
+- No tutorial.
+
+- Lecture 3: GLM 2 (slides to come after the lecture)
+- Homework: (to come)
+
+- Required reading
+	- Dalgaard, P. (2008). Multiple regression. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 185–194). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_11](https://doi.org/10.1007/978-0-387-79054-1_11)
+	- Dalgaard, P. (2008). Linear models. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 195–225). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_12](https://doi.org/10.1007/978-0-387-79054-1_12)
+
+
 
 
 ---
