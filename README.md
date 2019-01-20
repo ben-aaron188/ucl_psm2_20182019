@@ -46,6 +46,19 @@ No tutorial.
 	- Dalgaard, P. (2008). Linear models. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 195–225). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_12](https://doi.org/10.1007/978-0-387-79054-1_12)
 
 
+#### Week 4
+
+- Tutorial: Advanced GLM + ANOVA
+
+- Lecture 4: GLM for the analysis of variance (slides to come after the lecture)
+- Homework: (to come)
+
+- Required reading
+  - Dalgaard, P. (2008). Analysis of variance and the Kruskal–Wallis test. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 127–143). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_7](https://doi.org/10.1007/978-0-387-79054-1_7)
+  
+- Suggested reading
+  - Dalgaard, P. (2008). One- and two-sample tests. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 95–107). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_5](https://doi.org/10.1007/978-0-387-79054-1_5)
+
 
 
 ---
