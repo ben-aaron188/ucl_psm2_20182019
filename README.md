@@ -38,7 +38,7 @@ No tutorial.
 
 - No tutorial.
 
-- Lecture 3: GLM 2 (slides to come after the lecture)
+- Lecture 3: GLM 2 [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture3_glm2.html)
 - Homework: (to come)
 
 - Required reading
