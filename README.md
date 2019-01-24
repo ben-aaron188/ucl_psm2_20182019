@@ -39,7 +39,7 @@ No tutorial.
 - No tutorial.
 
 - Lecture 3: GLM 2 [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture3_glm2.html)
-- Homework: (to come)
+- Homework: [Logistic regression in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/week3_logistic_regression_in_R.nb.html)
 
 - Required reading
 	- Dalgaard, P. (2008). Multiple regression. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 185–194). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_11](https://doi.org/10.1007/978-0-387-79054-1_11)
