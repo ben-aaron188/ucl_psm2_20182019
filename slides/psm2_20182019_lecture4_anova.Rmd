@@ -1,0 +1,636 @@
+---
+title: "GLM for t-tests and ANOVAs"
+subtitle: "PSM 2"
+author: Bennett Kleinberg
+date: 29 Jan 2019
+output:
+  revealjs::revealjs_presentation:
+    fig_width: 7 
+    fig_height: 5 
+    theme: simple
+    highlight: zenburn
+    center: true
+    css: custom.css
+---
+
+## Welcome {data-background="./img/ucl_artwork/ucl-banner-land-darkblue-rgb.png" data-background-size="70%" data-background-position="top" data-background-opacity="1"}
+
+Probability, Statistics & Modeling II
+
+### Lecture 4
+
+The GLM for group mean comparisons
+
+## About the module {.left_aligned}
+
+- 7.5 ECTS (0.5 UCL credits)
+- = 150 learning hours
+- = 11 weeks with *14 hours per week*
+- 3 contact-hours per week
+- --> 11 hours self-study per week
+
+## Expected self-study {.left_aligned}
+
+- Revise the lecture (your responsibility)
+- Replicate the code/examples
+- Read the required literature (read, annotate, summarise)
+- Read additional literature if necessary
+- Design own code examples to understand the concept
+- If still unclear: post it on Moodle or ask us
+
+##
+
+### What question do you have?
+
+## Brief recap logistic regression
+
+- problem of linear models for discrete/binary outcome variables
+- needed: transformation of the outcome variable
+
+## From ...
+
+```{r echo=F}
+load('../homework/data/attack_data.RData')
+plot(attack_data$attempts, attack_data$hacked)
+```
+
+## ... to:
+
+```{r echo=F}
+logreg = glm(hacked ~ attempts
+             , family=binomial
+             , data = attack_data)
+{plot(attack_data$attempts, attack_data$hacked)
+  curve(predict(logreg
+                , data.frame(attempts=x)
+                , type="resp"
+                )
+        , add=TRUE)}
+```
+
+## Re-transform for the interpretation!
+
+- remember: we model the log-odds
+- so: un-log the natural logarithm
+- then: use the odds, or transform to probabilities
+
+## Your turn
+
+- Linear model
+    - `income ~ age`
+    - intercept = 10,0000
+    - b1 = 5,000
+
+## Your turn
+
+- Linear model
+    - `income ~ age*gender`
+    - intercept = 10,0000
+    - b1 (age) = 4,000
+    - b2 (gender, 0 = female, 1 = male) = 12,000
+    - b3 (age*gender) = 2,000
+
+## Your turn
+
+- Logistic model
+    - `failed ~ hours_spent`
+    - intercept = -10.00
+    - b1 = 0.60
+
+##
+
+```{r echo=F}
+a = seq(-5, 2, .01)
+{plot(a, exp(a), type='l', xlab='log-odds', ylab='odds')
+abline(v = -4.5, col='red')
+abline(h = exp(-4.5), col='red')
+abline(v = 0.6, col='blue')
+abline(h = exp(0.6), col='blue')}
+```
+
+
+## Today
+
+- Mean comparison
+    - t-tests
+    - ANOVA
+    - GLM implementation
+
+
+## 
+
+### Mean comparisons
+
+## 
+
+```{r echo=F}
+set.seed(123)
+damage = c(round(rnorm(50, 100, 30), 0), round(rnorm(50, 80, 20), 0))
+df = data.frame(damage = damage, role = rep(c('Manager', 'Analyst'), each=50))
+plot(df$damage ~ df$role, ylab='Fraud damage', xlab='Position', ylim=c(20, 200))
+```
+
+
+## Numerical values
+
+Mean:
+```{r echo=F}
+tapply(df$damage, df$role, mean)
+```
+
+SD:
+```{r echo=F}
+tapply(df$damage, df$role, sd)
+```
+
+Is fraud by managers more damaging than fraud by analysts?
+
+## Non-statistical answer
+
+**Yes, because:**
+
+```{r echo=F}
+tapply(df$damage, df$role, mean)
+```
+
+And: 101.50 > 78.66
+
+
+##
+
+### Why is this problematic?
+
+## Sample --> Population
+
+```{r}
+# damage_ = c(round(rnorm(10000, 100, 30), 0), round(rnorm(10000, 80, 20), 0))
+# df_ = data.frame(damage = damage, role = rep(c('Manager', 'Analyst'), each=10000))
+# plot(df_$damage, col=df_$role)
+```
+
+
+## Inferential statistics {.left_aligned}
+
+- infere parameters of the population
+- from a sample (of that population)
+
+
+## All data stem from distributions
+
+```{r echo=F}
+hist(df$damage[df$role == 'Manager']
+     , col = 'red'
+     , main = 'Managers'
+     , xlab = 'Damage')
+```
+
+## All data stem from distributions
+
+```{r echo=F}
+hist(df$damage[df$role == 'Analyst']
+     , col = 'blue'
+     , main = 'Analysts'
+     , xlab = 'Damage')
+```
+
+## Comparison of 2 groups {.left_aligned}
+
+- Are the means of the groups statistically significantly different?
+- Different phrasing: do the samples stem from different distributions?
+
+```{r echo=F}
+{plot(density(df$damage[df$role == 'Analyst']), col = 'blue', main = '', xlab='Observed values', xlim=c(30,200))
+lines(density(df$damage[df$role == 'Manager']), col = 'red')
+abline(v = mean(df$damage[df$role == 'Analyst']), col='blue')
+abline(v = mean(df$damage[df$role == 'Manager']), col='red')}
+```
+
+## {.left_aligned}
+
+**Do** the samples stem from different distributions?
+
+- decision criterion needed
+- problem: there is always some overlap
+- wanted: a threshold that we deem practically irrelevant in overlap
+
+## Hypothesis testing {.left_aligned}
+
+- Null hypothesis: there is no differece (i.e. Managers == Analysts)
+- Alternative hypothesis: there is a difference (e.g. Managers > Analysts)
+
+```{r}
+mean(df$damage[df$role == 'Manager'] - df$damage[df$role == 'Analyst'])
+```
+
+  > Wanted: a value that expresses the frequentist probability of observing the mean difference of 18.10 (or more extreme) if the null hypothesis were true.
+
+--> **called the p-value**
+
+## Thresholds for the p-value {.left_aligned}
+
+- aim: test whether you can reject the null hypothesis
+- wanted: a threshold that we deem practically irrelevant in overlap
+- threshold is called the significance level (alpha level)
+- analogous to: a threshold that we deem acceptable in making a Type I error
+
+- used to be: `p < .05`
+- changes under way:
+    - [redefine to `p < .005`](https://www.nature.com/articles/s41562-017-0189-z)
+    - [justify your own threshold](https://www.nature.com/articles/s41562-018-0311-x)
+    - rejection of p-values altogether 
+
+
+## Calculating the p-value {.left_aligned}
+
+For two groups: t-test
+
+- Assumes:
+    - normality of outcome variable
+    - independence of observations
+    - equality of variance (corrected by default)
+    
+(non-parametric tests --> next week)
+
+## t-test
+
+```{r}
+t.test(df$damage ~ df$role)
+```
+
+## t-test reporting {.left_aligned}
+
+```{r eval=F}
+t = -3.8531, df = 84.191, p-value = 0.0002269
+```
+
+  > The damage in $ lost was higher for managers (M = 101.92, SD = 27.83) than for analysts (M = 82.92, SD = 18.12), _t_(84.19) = -3.85, _p_ < .001.
+
+Note: always three decimals for the p-value, unless p < .001.
+
+(more in week 7)
+
+##
+
+### What if there are three groups?
+
+##
+
+```{r echo=F}
+set.seed(456)
+damage = c(round(rnorm(50, 100, 30), 0), round(rnorm(50, 80, 20), 0), round(rnorm(50, 70, 14), 0))
+df__ = data.frame(damage = damage, role = rep(c('Manager', 'Analyst', 'CEO'), each=50))
+plot(df__$damage ~ df__$role, ylab='Fraud damage', xlab='Position', ylim=c(20, 200))
+```
+
+## Idea {.left_aligned}
+
+- Test whether all three means are the same
+- Could use 3 t-tests:
+    - Analysts vs CEOs
+    - CEOs vs Managers
+    - Managers vs Analysts
+- problem: [multiple t-tests increase Type 1 error](https://en.wikipedia.org/wiki/Multiple_comparisons_problem)
+
+- Null hypothesis: Analyst = CEO = Manager
+- Alt. hypothesis: the means are affected by the factor Position (3 levels)
+
+## Variance
+
+```{r echo=F}
+{plot(df__$damage)}
+```
+
+## Analysis of VARIANCE {.left_aligned}
+
+Total variance = explained variance + unexplained variance
+
+- **explained variance**: variation that is attributable to the factor Position
+- **unexplained variance**: variation not attributable to the factor Position
+
+## Total variance
+
+```{r echo=F}
+{plot(df__$damage)
+  abline(h = mean(df__$damage))}
+```
+
+## Total variance {.left_aligned}
+
+```{r echo=F}
+df__$grandmean = mean(df__$damage)
+df__$squared_diff = (df__$damage - df__$grandmean)^2
+knitr::kable(df__[1:10, c(1,3,4)])
+```
+
+## Total variance
+
+```{r echo=F}
+{plot(df__$damage, main = 'Total variance = 109143.4')
+  abline(h = mean(df__$damage))}
+```
+
+## Partitioning of variance {.left_aligned}
+
+
+Total variance = explained variance + unexplained variance
+
+109143.40 = **explained variance** + unexplained variance
+
+##
+
+```{r echo=F}
+{plot(df__$damage, col=df__$role)
+segments(1, mean(df__$damage[df__$role == 'Manager']),50, mean(df__$damage[df__$role == 'Manager']), col='green')
+segments(51, mean(df__$damage[df__$role == 'Analyst']),100, mean(df__$damage[df__$role == 'Analyst']), col='black')
+segments(101, mean(df__$damage[df__$role == 'CEO']),150, mean(df__$damage[df__$role == 'CEO']), col='red')}
+```
+
+
+## Partitioning of variance {.left_aligned}
+
+109143.40 = **explained variance** + unexplained variance
+
+**explained variance**
+
+  - (variance group 1 * size of group 1)
+  - (variance group 2 * size of group 2)
+  - (variance group 3 * size of group 3)
+
+
+Shortcut:
+
+  - (mean group 1 - grand mean)^2^
+  - (mean group 2 - grand mean)^2^
+  - (mean group 3 - grand mean)^2^
+  - sum these and multiply by _n_ per group
+
+## Explained variance {.left_aligned}
+
+```{r echo=F}
+# (mean(df__$damage[df__$role == 'Manager']) - mean(df__$damage))^2
+# (mean(df__$damage[df__$role == 'Analyst']) - mean(df__$damage))^2
+# (mean(df__$damage[df__$role == 'CEO']) - mean(df__$damage))^2
+```
+
+| group| groupmean| grandmean | squared_diff |
+|------:|---------:|------------:|-----------:|
+| Manager|  104.44|    84.81| 385.47|
+| Analyst|  81.84|    84.81| 8.80|
+| CEO| 68.14|    84.81| 277.78|
+| | | | |
+| SUM | -|    -| 672.05|
+
+```{r}
+672.05 * 50
+```
+
+## Partitioning of variance {.left_aligned}
+
+109143.40 = **33602.50** + unexplained variance
+
+-->
+
+unexplained variance = 75540.90
+
+*We want to know: how much more variance is explained compared to non-explained.*
+
+## Degrees of freedom {.left_aligned}
+
+| source| variance| 
+|------:|---------:|
+| explained (factor Position)| 33602.50|
+| unexplained | 75540.90|
+| total| 109143.40|
+
+But: different number of values used for calculation!
+
+## Degrees of freedom (df) {.left_aligned}
+
+  > df = number of values that are free to vary
+
+| source| variance| df |
+|------:|---------:|------:|
+| explained (factor Position)| 33602.50| 2 |
+| unexplained | 75540.90| 147 |
+| total| 109143.40| 149 |
+
+- total_df = explained_df + unexplained_df
+- total_df = _n_ - 1
+- unexplained_df = _n_ - k
+- k = number of levels of the factor (here: Position)
+
+## Corrected table of variance {.left_aligned}
+
+| source| variance| df | mean SSq| 
+|------:|---------:|------:|--------:|
+| explained (factor Position)| 33602.50| 2 | 16801|
+| unexplained | 75540.90| 147 | 514|
+| total| 109143.40| 149 | - |
+
+How much more variance is explained compared to non-explained?
+
+## The F-test {.left_aligned}
+
+F-statistic = mean SSq explained / mean SSq unexplained
+
+```{r}
+16801 / 514
+```
+
+  > The explained variance (due to the factor Position) is 32.69 times higher than the unexplained variance.
+  
+*Is this significant?*
+
+## ANOVA in R {.left_aligned}
+
+```{r}
+summary(aov(df__$damage ~ df__$role))
+```
+
+  > The one-way ANOVA revealed that there was a significant main effect of _Position_ (CEO, Manager, Analyst) on the damage in USD, _F_(2, 147) = 32.69, _p_ < .001.
+
+## ANOVA as omnibus test {.left_aligned}
+
+Now we know whether there is an overall effect ...
+
+*Important:* only now do you have statistical justification proceed with _follow-up contrasts_.
+
+If ANOVA _ns_ --> analysis stops here!!!!!!!
+ 
+## ANOVA interpretation {.left_aligned}
+
+Step 1: The one-way ANOVA revealed that there was a significant main effect of _Position_ (CEO, Manager, Analyst) on the damage in USD, _F_(2, 147) = 32.69, _p_ < .001.
+
+Step 2: follow-up contrasts
+
+- t-test: CEO vs Manager
+- t-test: CEO vs Analysts
+- t-test: Manager vs Analysts
+
+## Follow-up contrasts {.left_aligned}
+
+```{r eval=F}
+t.test(df__$damage[df__$role != 'Analyst'] ~ df__$role[df__$role != 'Analyst'])
+t.test(df__$damage[df__$role != 'Manager'] ~ df__$role[df__$role != 'Manager'])
+t.test(df__$damage[df__$role != 'CEO'] ~ df__$role[df__$role != 'CEO'])
+```
+
+
+| comparison | t| df | p |
+|------:|-------:|------:|------:|
+| CEO vs Manager| -7.4734| 65.80| < .001| 
+| CEO vs Analysts| 4.1717| 87.70| < .001|
+| Manager vs Analysts | -4.33| 80.31| < .001|
+
+## ANOVA interpretation {.left_aligned}
+
+Step 1: The one-way ANOVA revealed that there was a significant main effect of _Position_ (CEO, Manager, Analyst) on the damage in USD, _F_(2, 147) = 32.69, _p_ < .001.
+
+Step 2: follow-up contrasts
+
+```{r}
+knitr::kable(tapply(df__$damage, df__$role, mean), col.names = c('mean'))
+```
+
+  > Follow-up contrasts revealed that the damaga (in $) was smaller when caused by CEOs (M = 68.14, SD = 13.31) than when caused by Managers (M = 104.44, SD = 31.67), _t_(65.80) = -7.47, _p_ < .001. ...
+
+
+## Types of ANOVAs {.left_aligned}
+
+- One predictor (factor)
+    - One-way ANOVA
+    - 2+ levels
+- Two predictors (factors)
+    - Two-way ANOVA
+    - 2+ levels by 2+ levels
+    - e.g. `role*gender` --> 2 by 3 ANOVA
+- Always note whether the factor is within-subjects or between-subjects
+    - All factors within: within-subjects ANOVA
+    - All facors between: between-subjects ANOVA
+    - Both: mixed ANOVA
+
+## ANOVA & GLM {.left_aligned}
+
+- both resemble each other (main effects, interaction)
+- more so: they are the same for categorical predictors
+- predictors in ANOVA: means vs grandmean
+- predictors in linear regression: dummy coded levels
+
+## ANOVA & GLM {.left_aligned}
+
+`lm(damage ~ role, data=df__)`
+
+```{r echo=F}
+linear_model = summary(lm(damage ~ role, data=df__))
+knitr::kable(coefficients(linear_model), col.names = c('beta', 'SE', 't-statistic', 'p-value'))
+```
+
+
+*Beta coefficients are the group means respective to the reference group!*
+
+
+## ANOVA & GLM {.left_aligned}
+
+|            |   beta|
+|:-----------|------:|
+|(Intercept) |  81.84|
+|roleCEO     | -13.70|
+|roleManager |  22.60|
+
+```{r}
+knitr::kable(tapply(df__$damage, df__$role, mean), col.names = c('mean'))
+```
+
+## ANOVA & GLM {.left_aligned}
+
+Look at the output:
+
+*Linear Model:*
+
+```{r eval=F}
+F-statistic: 32.69 on 2 and 147 DF,  p-value: 1.793e-12
+```
+
+
+*ANOVA:*
+
+```{r eval=F}
+             Df Sum Sq Mean Sq F value   Pr(>F)    
+df__$role     2  33602   16801   32.69 1.79e-12 ***
+Residuals   147  75541     514
+```
+
+
+## ANOVA & GLM {.left_aligned}
+
+Same omnibus logic:
+
+- if the F-statistic in the regression is not significant
+- ... then you cannot conclude an overall effect of the factor
+
+## t-test & ANOVA {.left_aligned}
+
+- ANOVA = regression with categorical predictor(s) with 2+ levels
+- t-test = one-way ANOVA with 2 two levels.
+- --> t-test = regression with one categorical predictors with 2 levels
+
+## t-test & GLM {.left_aligned}
+
+- t-test
+
+```{r eval=F}
+#Managers and Analysts only
+t = -3.8531, df = 84.191, p-value = 0.0002269
+```
+
+- as ANOVA
+
+```{r}
+summary(aov(df$damage ~ df$role))
+```
+
+- ANOVA and t-test: $F = t^2$ -->  $t = \sqrt F$ 
+
+```{r}
+(-3.8531)^2
+
+sqrt(14.84)
+```
+
+## t-test & GLM {.left_aligned}
+
+If the ANOVA is a linear regression,  
+so is the t-test:
+
+`lm(damage ~ role, data=df)`
+
+```{r}
+knitr::kable(coefficients(summary(lm(damage ~ role, data=df))))
+```
+
+##
+
+
+## RECAP
+
+- comparing 2 groups
+- t-test
+- t-test as GLM
+- comparing multiple groups
+- ANOVA as GLM
+
+## Outlook
+
+**Tutorial**
+
+- logistic regression
+- ANOVA
+
+**Next week**
+
+- Non-parametric methods
+- discrete data analysis
+
+
+
+## END
