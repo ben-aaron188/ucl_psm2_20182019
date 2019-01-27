@@ -1,0 +1,242 @@
+---
+title: GLM
+author: B Kleinberg
+date: 29 January 2019
+subtitle: Dept of Security and Crime Science, UCL
+output: html_notebook
+---
+
+---
+
+Tutorial 2, Probability, Statistics and Modelling 2, BSc Security and Crime Science, UCL
+
+---
+
+## Outcomes of this tutorial
+
+In this tutorial, you will:
+
+- build and evaluate your own multiple regression models
+- build and evaluate your own logistic regression models
+- conduct hypothesis testing
+    - t-test
+    - ANOVA
+- perform generalized ANOVA/t-test testing
+
+---
+
+## Linear regression
+
+Read the csv file located at `data/tutorial2/black_friday/sample_black_friday.csv` as a dataframe, and name it `blackfriday` [(Details on the data)](https://www.kaggle.com/mehdidag/black-friday/version/1).
+
+```{r}
+#your code
+
+```
+
+Familiarise yourself with the dataset:
+
+```{r}
+#your code
+
+```
+
+### Task 1:
+
+Build a linear model that predicts the purchase size based on gender. Use the `glm` function to do this.
+
+```{r}
+#your code
+
+```
+
+### Task 2:
+
+Assess the model fit using a "fit" metric that tells you how far on average the model mis-estimated the purchase size.
+
+```{r}
+#your code
+
+```
+
+```{r}
+#your code
+
+```
+
+
+### Task 3:
+
+Now build two competing models:
+
+- one model with the added variable `Marital_Status`
+- and one model with all terms possible from the two variables `Marital_Status` and `Gender`
+
+```{r}
+#your code
+
+```
+
+Now compare the sum of squared residuals of all three models:
+
+```{r}
+#your code
+
+```
+
+Now compare the three models statistically. What are your conclusions?
+
+_Hint:_ make sure to check the documentation for the ?anova function. You want to use the "F" test.
+
+```{r}
+#your code
+
+```
+
+## Logistic regression
+
+Load the dataframe called `stop_search_met` from the file `data/tutorial2/stop_and_search/stop_and_search_sample.RData`.
+
+```{r}
+#your code
+
+```
+
+Familiarise yourself with the dataset:
+
+```{r}
+#your code
+
+```
+
+### Task 4:
+
+Subset the data to contain only the two levels of the variable `Outcome` "Arrest" and "A no further action disposal".
+
+```{r}
+#your code
+
+```
+
+Now build a logistic regression model on the `Outcome` variable as outcome variable modelled through the gender and age of the suspect.
+
+```{r}
+#your code
+
+```
+
+What are your conclusions about the effects of either predictor variable?
+
+```{r}
+#your code
+
+```
+
+
+
+### Task 5:
+
+Expand the model and include the predictor variable `Officer.defined.ethnicity`.
+
+```{r}
+#your code
+
+```
+
+How does this affect the model fit?
+
+```{r}
+#your code
+
+```
+
+### Task 6:
+
+Examine the variable `Type` of the original dataset:
+
+```{r}
+#your code
+
+```
+
+Now exclude the level `Vehicle search` and build a logistic regression model on the two remaining levels. Try to answer the question whether race or gender affected the type of stop and search.
+
+```{r}
+#your code
+
+```
+
+## GLM for group comparisons
+
+Use the blackfriday dataset.
+
+Check the documentation in R for the `aov(...)` function.
+
+Note that an outstanding online help is [https://www.rdocumentation.org/](https://www.rdocumentation.org/).
+
+### Task 7:
+
+Does the amount of money spent on purchaes on black friday differ between female and male shoppers?
+
+Show your results with a t-test, an ANOVA and the GLM.
+
+```{r}
+#your code
+
+```
+
+
+```{r}
+#your code
+
+```
+
+```{r}
+#your code
+
+```
+
+
+Show that: `F = sqrt(t)`
+
+Note that for the GLM implementation, you will have to run a model comparison against the model itself using the F test, to obtain the F-value.  
+Note also that the `t.test` corrects for unequal variances, which the other two don't.
+
+```{r}
+#your code
+
+```
+
+### Task 8:
+
+Use an ANOVA and the GLM to test the hypothesis that age affects the purchase size.
+
+```{r}
+#your code
+
+```
+
+```{r}
+#your code
+
+```
+
+What is your conclusion?
+
+### Task 9:
+
+*Bonus question*
+
+Use the `blackfriday` dataset and try to adopt the role of a business analyst. Suppose you are interested in customer profiling and want to target married customers differently than single customers.
+
+Build a model that models the customers' marital status.
+
+```{r}
+#your code
+```
+
+
+## END
+
+---
+
