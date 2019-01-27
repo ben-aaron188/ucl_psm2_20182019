@@ -48,17 +48,16 @@ No tutorial.
 
 #### Week 4
 
-- Tutorial: Advanced GLM + ANOVA
+- Tutorial: [Advanced GLM + ANOVA](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial2_glm.nb.html)
 
-- Lecture 4: GLM for the analysis of variance (slides to come after the lecture)
-- Homework: (to come)
+- Lecture 4: GLM for the analysis of variance [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture4_anova.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture4_anova.pdf)
+- Homework: -
 
 - Required reading
   - Dalgaard, P. (2008). Analysis of variance and the Kruskal–Wallis test. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 127–143). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_7](https://doi.org/10.1007/978-0-387-79054-1_7)
   
 - Suggested reading
   - Dalgaard, P. (2008). One- and two-sample tests. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 95–107). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_5](https://doi.org/10.1007/978-0-387-79054-1_5)
-
 
 
 ---
