@@ -1,11 +1,13 @@
 ---
-title: "Multiple regression, logistic regression"
-author: "B Kleinberg"
+title: "Solutions: Multiple regression, logistic regression"
+author: "B Kleinberg, I van der Vegt"
 subtitle: Dept of Security and Crime Science, UCL
 output:
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
 ---
+
+**SOLUTIONS**
 
 ## Aims of this notebook
 
@@ -50,9 +52,9 @@ Build a regression model that models the damage cause through the employees' gen
 
 ```{r}
 #your code here
-
+load('./data/fraud_data.RData')
 gender_promotion_model = lm(damage ~ gender + promoted, data = fraud_data)
-
+summary(gender_promotion_model)
 ```
 
 What is the mean absolute error (MAE) of your model?
@@ -75,9 +77,7 @@ Finally, build the full model (i.e. include all main effects and interaction eff
 ```{r}
 #your code here
 full_model = lm(damage ~ gender*promoted*years_experience, data = fraud_data)
-plot(fraud_data$damage)
-points(full_model$residuals, col = 'red')
-
+plot(fraud_data$damage, full_model$residuals)
 ```
 
 ### Task: multiple regression model selection
@@ -290,6 +290,8 @@ exp(attack_model$coefficients)
 What does this yield (i.e. how do you intepret these values)?
 
 What would the interpretation of these findings look like in your own words?
+
+--> [https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/)
 
 ### Task: logistic regression - curve fitting
 
