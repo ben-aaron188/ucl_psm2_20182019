@@ -48,7 +48,7 @@ No tutorial.
 
 #### Week 4
 
-- Tutorial: [Advanced GLM + ANOVA](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial2_glm.nb.html)
+- Tutorial: [Advanced GLM + ANOVA](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial2_glm.nb.html), [SOLUTIONS](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/solutions_tutorial2_glm.nb.html)
 
 - Lecture 4: GLM for the analysis of variance [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture4_anova.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture4_anova.pdf)
 - Homework: -
