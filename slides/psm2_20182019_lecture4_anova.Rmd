@@ -94,7 +94,7 @@ logreg = glm(hacked ~ attempts
 
 - Logistic model
     - `failed ~ hours_spent`
-    - intercept = -10.00
+    - intercept = -4.50
     - b1 = 0.60
 
 ##
@@ -153,24 +153,16 @@ Is fraud by managers more damaging than fraud by analysts?
 tapply(df$damage, df$role, mean)
 ```
 
-And: 101.50 > 78.66
+And: Manager > Analyst
 
 
 ##
 
 ### Why is this problematic?
 
-## Sample --> Population
-
-```{r}
-# damage_ = c(round(rnorm(10000, 100, 30), 0), round(rnorm(10000, 80, 20), 0))
-# df_ = data.frame(damage = damage, role = rep(c('Manager', 'Analyst'), each=10000))
-# plot(df_$damage, col=df_$role)
-```
-
-
 ## Inferential statistics {.left_aligned}
 
+- Sample --> Population
 - infere parameters of the population
 - from a sample (of that population)
 
@@ -193,7 +185,7 @@ hist(df$damage[df$role == 'Analyst']
      , xlab = 'Damage')
 ```
 
-## Comparison of 2 groups {.left_aligned}
+## Comparison of 2 groups
 
 - Are the means of the groups statistically significantly different?
 - Different phrasing: do the samples stem from different distributions?
@@ -263,7 +255,7 @@ t.test(df$damage ~ df$role)
 t = -3.8531, df = 84.191, p-value = 0.0002269
 ```
 
-  > The damage in $ lost was higher for managers (M = 101.92, SD = 27.83) than for analysts (M = 82.92, SD = 18.12), _t_(84.19) = -3.85, _p_ < .001.
+  > The damage in $ lost was higher for managers (M = 101.02, SD = 27.84) than for analysts (M = 82.92, SD = 18.12), _t_(84.19) = -3.85, _p_ < .001.
 
 Note: always three decimals for the p-value, unless p < .001.
 
@@ -488,7 +480,7 @@ Step 1: The one-way ANOVA revealed that there was a significant main effect of _
 
 Step 2: follow-up contrasts
 
-```{r}
+```{r echo=F}
 knitr::kable(tapply(df__$damage, df__$role, mean), col.names = c('mean'))
 ```
 
@@ -589,6 +581,8 @@ t = -3.8531, df = 84.191, p-value = 0.0002269
 summary(aov(df$damage ~ df$role))
 ```
 
+## 
+
 - ANOVA and t-test: $F = t^2$ -->  $t = \sqrt F$ 
 
 ```{r}
@@ -604,7 +598,7 @@ so is the t-test:
 
 `lm(damage ~ role, data=df)`
 
-```{r}
+```{r echo=F}
 knitr::kable(coefficients(summary(lm(damage ~ role, data=df))))
 ```
 
