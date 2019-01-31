@@ -1,0 +1,102 @@
+---
+title: "Non-parametric tests & Discrete data"
+subtitle: "PSM 2"
+author: Bennett Kleinberg
+date: 5 Feb 2019
+output:
+  revealjs::revealjs_presentation:
+    fig_width: 7 
+    fig_height: 5 
+    theme: simple
+    highlight: zenburn
+    center: true
+    css: custom.css
+---
+
+## {data-background="./img/ucl_artwork/ucl-banner-land-darkblue-rgb.png" data-background-size="70%" data-background-position="top" data-background-opacity="1"}
+
+Probability, Statistics & Modeling II
+
+### Lecture 4
+
+Non-paramtric tests & discrete data
+
+##
+
+### What question do you have?
+
+## Today
+
+
+    What to do if the parametric assumptions violated
+    Non-parametric equivalents
+    Discrete data (chisquare, loglinear model)
+    Count data as special case
+
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Non-paramtric tests
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+## Discrete data
+
+
+## RECAP
+
+- comparing 2 groups
+- t-test
+- t-test as GLM
+- comparing multiple groups
+- ANOVA as GLM
+
+## Outlook
+
+**Tutorial**
+
+- logistic regression
+- ANOVA
+
+**Next week**
+
+- Non-parametric methods
+- discrete data analysis
+
+
+
+## END

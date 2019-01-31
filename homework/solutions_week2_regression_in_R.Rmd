@@ -1,0 +1,322 @@
+---
+title: "Solutions: Regression modelling in R, PSM2"
+author: B Kleinberg, I van der Vegt
+subtitle: Dept of Security and Crime Science, UCL
+output: html_notebook
+---
+
+**SOLUTIONS**
+
+Homework week 2: Regression modelling in R
+
+## The Global Terrorism Database
+
+We will use a dataset that includes variables of [180,000 terrorist attacks between 1970-2017](https://www.kaggle.com/START-UMD/gtd/version/3). Note that we excluded some variables for clarity and did some preprocessing on the data.
+
+Suppose you are given that dataset and you're asked to inform policy-makers about the relationship between terrorist attack details and the number of victims. This notebook asks you to perform initial descriptive statistics and then build and evaluate models of the data.
+
+You can load the dataset as follows:
+
+```{r}
+load('./data/global_terrorism_database.RData')
+```
+
+[Variable codebook](https://www.start.umd.edu/gtd/downloads/Codebook.pdf):
+
+- eventid: unique event identifier
+- iyear: year
+- imonth: month
+- iday: day
+- nperps: number of perpetrators
+- suicide: whether the attack was a suicide attach
+- ransom: whether ransom was demanded
+- nkill: number of killed victims
+- nwound: number of wounded victims
+
+
+This command loads a dataframe called `gtd` in your notebook. You can query that dataframe  as usual.
+
+Have a look at the names (columns) in the data.frame:
+
+```{r}
+names(gtd)
+```
+
+... and show the first 10 rows:
+
+```{r}
+head(gtd, 10)
+```
+
+
+Note that we excluded variables (for clarity) and observations (to avoid missing values), so the actual dimensions of this dataframe are:
+
+```{r}
+dim(gtd)
+```
+
+## Understanding the data
+
+Let's start with understanding the data bit better. You'd want to do this to avoid modelling relationships that are not meaningful.
+
+### Task
+
+Look at the frequencies of the number of perpetrators and subset these frequency counts by the suicide and ransom variable.
+
+```{r}
+#your code comes here
+table(gtd$nperps)
+table(gtd$nperps, gtd$suicide, gtd$ransom)
+```
+
+### Task
+
+In which year was the number of perpetrators (on average) the highest?
+
+```{r}
+#your code comes here
+perps_year = aggregate(gtd["nperps"], list(gtd$iyear), mean)
+perps_year[which.max(perps_year$nperps),] # 1996
+```
+
+### Task
+
+What is the most common value of the number of persons killed and wounded?
+
+Hint: `?hist` and `?table`
+
+```{r}
+#your code comes here
+kill_counts = hist(gtd$nkill)
+wound_counts = hist(gtd$nwound)
+
+table(gtd$nkill)
+table(gtd$nwound)
+# 0 most frequent for both
+```
+### Task
+
+Display the relationship between the number of killed victims and the number of wounded victims in a figure.
+
+What kind of a relationship do you expect?
+
+Hint: `?plot`
+
+```{r}
+#your code comes here
+plot(gtd$nwound, gtd$nkill)
+```
+
+### Task
+
+What is the mean number of perpetrators when the attack was a suicide attack?
+
+Hint: `?tapply`
+
+```{r}
+#your code comes here
+tapply(gtd$nperps, gtd$suicide, mean)
+```
+
+## Simple regression
+
+We'll start with simple regression (i.e. one predictor variable):
+
+
+### Task
+
+Build a simple regression model that models the number of wounded victims through the number of perpetrators.
+
+```{r}
+#your code comes here
+lm1 = lm(gtd$nwound ~ gtd$nperps)
+summary(lm1)
+```
+
+### Task
+
+How satisfied are you with your model? One way to assess the "model fit" is to calculate the root mean square error - RMSE - (residuals). Calculate that metric and think about the meaning of this fit index. What does it tell you and how satisfied are you with it?
+
+```{r}
+#your code comes here
+sqrt(mean(lm1$residuals^2))
+```
+
+### Task
+
+Plot the fitted values (in green) and the observed values (in blue) to assess the model fit visually.
+
+```{r}
+#your code comes here
+
+{plot(gtd$nwound, col = 'green', ylim = c(0, 250))
+points(lm1$fitted.values, col = 'blue')}
+
+```
+
+
+## Multiple regression
+
+Now you might want to use multiple variables in your model:
+
+### Task
+
+Build a multiple regression model that models the number of killed victims through the variables suicide and ransom. Include only the two main effects (and let the intercept in the model).
+
+```{r}
+#your code comes here
+
+lm2 = lm(gtd$nkill ~ gtd$suicide + gtd$ransom)
+summary(lm2)
+```
+
+
+### Task
+
+Have a look at a potential interaction between these two predictor variables. Use the `interaction.plot` function to look at the joint relationship of these two variables on the number of killed victims.
+
+```{r}
+#your code comes here
+
+interaction.plot(gtd$suicide, gtd$ransom, gtd$nkill)
+
+```
+
+What does this graph tell you? Can you identify the main effects and (potential) interaction?
+
+### Task
+
+Now look at the interaction in a numerical manner.
+
+Hint: `?tapply`
+
+
+```{r}
+#your code comes her
+
+tapply(gtd$nkill, list(gtd$suicide, gtd$ransom), mean)
+
+```
+
+
+### Task
+
+Suppose you want to expand the model by adding the interaction term to it. Build that model.
+
+
+```{r}
+#your code comes here
+lm3 = lm(gtd$nkill ~ gtd$suicide * gtd$ransom)
+summary(lm3)
+```
+
+
+### Task
+
+Based on the RMSE of each of the two models above (2 main effects vs 2 main effects + 1 interaction), which one do you prefer?
+
+```{r}
+#your code comes here
+sqrt(mean(lm2$residuals^2))
+sqrt(mean(lm3$residuals^2))
+```
+
+### Task
+
+Have a look at the distribution of the `nperps` and `nkill` column. Are there some potential outliers in there?
+
+Hint: `?plot`
+
+```{r}
+plot(gtd$nperps)
+```
+
+
+```{r}
+#your code comes here
+plot(gtd$nkill)
+```
+
+### Task
+
+Re-run the best fitting regression model again after exluding the potential outliers. The decision for the "best" model can be made based on the RMSE:
+
+```{r}
+#your code comes here
+gtd_clean = gtd[which(gtd$nperps < 500),]
+gtd_clean = gtd[which(gtd$nkill < 600),]
+
+lm_clean = lm(gtd_clean$nkill ~ gtd_clean$suicide * gtd_clean$ransom)
+sqrt(mean(lm_clean$residuals^2))
+```
+
+
+## Model selection
+
+Now suppose you want to let the model building process be decided by a stepwise model selection procedure.
+
+### Task
+
+Build a "null model" that only contains an intercept.
+
+```{r}
+#your code comes here
+null_model = lm(gtd_clean$nwound ~ 1)
+summary(null_model)
+```
+
+
+### Task
+
+Build a full model for the number of wounded victims modeled through the number of perpetrators, "suicide" and "ransom".
+
+```{r}
+#your code comes here
+lm4 = lm(gtd_clean$nwound ~ gtd_clean$nperps * gtd_clean$suicide * gtd_clean$ransom)
+summary(lm4)
+```
+
+
+### Task
+
+Determine the best fitting model in a backward model selection procedure.
+
+```{r}
+#your code comes here
+step(lm4, direction = 'backward')
+```
+
+### Task
+
+Run the model selection again but this time using the forward model selection procedure.
+
+```{r}
+#your code comes here
+step(lm4, direction = 'forward'
+     , scope = list(lower = null_model, upper = lm4))
+```
+
+
+### Task
+
+Compare the RMSE of the null model, the full model and the best fitting model (if different from the full model).
+
+Display the residuals in a graph using the colours green, black, and blue for the null model, observed values, and the full model, respectively.
+
+Hint: `?points`
+
+```{r}
+#your code comes here
+sqrt(mean(null_model$residuals^2))
+sqrt(mean(lm4$residuals^2))
+
+{plot(null_model$residuals, col = 'green', ylim=c(-100, 600))
+points(lm4$residuals, col = 'blue')
+points(gtd_clean$nwound, col = 'black')}
+```
+
+Did you expect the observations for the null model? See whether you can discover the reason for that relationship in the model outcome (i.e. the coefficients).
+
+## END
+
+---
