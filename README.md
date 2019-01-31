@@ -28,7 +28,7 @@ No tutorial.
 - Tutorial: [Refresher of PSM I with R + GLM](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial1_refresher_glm.html), [Solutions](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/solutions_tutorial1_refresher_glm.nb.html)
 
 - Lecture 2: Regression + GLM [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture2_glm1.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture1_intro.pdf)
-- Homework: [Regression in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/week2_regression_in_R.nb.html)
+- Homework: [Regression in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/week2_regression_in_R.nb.html), [SOLUTIONS](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/solutions_week2_regression_in_R.nb.html)
 
 - Required reading
 	- Dalgaard, P. (2008). Regression and correlation. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 109–125). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_6](https://doi.org/10.1007/978-0-387-79054-1_6)
