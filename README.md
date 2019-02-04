@@ -60,6 +60,23 @@ No tutorial.
   - Dalgaard, P. (2008). One- and two-sample tests. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 95–107). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_5](https://doi.org/10.1007/978-0-387-79054-1_5)
 
 
+#### Week 5
+
+- Lecture 5: Non-parametric methods + discrete data analysis [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture5_nonparametric_discretedata.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture5_nonparametric_discretedata.pdf)
+- Homework: [Nonparametrics analyses and discrete data in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/w5_nonparametric_discrete.nb.html)
+
+No tutorial.
+
+- Required reading
+    - Loglinear Models for Contingency Tables. (2006). In An Introduction to Categorical Data Analysis (pp. 204–243). John Wiley & Sons, Ltd. [https://doi.org/10.1002/9780470114759.ch7](https://doi.org/10.1002/9780470114759.ch7)
+    - Dalgaard, P. (2008). Tabular data. In P. Dalgaard (Ed.), Introductory Statistics with R (pp. 145–154). New York, NY: Springer New York. [https://doi.org/10.1007/978-0-387-79054-1_8](https://doi.org/10.1007/978-0-387-79054-1_8)
+
+#### Week 6
+
+Reading week
+
+#### Week 7
+
 ---
 
 Module convenor and author: Bennett Kleinberg (bennett.kleinberg@ucl.ac.uk)
