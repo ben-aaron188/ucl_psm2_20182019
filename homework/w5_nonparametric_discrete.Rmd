@@ -1,0 +1,213 @@
+---
+title: "Non-parametric data & discrete data"
+author: B Kleinberg
+subtitle: Dept of Security and Crime Science, UCL
+output: html_notebook
+---
+
+## Aims of this notebook
+
+- non-parametric data
+    - correlation
+    - mean comparison for two groups
+    - mean comparison for two and more groups
+- discrete data
+    - 2-by-2 tables
+    - R-by-C tables
+    - Multidimensional arrays
+
+    
+## Requirements
+
+We assume that you have:
+
+- read the required literature for weeks 1-5
+- revised the lectures
+- completed the introductory R tutorials (12 steps & How to solve problems) as well as the tutorial from week 2
+- completed the homework in this module so far
+- replicated the code from the lectures (if concepts/R implementation is unclear)
+
+If you struggle with basics of R, you may also find this online book useful: [https://bookdown.org/ndphillips/YaRrr/](https://bookdown.org/ndphillips/YaRrr/)
+
+---
+
+## Non-parametric data analysis
+
+### Task 1: Correlation
+
+Read the csv file `data1_week5.csv` from `./data`. The csv file contains three variables of 1000 observations of areas surveyed and rated according to:
+
+- their rank in deprivation on a scale from 1 to 10 (1 highest, 10 lowest)
+- their rank in public disorder on a scale from 1 to 10 (1 highest, 10 lowest)
+- their rank in social media participation on a scale from 1 to 5 (1 highest, 5 lowest)
+
+You are interested in testing whether these data correlate. First, test whether the assumption of normally distributed data is met and the choose the appropriate test to ascertain whether or not there are correlations between these three variables.
+
+```{r}
+#your code
+
+```
+
+
+### Task 2: Comparing two groups
+
+Load the dataset (from the csv file `data2_week5.csv`) that gives you 1000 observations of male adolescents and the number of brothers they have and whether or not they had contact with the police in the past 5 years.
+
+Assess whether those who had contact with the police differ from those who have not in the number of brothers they have. Again, make sure you test whether the assumptions are met and use an appropriate test.
+
+```{r}
+#your code
+
+```
+
+
+### Task 3: Comparing 2 (or more) groups
+
+Read the next csv file (`data3_week5.csv`). This file shows the number of casualties in traffic accidents on 600 high-risk street crossings. Each crossing is either a zebra-crossing, a traffic-light crossing, or an inofficial crossing that has none of the aforementioned.
+
+Assess whether the factor "Type of crossing" has an effect on the number of casualties. 
+
+```{r}
+#your code
+
+```
+
+## Discrete data
+
+### Task 4: 2-by-2 tables
+
+Let's start with simple 2-by-2 tables.
+
+Run the command below to create a 2-by-2 table that shows you the number of people that were refused boarding an airplane dependin whether they were drunk or not.
+
+```{r}
+flight_data = array(c(100, 50, 150, 500), dim=c(2,2))
+dimnames(flight_data) = list( c('Drunk', 'Not drunk')
+                       , c('Denied boarding', 'Allowed boarding'))
+flight_data = addmargins(flight_data, c(1,2))
+flight_data
+```
+
+Assess whether there is an association between being drunk and being allowed to board the airplane.
+
+Perform a Chi-Square test manually by calculating the expected cell counts and deriving the ChiSquare value.
+
+```{r}
+#your code
+
+
+```
+
+_Think for a moment: what do the expected values mean?_
+
+Now validate your results against the automatically calculated values.
+
+```{r}
+#your code
+
+
+```
+
+_Think for a moment: what does the test statistic and significance level mean?_
+
+Now follow-up on this finding if you deem this necessary. Is there an association? If so, what is it driven by?
+
+```{r}
+#your code (if needed)
+
+```
+
+_Think for a moment: what does each z-score mean?_
+
+### Task 5: R-by-C tables
+
+Run the code below to build another array in the simple row-by-column format but with more levels for each. The below data array expresses the count of flight delays by the season for a small airport.
+
+```{r}
+flight_delays = array(c(300, 350, 200, 150, 600, 300, 200, 100, 400, 100, 50, 50, 300, 250, 200, 200), dim=c(4,4))
+dimnames(flight_delays) = list( c('On time', 'Minor delay', 'Severe delay', 'Cancelled')
+                       , c('Spring', 'Summer', 'Fall', 'Winter'))
+flight_delays = addmargins(flight_delays, c(1,2))
+flight_delays
+```
+
+Use the appropriate statistical test and follow-up on the findings if necessary.
+
+```{r}
+#your code
+
+
+```
+
+_Which cells contain more counts than expected, which ones contain fewer counts than expected, and for which cells does this not differ significantly?_
+
+
+### Task 6: Multidimensional arrays
+
+Run the code below to create a three-dimensional array that provides you with count data on whether someone was subjected to additional checks (e.g. an interview) upon entering the UK at an airport border control, which area they came from (EU vs nonEU) and whether the passenger was additionally checked by a customs office.
+
+```{r}
+airport_data = array(c(1000, 500, 4000, 5000, 8000, 1000, 6000, 4000), dim=c(2,2,2))
+dimnames(airport_data) = list('additional_checks' = c('yes', 'no')
+                       , 'zone' = c('EU', 'nonEU')
+                       , 'customs_check' = c('yes', 'no')
+                       )
+airport_data
+```
+
+To test whether there are associations between the factors "additional_checks", "customes_check", and "zone", we'd want to use a loglinear model. Before we can use that model, we need to transform the representation of the data.
+
+```{r}
+airport_data_long = as.data.frame(as.table(airport_data))
+airport_data_long
+```
+
+Now the modelling process can start.
+
+First, build and assess the independence model:
+
+```{r}
+#your code
+
+
+```
+
+Take a look at the actual vs fitted values:
+
+```{r}
+#your code
+
+```
+
+
+We'd like to use a better model for the data. The ideal (= perfect) model is of course the saturated (full) model. Build this model and show that the fitted values are identical to the observed ones.
+
+```{r}
+#your code
+
+
+```
+
+The task is to find a simpler model that still is adequate. Next, build a model that in addition to the independence model contains two-way dependencies (similar to interactions) and test whether you can reject the H0 of model adequacy.
+
+```{r}
+#your code
+
+
+```
+
+_What do you conclude?_
+
+Finally, use the automated model select with the `step` function.
+
+```{r}
+#your code
+
+
+```
+
+_What do you conclude?_
+
+## END
+
+---
