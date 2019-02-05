@@ -60,7 +60,9 @@ plot(lm1$residuals, ylab='Residuals', main='Residual plot')
 - ... for all observations
 - rule to investigate this: correlation
     - between residuals and predictor variable(s)
-    
+
+
+##     
 ```{r echo=F}
 plot(b, lm1$residuals, main=paste('Correlation coef. r =', cor(b, lm1$residuals)))
 ```
@@ -147,6 +149,8 @@ class_rank = sample(c(1:10), 100, replace=T)
 plot(iq, class_rank, main="IQ score by class rank", xlab="IQ", ylab="class rank")
 ```
 
+##
+
 Problem: class rank not parametric (e.g. not normally distributed)
 
 ## Non-paramtric tests: Correlation
@@ -196,6 +200,8 @@ females = sample(c(1:10), 100, replace=T)
 hist(males)
 ```
 
+##
+
 Problem: variable "rank" not parametric (e.g. not normally distributed)
 
 ## Non-paramtric tests: T-tests
@@ -210,7 +216,7 @@ Idea:
 - assess the significance of the test-statistic
 
 
-```{r}
+```{r echo=F}
 df = data.frame(males, rank(males), females, rank(females))
 knitr::kable(df[1:6, ])
 ```
@@ -448,8 +454,8 @@ knitr::kable(round(chisq.test(data2, correct = F)$stdres, 2))
 
 Remember: interpretation like z-scores
 
-- > +/- 1.96 --> sign. at p < .05
-- > +/- 2.58 --> sign. at p < .05
+- +/- 1.96 --> sign. at p < .05
+- +/- 2.58 --> sign. at p < .05
 
 ##
 
@@ -703,11 +709,7 @@ Follow the steps [here](https://data.library.virginia.edu/an-introduction-to-log
 
 ##
 
-## RECAP
-
-- 
-- 
-- 
+### Recap
 
 ## Outlook
 
