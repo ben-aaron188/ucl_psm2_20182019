@@ -63,7 +63,7 @@ No tutorial.
 #### Week 5
 
 - Lecture 5: Non-parametric methods + discrete data analysis [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture5_nonparametric_discretedata.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture5_nonparametric_discretedata.pdf)
-- Homework: [Nonparametrics analyses and discrete data in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/w5_nonparametric_discrete.nb.html)
+- Homework: [Nonparametrics analyses and discrete data in R](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/homework/w5_nonparametric_discrete.nb.html), [SOLUTIONS](https://raw.githack.com/ben-aaron188/ucl_aca_20182019/master/tutorials/solutions_tutorial3_textmining_in_R.nb.html)
 
 No tutorial.
 
