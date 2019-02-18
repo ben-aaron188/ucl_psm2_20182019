@@ -1,0 +1,19 @@
+---
+title: PSM2 assignment - dataset
+subtitle: 1-on-1 feedback form
+output: html_notebook
+---
+
+**INFORMATION ON THE DATASET**
+
+_This document details the variables of the dataset you will use for your assessment._
+
+
+Note that this is the pseudo-dataset that differs in size and values from the full dataset that we will release after you have preregistered your analyses.
+
+While the pseudo-dataset is identical for all students, the full dataset is different for each student and will be shared with each student individually.
+
+
+
+
+---
