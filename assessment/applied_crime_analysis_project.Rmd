@@ -86,6 +86,7 @@ We will help you with an individualised feedback session.
     - your hypotheses
     - method (i.e. what did you do with the data, which exclusions/transformations did you apply, which analytical models did you apply, ...)
         - outline each method briefly assuming that the reader is not familiar with the analytical technique
+    - data (i.e. brief details on the dataset)
     - analytical plan (i.e. clearly set out which analysis you used to test each of your hypotheses)
     - results
     - discussion (incl. limitations of your work + outlook on future research)
