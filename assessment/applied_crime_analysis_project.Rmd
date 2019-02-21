@@ -1,8 +1,8 @@
 ---
 title: "PSM2 assignment"
 output:
-  html_notebook: default
   pdf_document: default
+  html_notebook: default
 ---
 
 ## Applied Crime Analysis Project
@@ -24,7 +24,7 @@ The final project of this module is designed so that you can demonstrate that yo
 
 ### Project requirements
 
-In this assessment you will work with a dataset of offenders who were charged with crimes resulting from gang activity. You can find details on that dataset [here]()().
+In this assessment you will work with a dataset of offenders who were charged with crimes resulting from gang activity. You can find details on that dataset [here](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/assessment/dataset_details.nb.html) [(pdf version)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/assessment/dataset_details.pdf).
 
 Imagine you are working for a police force as an analyst. Your department is embracing an evidence-based and problem-driven approach to policing and asks you to work with the dataset to answer three questions:
 
@@ -53,6 +53,8 @@ Your task for the preregistration is to detail all data exclusions, analytical s
 
 On the pseudo-dataset, you can also start writing your R code. The full dataset will be structured in the same way and any code that works on the pseudo-dataset will also work on the full dataset.
 
+**You can find the pseudo-dataset for the preregistration on Moodle. The individual datasets will be sent to you via email.**
+
 **Deadline for preregistration:** Your preregistration should be "frozen" the latest on the **29th of March**. We will release the full datset on the **30th of March** and you cannot preregister any analyses once the full dataset is released. Note that the preregistration is a requirement for this assessment.
 
 
@@ -80,7 +82,7 @@ Grading criteria:
 
 We will help you with an individualised feedback session.
 
-1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots to be arranged). Submit your feedback on Moodle through using [this]() template.
+1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots to be arranged). Submit your feedback on Moodle through using [this](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/assessment/feedback_submission_psm2.nb.html) template [(pdf version)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/assessment/feedback_submission_psm2.pdf).
 
 
 ### Deliverables
