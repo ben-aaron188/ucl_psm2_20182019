@@ -1,19 +1,33 @@
 ---
-title: PSM2 assignment - dataset
+title: "PSM2 assignment - dataset"
 subtitle: 1-on-1 feedback form
-output: html_notebook
+output:
+  pdf_document: default
+  html_notebook: default
 ---
 
 **INFORMATION ON THE DATASET**
 
 _This document details the variables of the dataset you will use for your assessment._
 
-
 Note that this is the pseudo-dataset that differs in size and values from the full dataset that we will release after you have preregistered your analyses.
 
 While the pseudo-dataset is identical for all students, the full dataset is different for each student and will be shared with each student individually.
 
+The dataset contains 9 variables of offenders who were charged with crimes resulting from gang activity.
 
+Variable code book:
+
+- "id" --> a running case ID number
+- "age_offender" -->  the age in years of the offender at the date of the offense
+- "family_income_before" --> the total annual family income of the offender's household at the time of the offense
+- "gender_offender" --> the offender's gender
+- "punishment" --> the punishment received after court hearings
+- "domestic_abuse_victim" --> whether the offender was victim of domestic abuse before committing the offense
+- "family_situation" --> the family situation at the time of the offense
+- "mental_health" --> whether there were any reported previous mental health issues of the offender at the time of the offense
+- "family_income_after" --> the total annual family income of the offender's household in a second measurement 5 years after the offense
+- "offender_has_job" --> whether or not the offender has found a job at the time of the second measurement 5 years after the offense
 
 
 ---

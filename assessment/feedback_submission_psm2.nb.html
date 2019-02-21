@@ -243,19 +243,13 @@ $(document).ready(function () {
 <p><strong>Use this template to submit your work for the 1-on-1 feedback session.</strong></p>
 <p><em>Make sure to submit your work before the deadline (22 March 2019) so that we can read and consider your work.</em></p>
 <p>Use the sections below to provide some background on your project and initial considerations about your intended analysis.</p>
-<p>Your project title:</p>
 <p>Your name:</p>
-<div id="problem-context-which-problem-does-your-project-address" class="section level3">
-<h3>Problem context: Which problem does your project address?</h3>
-<p>(write no more than 50 words)</p>
-</div>
-<div id="your-idea-what-is-the-newunique-approach-that-you-are-using-in-your-project" class="section level3">
-<h3>Your idea: What is the new/unique approach that you are using in your project?</h3>
-<p>(write no more than 50 words)</p>
-</div>
-<div id="how-will-you-obtain-the-data" class="section level3">
-<h3>How will you obtain the data?</h3>
+<div id="which-aspects-are-you-unsure-about" class="section level3">
+<h3>Which aspects are you unsure about?</h3>
 <p>(use bullet points)</p>
+</div>
+<div id="what-is-your-own-additional-research-question" class="section level3">
+<h3>What is your own additional research question?</h3>
 </div>
 <div id="describe-your-analysis" class="section level3">
 <h3>Describe your analysis</h3>
@@ -267,11 +261,12 @@ $(document).ready(function () {
 </div>
 <div id="describe-the-current-state-of-your-project" class="section level3">
 <h3>Describe the current state of your project</h3>
+<p>(use bullet points)</p>
 <hr />
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiBQU00yIGFzc2lnbm1lbnQKc3VidGl0bGU6IDEtb24tMSBmZWVkYmFjayBmb3JtCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCioqVXNlIHRoaXMgdGVtcGxhdGUgdG8gc3VibWl0IHlvdXIgd29yayBmb3IgdGhlIDEtb24tMSBmZWVkYmFjayBzZXNzaW9uLioqCgpfTWFrZSBzdXJlIHRvIHN1Ym1pdCB5b3VyIHdvcmsgYmVmb3JlIHRoZSBkZWFkbGluZSAoMjIgTWFyY2ggMjAxOSkgc28gdGhhdCB3ZSBjYW4gcmVhZCBhbmQgY29uc2lkZXIgeW91ciB3b3JrLl8KClVzZSB0aGUgc2VjdGlvbnMgYmVsb3cgdG8gcHJvdmlkZSBzb21lIGJhY2tncm91bmQgb24geW91ciBwcm9qZWN0IGFuZCBpbml0aWFsIGNvbnNpZGVyYXRpb25zIGFib3V0IHlvdXIgaW50ZW5kZWQgYW5hbHlzaXMuCgpZb3VyIHByb2plY3QgdGl0bGU6CgpZb3VyIG5hbWU6CgojIyMgUHJvYmxlbSBjb250ZXh0OiBXaGljaCBwcm9ibGVtIGRvZXMgeW91ciBwcm9qZWN0IGFkZHJlc3M/Cgood3JpdGUgbm8gbW9yZSB0aGFuIDUwIHdvcmRzKQoKIyMjIFlvdXIgaWRlYTogV2hhdCBpcyB0aGUgbmV3L3VuaXF1ZSBhcHByb2FjaCB0aGF0IHlvdSBhcmUgdXNpbmcgaW4geW91ciBwcm9qZWN0PwoKKHdyaXRlIG5vIG1vcmUgdGhhbiA1MCB3b3JkcykKCiMjIyBIb3cgd2lsbCB5b3Ugb2J0YWluIHRoZSBkYXRhPwoKKHVzZSBidWxsZXQgcG9pbnRzKQoKIyMjIERlc2NyaWJlIHlvdXIgYW5hbHlzaXMKCih1c2UgYnVsbGV0IHBvaW50cykKCiMjIyBEZXNjcmliZSBhbnkgY29kaW5nIGlzc3VlcwoKKHVzZSBidWxsZXQgcG9pbnRzKQoKIyMjIERlc2NyaWJlIHRoZSBjdXJyZW50IHN0YXRlIG9mIHlvdXIgcHJvamVjdAoKLS0t</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUFNNMiBhc3NpZ25tZW50IgpzdWJ0aXRsZTogMS1vbi0xIGZlZWRiYWNrIGZvcm0Kb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQKICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQKLS0tCgoqKlVzZSB0aGlzIHRlbXBsYXRlIHRvIHN1Ym1pdCB5b3VyIHdvcmsgZm9yIHRoZSAxLW9uLTEgZmVlZGJhY2sgc2Vzc2lvbi4qKgoKX01ha2Ugc3VyZSB0byBzdWJtaXQgeW91ciB3b3JrIGJlZm9yZSB0aGUgZGVhZGxpbmUgKDIyIE1hcmNoIDIwMTkpIHNvIHRoYXQgd2UgY2FuIHJlYWQgYW5kIGNvbnNpZGVyIHlvdXIgd29yay5fCgpVc2UgdGhlIHNlY3Rpb25zIGJlbG93IHRvIHByb3ZpZGUgc29tZSBiYWNrZ3JvdW5kIG9uIHlvdXIgcHJvamVjdCBhbmQgaW5pdGlhbCBjb25zaWRlcmF0aW9ucyBhYm91dCB5b3VyIGludGVuZGVkIGFuYWx5c2lzLgoKCllvdXIgbmFtZToKCiMjIyBXaGljaCBhc3BlY3RzIGFyZSB5b3UgdW5zdXJlIGFib3V0PwoKKHVzZSBidWxsZXQgcG9pbnRzKQoKIyMjIFdoYXQgaXMgeW91ciBvd24gYWRkaXRpb25hbCByZXNlYXJjaCBxdWVzdGlvbj8KCiMjIyBEZXNjcmliZSB5b3VyIGFuYWx5c2lzCgoodXNlIGJ1bGxldCBwb2ludHMpCgojIyMgRGVzY3JpYmUgYW55IGNvZGluZyBpc3N1ZXMKCih1c2UgYnVsbGV0IHBvaW50cykKCiMjIyBEZXNjcmliZSB0aGUgY3VycmVudCBzdGF0ZSBvZiB5b3VyIHByb2plY3QKCih1c2UgYnVsbGV0IHBvaW50cykKCi0tLQ==</div>
 
 
 

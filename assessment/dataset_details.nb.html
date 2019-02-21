@@ -244,10 +244,24 @@ $(document).ready(function () {
 <p><em>This document details the variables of the dataset you will use for your assessment.</em></p>
 <p>Note that this is the pseudo-dataset that differs in size and values from the full dataset that we will release after you have preregistered your analyses.</p>
 <p>While the pseudo-dataset is identical for all students, the full dataset is different for each student and will be shared with each student individually.</p>
+<p>The dataset contains 9 variables of offenders who were charged with crimes resulting from gang activity.</p>
+<p>Variable code book:</p>
+<ul>
+<li>“id” –&gt; a running case ID number</li>
+<li>“age_offender” –&gt; the age in years of the offender at the date of the offense</li>
+<li>“family_income_before” –&gt; the total annual family income of the offender’s household at the time of the offense</li>
+<li>“gender_offender” –&gt; the offender’s gender</li>
+<li>“punishment” –&gt; the punishment received after court hearings</li>
+<li>“domestic_abuse_victim” –&gt; whether the offender was victim of domestic abuse before committing the offense</li>
+<li>“family_situation” –&gt; the family situation at the time of the offense</li>
+<li>“mental_health” –&gt; whether there were any reported previous mental health issues of the offender at the time of the offense</li>
+<li>“family_income_after” –&gt; the total annual family income of the offender’s household in a second measurement 5 years after the offense</li>
+<li>“offender_has_job” –&gt; whether or not the offender has found a job at the time of the second measurement 5 years after the offense</li>
+</ul>
 <hr />
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiBQU00yIGFzc2lnbm1lbnQgLSBkYXRhc2V0CnN1YnRpdGxlOiAxLW9uLTEgZmVlZGJhY2sgZm9ybQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoqKklORk9STUFUSU9OIE9OIFRIRSBEQVRBU0VUKioKCl9UaGlzIGRvY3VtZW50IGRldGFpbHMgdGhlIHZhcmlhYmxlcyBvZiB0aGUgZGF0YXNldCB5b3Ugd2lsbCB1c2UgZm9yIHlvdXIgYXNzZXNzbWVudC5fCgoKTm90ZSB0aGF0IHRoaXMgaXMgdGhlIHBzZXVkby1kYXRhc2V0IHRoYXQgZGlmZmVycyBpbiBzaXplIGFuZCB2YWx1ZXMgZnJvbSB0aGUgZnVsbCBkYXRhc2V0IHRoYXQgd2Ugd2lsbCByZWxlYXNlIGFmdGVyIHlvdSBoYXZlIHByZXJlZ2lzdGVyZWQgeW91ciBhbmFseXNlcy4KCldoaWxlIHRoZSBwc2V1ZG8tZGF0YXNldCBpcyBpZGVudGljYWwgZm9yIGFsbCBzdHVkZW50cywgdGhlIGZ1bGwgZGF0YXNldCBpcyBkaWZmZXJlbnQgZm9yIGVhY2ggc3R1ZGVudCBhbmQgd2lsbCBiZSBzaGFyZWQgd2l0aCBlYWNoIHN0dWRlbnQgaW5kaXZpZHVhbGx5LgoKCgoKLS0t</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUFNNMiBhc3NpZ25tZW50IC0gZGF0YXNldCIKc3VidGl0bGU6IDEtb24tMSBmZWVkYmFjayBmb3JtCm91dHB1dDoKICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKKipJTkZPUk1BVElPTiBPTiBUSEUgREFUQVNFVCoqCgpfVGhpcyBkb2N1bWVudCBkZXRhaWxzIHRoZSB2YXJpYWJsZXMgb2YgdGhlIGRhdGFzZXQgeW91IHdpbGwgdXNlIGZvciB5b3VyIGFzc2Vzc21lbnQuXwoKTm90ZSB0aGF0IHRoaXMgaXMgdGhlIHBzZXVkby1kYXRhc2V0IHRoYXQgZGlmZmVycyBpbiBzaXplIGFuZCB2YWx1ZXMgZnJvbSB0aGUgZnVsbCBkYXRhc2V0IHRoYXQgd2Ugd2lsbCByZWxlYXNlIGFmdGVyIHlvdSBoYXZlIHByZXJlZ2lzdGVyZWQgeW91ciBhbmFseXNlcy4KCldoaWxlIHRoZSBwc2V1ZG8tZGF0YXNldCBpcyBpZGVudGljYWwgZm9yIGFsbCBzdHVkZW50cywgdGhlIGZ1bGwgZGF0YXNldCBpcyBkaWZmZXJlbnQgZm9yIGVhY2ggc3R1ZGVudCBhbmQgd2lsbCBiZSBzaGFyZWQgd2l0aCBlYWNoIHN0dWRlbnQgaW5kaXZpZHVhbGx5LgoKVGhlIGRhdGFzZXQgY29udGFpbnMgOSB2YXJpYWJsZXMgb2Ygb2ZmZW5kZXJzIHdobyB3ZXJlIGNoYXJnZWQgd2l0aCBjcmltZXMgcmVzdWx0aW5nIGZyb20gZ2FuZyBhY3Rpdml0eS4KClZhcmlhYmxlIGNvZGUgYm9vazoKCi0gImlkIiAtLT4gYSBydW5uaW5nIGNhc2UgSUQgbnVtYmVyCi0gImFnZV9vZmZlbmRlciIgLS0+ICB0aGUgYWdlIGluIHllYXJzIG9mIHRoZSBvZmZlbmRlciBhdCB0aGUgZGF0ZSBvZiB0aGUgb2ZmZW5zZQotICJmYW1pbHlfaW5jb21lX2JlZm9yZSIgLS0+IHRoZSB0b3RhbCBhbm51YWwgZmFtaWx5IGluY29tZSBvZiB0aGUgb2ZmZW5kZXIncyBob3VzZWhvbGQgYXQgdGhlIHRpbWUgb2YgdGhlIG9mZmVuc2UKLSAiZ2VuZGVyX29mZmVuZGVyIiAtLT4gdGhlIG9mZmVuZGVyJ3MgZ2VuZGVyCi0gInB1bmlzaG1lbnQiIC0tPiB0aGUgcHVuaXNobWVudCByZWNlaXZlZCBhZnRlciBjb3VydCBoZWFyaW5ncwotICJkb21lc3RpY19hYnVzZV92aWN0aW0iIC0tPiB3aGV0aGVyIHRoZSBvZmZlbmRlciB3YXMgdmljdGltIG9mIGRvbWVzdGljIGFidXNlIGJlZm9yZSBjb21taXR0aW5nIHRoZSBvZmZlbnNlCi0gImZhbWlseV9zaXR1YXRpb24iIC0tPiB0aGUgZmFtaWx5IHNpdHVhdGlvbiBhdCB0aGUgdGltZSBvZiB0aGUgb2ZmZW5zZQotICJtZW50YWxfaGVhbHRoIiAtLT4gd2hldGhlciB0aGVyZSB3ZXJlIGFueSByZXBvcnRlZCBwcmV2aW91cyBtZW50YWwgaGVhbHRoIGlzc3VlcyBvZiB0aGUgb2ZmZW5kZXIgYXQgdGhlIHRpbWUgb2YgdGhlIG9mZmVuc2UKLSAiZmFtaWx5X2luY29tZV9hZnRlciIgLS0+IHRoZSB0b3RhbCBhbm51YWwgZmFtaWx5IGluY29tZSBvZiB0aGUgb2ZmZW5kZXIncyBob3VzZWhvbGQgaW4gYSBzZWNvbmQgbWVhc3VyZW1lbnQgNSB5ZWFycyBhZnRlciB0aGUgb2ZmZW5zZQotICJvZmZlbmRlcl9oYXNfam9iIiAtLT4gd2hldGhlciBvciBub3QgdGhlIG9mZmVuZGVyIGhhcyBmb3VuZCBhIGpvYiBhdCB0aGUgdGltZSBvZiB0aGUgc2Vjb25kIG1lYXN1cmVtZW50IDUgeWVhcnMgYWZ0ZXIgdGhlIG9mZmVuc2UKCgotLS0=</div>
 
 
 

@@ -1,8 +1,8 @@
 ---
 title: "PSM2 assignment"
 output:
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
 ---
 
 ## Applied Crime Analysis Project
@@ -24,15 +24,22 @@ The final project of this module is designed so that you can demonstrate that yo
 
 ### Project requirements
 
-While you are free to formulate your own hypotheses after understanding the data structure, this assessment requires you to apply at least 4 of the 5 analytical techniques covered in this module.
+In this assessment you will work with a dataset of offenders who were charged with crimes resulting from gang activity. You can find details on that dataset [here]()().
 
-The six blocks are:
+Imagine you are working for a police force as an analyst. Your department is embracing an evidence-based and problem-driven approach to policing and asks you to work with the dataset to answer three questions:
 
-- Multiple linear regression models
-- Logistic regression models
-- 2-dimensional discrete data models
-- Log-linear models
-- Bayesian hypothesis testing
+1. Are there household characteristics that are related to an offender's household income 5 years after the initial measurement?
+2. What (if any) is the relationship between an offender's gender and their punishment?
+3. Which factors might help in predicting whether or not an offender found a job 5 years after the offense?
+4. Is there are relationship between the family situation, whether or not the offender was victim of domestic abuse and whether or not the offender had previous mental health problems?
+5. Does it make a difference to the household income if the mother or the father left, or is there no difference?
+
+You are also asked to test one other research question that you can freely choose.
+
+Your task is to answer each of these six (5 given + 1 of your own) questions. To do this, formulate hypotheses that allow you to answer these questions and preregister these hypotheses. You can formulate multiple hypotheses per question but we expect at least one.
+
+Remember to preregister any data exclusions that you find meaningful, any data transformations, etc. and justify any deviations from your preregistered procedure.
+
 
 The dataset will allow you to test all of these blocks but your task is to only use 4 of them.
 
@@ -73,7 +80,7 @@ Grading criteria:
 
 We will help you with an individualised feedback session.
 
-**1-on-1 feedback session:** you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots to be arranged). Submit your feedback on Moodle through using [this]() template.
+1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots to be arranged). Submit your feedback on Moodle through using [this]() template.
 
 
 ### Deliverables
@@ -81,15 +88,14 @@ We will help you with an individualised feedback session.
 - Feedback report for 1-on-1 session
 - Link to publicly frozen preregistration
 - Report of your project: the report has a word count limit of 1,500 words and should contain the following sections
-    - brief statement about which of the 5 analytical techniques you are covering
     - link to the preregistration
-    - your hypotheses
+    - your hypotheses (you do not have to write an introduction)
     - method (i.e. what did you do with the data, which exclusions/transformations did you apply, which analytical models did you apply, ...)
         - outline each method briefly assuming that the reader is not familiar with the analytical technique
     - data (i.e. brief details on the dataset)
     - analytical plan (i.e. clearly set out which analysis you used to test each of your hypotheses)
     - results
-    - discussion (incl. limitations of your work + outlook on future research)
+    - discussion (interpretation, answer to the question, limitations of your work)
 - Code supplement: you also submit the code needed to fully reproduce your work in an R Notebook
     - the code should be clearly documented
     - the header should contain your student assessment ID (i.e. the code is fully anonymised)

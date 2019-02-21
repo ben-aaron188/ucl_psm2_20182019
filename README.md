@@ -73,7 +73,8 @@ No tutorial.
 
 #### Week 6
 
-Reading week
+- Lecture
+- Tutorial [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_lecture6_preregistration.html)
 
 #### Week 7
 
