@@ -1,8 +1,8 @@
 ---
 title: "PSM2 assignment"
 output:
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
 ---
 
 ## Applied Crime Analysis Project
@@ -40,22 +40,19 @@ Your task is to answer each of these six (5 given + 1 of your own) questions. To
 
 Remember to preregister any data exclusions that you find meaningful, any data transformations, etc. and justify any deviations from your preregistered procedure.
 
-
-The dataset will allow you to test all of these blocks but your task is to only use 4 of them.
-
 **Stepwise data release:**
 
-An important part of modern science is transparency and openness about the data collection and analytical process. Since the data are provided for you, you will focus exclusively on the Open Science aspect of the analysis instead. We specifically ask that you preregister your analyses using the OSF preregistration form and include **a link to the anonymised preregistration** in your assignment submission.
+An important part of modern science is transparency and openness about the data collection and analytical process. Since the data are provided for you, you will focus on the Open Science aspect of the analysis. We specifically ask that you preregister your analyses using a template inspired by the OSF preregistration form. You'll submit your preregistration as part of this assessment - note that there are **different deadlines for the preregistration and the full project report (+code)**.
 
 To help you better understand the data that you will work with, we will provide you with a pseudo-dataset that contains the same variables and structure as the full dataset but is smaller and does not necessarily have the same relationships among variables.
 
-Your task for the preregistration is to detail all data exclusions, analytical steps, hypotheses, exploratory analyses, etc. (as detailed in the OSF preregsitration form). You will then present the preregistered analyses as "confirmatory analyses" in your report and will detail and justify any deviation from the preregistration. You can conduct non-preregistered analyses and report these as "exploratory analyses".
+Your task for the preregistration is to detail all data exclusions, analytical steps, hypotheses, exploratory analyses, etc. (as detailed in the template form). You will then present the preregistered analyses as "confirmatory analyses" in your report and will detail and justify any deviation from the preregistration. You can conduct non-preregistered analyses and report these as "exploratory analyses".
 
 On the pseudo-dataset, you can also start writing your R code. The full dataset will be structured in the same way and any code that works on the pseudo-dataset will also work on the full dataset.
 
 **You can find the pseudo-dataset for the preregistration on Moodle. The individual datasets will be sent to you via email.**
 
-**Deadline for preregistration:** Your preregistration should be "frozen" the latest on the **29th of March**. We will release the full datset on the **30th of March** and you cannot preregister any analyses once the full dataset is released. Note that the preregistration is a requirement for this assessment.
+**Deadline for preregistration:** Your preregistration should be submitted the latest on the **29th of March**. We will release the full datset on the **30th of March** and you cannot preregister any analyses once the full dataset is released. Note that the preregistration is a requirement for this assessment.
 
 
 ### Grading guidelines
@@ -64,7 +61,7 @@ Requirements to be graded:
 
 - submit the 1-on-1 feedback form in time
 - attend the feedback session
-- freeze your preregistration publicly before the deadline (29 March)
+- submit your preregistration before the deadline (29 March)
 - submit the report + code supplement before the deadline (16 April)
 
 Grading criteria:
@@ -82,15 +79,14 @@ Grading criteria:
 
 We will help you with an individualised feedback session.
 
-1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots to be arranged). Submit your feedback on Moodle through using [this](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/assessment/feedback_submission_psm2.nb.html) template [(pdf version)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/assessment/feedback_submission_psm2.pdf).
+1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots allocated). Submit your feedback on Moodle through using [this](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/assessment/feedback_submission_psm2.nb.html) template [(pdf version)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/assessment/feedback_submission_psm2.pdf).
 
 
 ### Deliverables
 
 - Feedback report for 1-on-1 session
-- Link to publicly frozen preregistration
+- Preregistration
 - Report of your project: the report has a word count limit of 1,500 words and should contain the following sections
-    - link to the preregistration
     - your hypotheses (you do not have to write an introduction)
     - method (i.e. what did you do with the data, which exclusions/transformations did you apply, which analytical models did you apply, ...)
         - outline each method briefly assuming that the reader is not familiar with the analytical technique
