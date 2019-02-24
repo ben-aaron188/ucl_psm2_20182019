@@ -85,7 +85,7 @@ No tutorial.
 
 #### Week 7
 
-- Lecture: Reporting and Assessing Statistical Evidence 2 [(slides)](), [(pdf)]
+- Lecture: Reporting and Assessing Statistical Evidence 2 [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture7_statisticalreporting2.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture7_statisticalreporting2.pdf)
 
 No homework.
 
