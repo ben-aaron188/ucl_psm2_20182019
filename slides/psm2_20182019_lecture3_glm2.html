@@ -940,11 +940,11 @@ df2 =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt
 <li>linearity through the log of the odds</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prob =<span class="st"> </span><span class="fl">0.40</span>
-odds =<span class="st"> </span>prob<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>prob)
+odds =<span class="st"> </span>prob<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>prob)
 odds</code></pre></div>
-<pre><code>## [1] 0.2857143</code></pre>
+<pre><code>## [1] 0.6666667</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(odds)</code></pre></div>
-<pre><code>## [1] -1.252763</code></pre>
+<pre><code>## [1] -0.4054651</code></pre>
 </section>
 <section id="intermezzo-odds" class="slide level2">
 <h2>Intermezzo: odds</h2>

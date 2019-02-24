@@ -277,7 +277,7 @@ Answer: for binary outcomes, the **logit** function
 
 ```{r}
 prob = 0.40
-odds = prob/(1+prob)
+odds = prob/(1-prob)
 odds
 log(odds)
 ```

@@ -54,6 +54,7 @@ On the pseudo-dataset, you can also start writing your R code. The full dataset 
 
 **Deadline for preregistration:** Your preregistration should be submitted the latest on the **29th of March**. We will release the full datset on the **30th of March** and you cannot preregister any analyses once the full dataset is released. Note that the preregistration is a requirement for this assessment.
 
+The deadline for the full report (+ ocde) is 16 April 2019.
 
 ### Grading guidelines
 
@@ -79,7 +80,7 @@ Grading criteria:
 
 We will help you with an individualised feedback session.
 
-1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots allocated). Submit your feedback on Moodle through using [this](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/assessment/feedback_submission_psm2.nb.html) template [(pdf version)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/assessment/feedback_submission_psm2.pdf).
+1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (timeslots allocated). Submit your feedback by **22 March 2019** on Moodle through using [this](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/assessment/feedback_submission_psm2.nb.html) template [(pdf version)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/assessment/feedback_submission_psm2.pdf).
 
 
 ### Deliverables
@@ -94,7 +95,7 @@ We will help you with an individualised feedback session.
     - analytical plan (i.e. clearly set out which analysis you used to test each of your hypotheses)
     - results
     - discussion (interpretation, answer to the question, limitations of your work)
-- Code supplement: you also submit the code needed to fully reproduce your work in an R Notebook
+- Code supplement: you also submit the code needed to fully reproduce your work in an R Notebook (compiled as html file)
     - the code should be clearly documented
     - the header should contain your student assessment ID (i.e. the code is fully anonymised)
     - the code must be reproducible in all steps

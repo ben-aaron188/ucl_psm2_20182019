@@ -250,14 +250,16 @@ Tutorial: 1-on-1 feedback: we will hold the 1-on-1 feedback sessions, see below.
 
 - Weight for final grade: 50%
 - Learning outcomes tested: (1) understanding the logic of modelling and its value in understanding real-world phenomena, (2) applying and understanding methods of statistical inference which can be applied when the assumptions of standard approaches are violated, (3) understanding the null-hypothesis significance testing framework and the Bayesian approach, (4) applying and understanding methods for testing and modelling datasets with particular structure, (5) performing said analyses and demonstrate practical skills of data manipulation and cleaning, alongside the implementation of the statistical approaches introduced in the module
-- Deadline/date: 16 April 2019.
+- Deadline/date: 29 March 2019 (preregistration), 16 April 2019 (full report + code).
 - Word count limit: 1500 words (excl. code supplement; do not exceed this word count limit!)
 
 **Details:** The final project of this module is designed so that you can demonstrate that you have a good command of the statistical concepts covered in the lectures and tutorials and can put them to use in your own project. We will provide a dataset and your task is to address a research question stemming from crime and security science. You will also be able to demonstrate your understanding of open science practices through pre-registering your analyses, producing re-producible code, and documenting your data properly. You will have to write a report on your findings (a template will be provided) and have to submit the R code needed to reproduce your analysis.
 
 **Feedback:** Since a full project is a major step in your quantitative  skills career, we will hold a 1-on-1 feedback session to help you in the process.
 
-The 1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **19 March 2019 after the lecture** (slots to be arranged at the start of the module). 
+The 1-on-1 feedback session: you will receive individualised feedback from both Bennett and Isabelle in a 1-on-1 session where we will help you with questions and give you final advice to fine-tune your project. These sessions will take 10 minutes per student and will be held on **26 March 2019** (slots to be arranged at the start of the module).
+
+Submit your feedback template form by **22 March 2019** so that we have got time to give you advice.
 
 ## Attendance requirement
 

@@ -73,10 +73,29 @@ No tutorial.
 
 #### Week 6
 
-- Lecture
-- Tutorial [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_lecture6_preregistration.html)
+- Lecture: Open Science/Reporting and Assessing Statistical Evidence 1, guest lecture Dr Sandy Schumann [slides on moodle]
+- Tutorial: Open Science Lab [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_lecture6_preregistration.html)
+
+- Required reading:
+    - Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant. Psychological Science, 22(11), 1359–1366. [https://doi.org/10.1177/0956797611417632](https://doi.org/10.1177/0956797611417632)
+    - Sullivan, G. M., & Feinn, R. (2012). Using Effect Size—or Why the p Value Is Not Enough. Journal of Graduate Medical Education, 4(3), 279–282. [https://doi.org/10.4300/JGME-D-12-00156.1](https://doi.org/10.4300/JGME-D-12-00156.1)
+- Recommend reading:
+    - Ioannidis, J. P. A. (2005). Why Most Published Research Findings Are False. PLOS Medicine, 2(8), e124. [https://doi.org/10.1371/journal.pmed.0020124](https://doi.org/10.1371/journal.pmed.0020124)
+
 
 #### Week 7
+
+- Lecture: Reporting and Assessing Statistical Evidence 2 [(slides)](), [(pdf)]
+
+No homework.
+
+- Required reading:
+    - Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A. J., Argamon, S. E., … Zwaan, R. A. (2018). Justify your alpha. Nature Human Behaviour, 2(3), 168. [https://doi.org/10.1038/s41562-018-0311-x](https://doi.org/10.1038/s41562-018-0311-x)
+    - Benjamin, D. J., Berger, J. O., Johannesson, M., Nosek, B. A., Wagenmakers, E.-J., Berk, R., … Johnson, V. E. (2018). Redefine statistical significance. Nature Human Behaviour, 2(1), 6. [https://doi.org/10.1038/s41562-017-0189-z](https://doi.org/10.1038/s41562-017-0189-z)
+- Recommended reading:
+    - Statistical Guidelines - Psychonomic Society, [https://www.psychonomic.org/page/statisticalguideline](https://www.psychonomic.org/page/statisticalguideline)
+    - Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. Science, 349(6251). [https://doi.org/10.1126/science.aac4716](https://doi.org/10.1126/science.aac4716)
+
 
 ---
 
