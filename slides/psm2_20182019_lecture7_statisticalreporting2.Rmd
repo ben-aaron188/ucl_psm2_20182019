@@ -65,9 +65,6 @@ Statistical reporting 2 + assessment details
 - X by Y by Z (loglinear)
 
 
-## Week 5
-
-
 ##
 
 ### Statistical reporting
@@ -157,13 +154,13 @@ And anyway:
 
 ## A new alpha threshold
 
-> However, we believe that a leading cause of non-reproducibility has not yet been adequately addressed: statistical standards of evidence for claiming new discoveries in many fields of science are simply too low.
+<img width="80%" height="80%" src='./img/benjamin1.png'>
 
 <small>[Benjamin et al., 2018](https://www.nature.com/articles/s41562-017-0189-z#Equ1)</small>
 
 ## A new alpha threshold
 
-<img width="80%" height="80%" src='./img/benjamin1.png'>
+> However, we believe that a leading cause of non-reproducibility has not yet been adequately addressed: statistical standards of evidence for claiming new discoveries in many fields of science are simply too low.
 
 <small>[Benjamin et al., 2018](https://www.nature.com/articles/s41562-017-0189-z#Equ1)</small>
 
