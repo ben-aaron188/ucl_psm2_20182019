@@ -87,7 +87,7 @@ No tutorial.
 
 - Lecture: Reporting and Assessing Statistical Evidence 2 [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture7_statisticalreporting2.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture7_statisticalreporting2.pdf)
 
-No homework.
+Homework: revision of week 1-5.
 
 - Required reading:
     - Lakens, D., Adolfi, F. G., Albers, C. J., Anvari, F., Apps, M. A. J., Argamon, S. E., … Zwaan, R. A. (2018). Justify your alpha. Nature Human Behaviour, 2(3), 168. [https://doi.org/10.1038/s41562-018-0311-x](https://doi.org/10.1038/s41562-018-0311-x)
@@ -96,6 +96,23 @@ No homework.
     - Statistical Guidelines - Psychonomic Society, [https://www.psychonomic.org/page/statisticalguideline](https://www.psychonomic.org/page/statisticalguideline)
     - Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. Science, 349(6251). [https://doi.org/10.1126/science.aac4716](https://doi.org/10.1126/science.aac4716)
 
+
+#### Week 8
+
+- Lecture: Bayesian Hypothesis Testing [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture8_bayesian.html), [(pdf)]()
+- Tutorial: [Bayesian hypothesis testing in R and JASP](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial4_bayesianhyptesting.nb.html), [SOLUTIONS](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/solutions_tutorial4_bayesianhyptesting.nb.html)
+
+Required reading:
+
+- Ortega, A., & Navarrete, G. (2017). Bayesian Hypothesis Testing: An Alternative to Null Hypothesis Significance Testing (NHST) in Psychology and Social Sciences. Bayesian Inference. [https://doi.org/10.5772/intechopen.70230](https://doi.org/10.5772/intechopen.70230)
+- Faulkenberry, T. J. (2018). A Simple Method for Teaching Bayesian Hypothesis Testing in the Brain and Behavioral Sciences. Journal of Undergraduate Neuroscience Education, 16(2), A126–A130. [https://www.ncbi.nlm.nih.gov/pubmed/30057494](https://www.ncbi.nlm.nih.gov/pubmed/30057494)
+- Rouder, J. N., Speckman, P. L., Sun, D., Morey, R. D., & Iverson, G. (2009). Bayesian t tests for accepting and rejecting the null hypothesis. Psychonomic Bulletin & Review, 16(2), 225–237. [https://doi.org/10.3758/PBR.16.2.225](https://doi.org/10.3758/PBR.16.2.225)
+
+
+Recommended reading:
+
+- Wagenmakers, E.-J., Lodewyckx, T., Kuriyal, H., & Grasman, R. (2010). Bayesian hypothesis testing for psychologists: A tutorial on the Savage–Dickey method. Cognitive Psychology, 60(3), 158–189. [https://doi.org/10.1016/j.cogpsych.2009.12.001](https://doi.org/10.1016/j.cogpsych.2009.12.001)
+- Wetzels, R., Matzke, D., Lee, M. D., Rouder, J. N., Iverson, G. J., & Wagenmakers, E.-J. (2011). Statistical Evidence in Experimental Psychology: An Empirical Comparison Using 855 t Tests. Perspectives on Psychological Science, 6(3), 291–298. [https://doi.org/10.1177/1745691611406923](https://doi.org/10.1177/1745691611406923)
 
 ---
 
