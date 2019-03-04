@@ -99,7 +99,7 @@ Homework: revision of week 1-5.
 
 #### Week 8
 
-- Lecture: Bayesian Hypothesis Testing [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture8_bayesian.html), [(pdf)]()
+- Lecture: Bayesian Hypothesis Testing [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture8_bayesian.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture8_bayesian.pdf)
 - Tutorial: [Bayesian hypothesis testing in R and JASP](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/tutorial4_bayesianhyptesting.nb.html), [SOLUTIONS](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/tutorials/solutions_tutorial4_bayesianhyptesting.nb.html)
 
 Required reading:
