@@ -1,0 +1,123 @@
+---
+title: Bayesian hypothesis testing
+author: B Kleinberg
+date: 5 March 2019
+subtitle: Dept of Security and Crime Science, UCL
+output: html_notebook
+---
+
+---
+
+Tutorial 4, Probability, Statistics and Modelling 2, BSc Security and Crime Science, UCL
+
+---
+
+## Outcomes of this tutorial
+
+In this tutorial, you will:
+
+- apply NHST and Bayesian hypothesis testing
+    - using R
+    - using JASP
+
+---
+
+**Task 1-3 are to be done in R. Task 4-6 in JASP.**
+
+## Task 1: Evaluation of driving campaign
+
+You are tasked to evaluate a safe driving campaign. On 150 road crossing, a local police force implemented a safe-driving cmapign through ads that promote better driving practices. As a control, they chose 150 comparable crossings where no such campaign was run. At each locaiton, police officers evaluated the driving behavior by assigning a score from 0-100. Higher scores, indicate better driving practices.
+
+You are now asked to decide whether or not the funding for the campaign should be extended.
+
+Provide an answer in the NHST framework and in the Bayesian framework.
+
+The data are located in `./data/tutorial4/driving_data.csv`.
+
+```{r}
+#your code here
+
+
+```
+
+What do you advice? Should the funding be continued?
+
+```{r}
+#type your answer here
+
+
+```
+
+
+## Task 2: Revisiting fraud data
+
+Load the dataframe `damage_data` from `./data/tutorial4/analyst_data.RData`. In that dataframe, you have 1000 observations each for junior and senior analysts and the damage they caused for their employers in fine that needed to be paid for compliance issues. You are in charge of leading a new, better statistical insights team and your employer asks you whether junior or senior analysts are more problematic.
+
+Provide an answer from both the frequentist and the Bayesian perspective.
+
+```{r}
+#your code here
+
+
+```
+
+## Task 3: Original data
+
+You will use data from a paper published in Applied Cognitive Psychology. The paper [(OA at https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439)](https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439) replicated an experiment that found that people who are deceptive about their future plans struggle to be as detailed as truth-tellers. Here, the outcome variable of interest was the number of specific time references in the participants' answers to interview questions (e.g. "9am", "half past seven") as counted by instructed human coders.
+
+Load the data from `./data/tutorial4/replication_data.csv` and test:
+
+1. whether the findings replicated using the NHST framework
+2. what Bayesian statistics concludes.
+
+```{r}
+#your code here
+
+```
+
+What is your conclusion?
+
+```{r}
+#write your answer here
+
+
+```
+
+
+---
+
+## Task 4: "Evaluation of driving campaign" in JASP
+
+You are tasked to evaluate a safe driving campaign. On 150 road crossing, a local police force implemented a safe-driving cmapign through ads that promote better driving practices. As a control, they chose 150 comparable crossings where no such campaign was run. At each locaiton, police officers evaluated the driving behavior by assigning a score from 0-100. Higher scores, indicate better driving practices.
+
+You are now asked to decide whether or not the funding for the campaign should be extended.
+
+Provide an answer in the NHST framework and in the Bayesian framework.
+
+**Conduct these analyses in JASP**
+
+## Task 5: "Revisiting fraud data" in JASP
+
+Load the dataframe `damage_data` from `./data/tutorial4/analyst_data.RData`. In that dataframe, you have 1000 observations each for junior and senior analysts and the damage they caused for their employers in fine that needed to be paid for compliance issues. You are in charge of leading a new, better statistical insights team and your employer asks you whether junior or senior analysts are more problematic.
+
+Provide an answer from both the frequentist and the Bayesian perspective.
+
+
+**Conduct these analyses in JASP**
+
+## Task 6: "Original data" in JASP
+
+You will use data from a paper published in Applied Cognitive Psychology. The paper [(OA at https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439)](https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439) replicated an experiment that found that people who are deceptive about their future plans struggle to be as detailed as truth-tellers. Here, the outcome variable of interest was the number of specific time references in the participants' answers to interview questions (e.g. "9am", "half past seven") as counted by instructed human coders.
+
+Load the data from `./data/tutorial4/replication_data.csv` and test:
+
+1. whether the findings replicated using the NHST framework
+2. what Bayesian statistics concludes.
+
+
+**Conduct these analyses in JASP**
+
+## END
+
+---
+

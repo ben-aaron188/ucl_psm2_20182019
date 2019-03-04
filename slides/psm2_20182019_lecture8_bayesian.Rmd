@@ -436,6 +436,10 @@ $BF_{01} = 1/0.075 = 13.33$
 
 --> Evidence quantified for both hypotheses!
 
+## Interpreting BFs
+
+<img width="70%" height="70%" data-src="./img/bfinterpretation.png">
+
 ## How do I do it?
 
 ## JASP

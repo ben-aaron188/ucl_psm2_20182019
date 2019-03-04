@@ -1,0 +1,188 @@
+---
+title: 'Solutions: Bayesian hypothesis testing'
+author: B Kleinberg
+date: 5 March 2019
+subtitle: Dept of Security and Crime Science, UCL
+output: html_notebook
+---
+
+**SOLUTIONS**
+
+---
+
+Tutorial 4, Probability, Statistics and Modelling 2, BSc Security and Crime Science, UCL
+
+---
+
+## Outcomes of this tutorial
+
+In this tutorial, you will:
+
+- apply NHST and Bayesian hypothesis testing
+    - using R
+    - using JASP
+
+---
+
+**Task 1-3 are to be done in R. Task 4-6 in JASP.**
+
+## Task 1: Evaluation of driving campaign
+
+You are tasked to evaluate a safe driving campaign. On 150 road crossing, a local police force implemented a safe-driving cmapign through ads that promote better driving practices. As a control, they chose 150 comparable crossings where no such campaign was run. At each locaiton, police officers evaluated the driving behavior by assigning a score from 0-100. Higher scores, indicate better driving practices.
+
+You are now asked to decide whether or not the funding for the campaign should be extended.
+
+Provide an answer in the NHST framework and in the Bayesian framework.
+
+The data are located in `./data/tutorial4/driving_data.csv`.
+
+```{r}
+#your code here
+
+##load libraries
+library(BayesFactor)
+
+##read the data
+driving_data = read.csv('./data/tutorial4/driving_data.csv', header=T)
+
+##check for any data problems/missing values
+summary(driving_data$safe_driving_score)
+
+###exclude the score that is higher than 100
+driving_data = driving_data[driving_data$safe_driving_score <= 100, ]
+
+##look at the data
+head(driving_data)
+
+##get the means
+tapply(driving_data$safe_driving_score, driving_data$intervention, mean)
+
+##NHST
+t.test(formula = safe_driving_score ~ intervention, data=driving_data)
+
+##Bayesian
+ttestBF(formula = safe_driving_score ~ intervention, data=driving_data)
+```
+
+What do you advice? Should the funding be continued?
+
+```{r}
+#type your answer here
+
+# NHST reveals no significant difference, i.e. little informative value 
+# ... we cannot say that they differ, but can also not conclude that there is no effect
+# Bayesian hyp testing showed a BF10 of 0.696, conversely, BF01 = 1/0.696 = 1.44
+# ... the data were 1.44 times more likely under H0 (i.e. no difference) than under HA (i.e. that there is a difference)
+# ... this is considered anecdotal evidence (http://daniellakens.blogspot.com/2016/01/power-analysis-for-default-bayesian-t.html)
+
+# taken together: we cannot conclude much from the data. Note that in the Bayesian framework, we would encourage more data to be collected since we update the evidence constantly. In the NHST framework, more data would lead to significant results and might not be desirable.
+```
+
+
+## Task 2: Revisiting fraud data
+
+Load the dataframe `damage_data` from `./data/tutorial4/analyst_data.RData`. In that dataframe, you have 1000 observations each for junior and senior analysts and the damage they caused for their employers in fine that needed to be paid for compliance issues. You are in charge of leading a new, better statistical insights team and your employer asks you whether junior or senior analysts are more problematic.
+
+Provide an answer from both the frequentist and the Bayesian perspective.
+
+```{r}
+#your code here
+
+##load the data
+load('data/tutorial4/analyst_data.RData')
+
+##look at the data
+head(damage_data)
+
+##get the means
+tapply(damage_data$damage_caused, damage_data$analyst_level, mean)
+
+##NHST
+t.test(damage_caused ~ analyst_level, data=damage_data)
+
+### significant difference: conclusion is that junior > senior
+
+## effect size
+d = 23.94*(sqrt(1/1000 + 1/1000))
+d
+
+## large effect size
+
+
+## Bayesian
+ttestBF(formula = damage_caused ~ analyst_level, data=damage_data)
+
+### very large BF10: extreme evidence for junior > senior
+```
+
+## Task 3: Original data
+
+You will use data from a paper published in Applied Cognitive Psychology. The paper [(OA at https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439)](https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439) replicated an experiment that found that people who are deceptive about their future plans struggle to be as detailed as truth-tellers. Here, the outcome variable of interest was the number of specific time references in the participants' answers to interview questions (e.g. "9am", "half past seven") as counted by instructed human coders.
+
+Load the data from `./data/tutorial4/replication_data.csv` and test:
+
+1. whether the findings replicated using the NHST framework
+2. what Bayesian statistics concludes.
+
+```{r}
+#your code here
+## load the data
+replication_data = read.csv('./data/tutorial4/replication_data.csv', header=T)
+
+##NHST t-test (note: we have a direction here!)
+t.test(replication_data$specific_time_refs ~ replication_data$condition, alternative = 'g')
+
+##Bayesian test
+ttestBF(formula = specific_time_refs ~ condition
+        , data = replication_data)
+```
+
+What is your conclusion?
+
+```{r}
+#write your answer here
+
+#- NHST t-test is non-significany: all we can say is that we do not reject H0
+#- BF10 is 0.24
+#- in other words: BF01 is 1/0.24 = 4.17; this is substantial evidence for H0 over H1
+#- we have thus evidence that there is no difference
+```
+
+
+---
+
+## Task 4: "Evaluation of driving campaign" in JASP
+
+You are tasked to evaluate a safe driving campaign. On 150 road crossing, a local police force implemented a safe-driving cmapign through ads that promote better driving practices. As a control, they chose 150 comparable crossings where no such campaign was run. At each locaiton, police officers evaluated the driving behavior by assigning a score from 0-100. Higher scores, indicate better driving practices.
+
+You are now asked to decide whether or not the funding for the campaign should be extended.
+
+Provide an answer in the NHST framework and in the Bayesian framework.
+
+**Conduct these analyses in JASP**
+
+## Task 5: "Revisiting fraud data" in JASP
+
+Load the dataframe `damage_data` from `./data/tutorial4/analyst_data.RData`. In that dataframe, you have 1000 observations each for junior and senior analysts and the damage they caused for their employers in fine that needed to be paid for compliance issues. You are in charge of leading a new, better statistical insights team and your employer asks you whether junior or senior analysts are more problematic.
+
+Provide an answer from both the frequentist and the Bayesian perspective.
+
+
+**Conduct these analyses in JASP**
+
+## Task 6: "Original data" in JASP
+
+You will use data from a paper published in Applied Cognitive Psychology. The paper [(OA at https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439)](https://onlinelibrary.wiley.com/doi/full/10.1002/acp.3439) replicated an experiment that found that people who are deceptive about their future plans struggle to be as detailed as truth-tellers. Here, the outcome variable of interest was the number of specific time references in the participants' answers to interview questions (e.g. "9am", "half past seven") as counted by instructed human coders.
+
+Load the data from `./data/tutorial4/replication_data.csv` and test:
+
+1. whether the findings replicated using the NHST framework
+2. what Bayesian statistics concludes.
+
+
+**Conduct these analyses in JASP**
+
+## END
+
+---
+
