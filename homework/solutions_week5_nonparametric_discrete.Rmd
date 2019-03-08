@@ -40,7 +40,7 @@ If you struggle with basics of R, you may also find this online book useful: [ht
 Read the csv file `data1_week5.csv` from `./data`. The csv file contains three variables of 1000 observations of areas surveyed and rated according to:
 
 - their rank in deprivation on a scale from 1 to 10 (1 highest, 10 lowest)
-- their rank in public disorder on a scale from 1 to 10 (1 highest, 10 lowest)
+- their rank in cleanliness on a scale from 1 to 10 (1 highest, 10 lowest)
 - their rank in social media participation on a scale from 1 to 5 (1 highest, 5 lowest)
 
 You are interested in testing whether these data correlate. First, test whether the assumption of normally distributed data is met and the choose the appropriate test to ascertain whether or not there are correlations between these three variables.
@@ -53,18 +53,18 @@ data1_week5 = read.csv('./data/data1_week5.csv', header=T)
 
 #assessing normality through histogram
 hist(data1_week5$deprivation_rank)
-hist(data1_week5$public_disorder_rank)
+hist(data1_week5$cleanliness_rank)
 hist(data1_week5$socialmedia_rank)
 
 #assessing normality statistically
 shapiro.test(data1_week5$deprivation_rank)
-shapiro.test(data1_week5$public_disorder_rank)
+shapiro.test(data1_week5$cleanliness_rank)
 shapiro.test(data1_week5$socialmedia_rank)
 
 #calculating correlation
-cor(data1_week5$deprivation_rank, data1_week5$public_disorder_rank, method = 'spearman')
+cor(data1_week5$deprivation_rank, data1_week5$cleanliness_rank, method = 'spearman')
 cor(data1_week5$deprivation_rank, data1_week5$socialmedia_rank, method = 'spearman')
-cor(data1_week5$public_disorder_rank, data1_week5$socialmedia_rank, method = 'spearman')
+cor(data1_week5$cleanliness_rank, data1_week5$socialmedia_rank, method = 'spearman')
 ```
 
 
