@@ -114,6 +114,17 @@ Recommended reading:
 - Wagenmakers, E.-J., Lodewyckx, T., Kuriyal, H., & Grasman, R. (2010). Bayesian hypothesis testing for psychologists: A tutorial on the Savage–Dickey method. Cognitive Psychology, 60(3), 158–189. [https://doi.org/10.1016/j.cogpsych.2009.12.001](https://doi.org/10.1016/j.cogpsych.2009.12.001)
 - Wetzels, R., Matzke, D., Lee, M. D., Rouder, J. N., Iverson, G. J., & Wagenmakers, E.-J. (2011). Statistical Evidence in Experimental Psychology: An Empirical Comparison Using 855 t Tests. Perspectives on Psychological Science, 6(3), 291–298. [https://doi.org/10.1177/1745691611406923](https://doi.org/10.1177/1745691611406923)
 
+
+#### Week 9
+
+- Lecture: Recap + Q&A [(slides)](https://raw.githack.com/ben-aaron188/ucl_psm2_20182019/master/slides/psm2_20182019_lecture9_q_and_a.html), [(pdf)](https://github.com/ben-aaron188/ucl_psm2_20182019/blob/master/slides/psm2_20182019_lecture9_q_and_a.pdf)
+- No homework (prepare for the exam).
+- No tutorial.
+
+#### Week 10
+
+CLASS TEST
+
 ---
 
 Module convenor and author: Bennett Kleinberg (bennett.kleinberg@ucl.ac.uk)
